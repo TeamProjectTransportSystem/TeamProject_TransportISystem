@@ -71,6 +71,7 @@
     <Compile Include="DatabaseClasses\StationType.cs" />
     <Compile Include="DatabaseClasses\Train.cs" />
     <Compile Include="DatabaseClasses\TrainType.cs" />
+    <Compile Include="DatabaseClasses\TransportDBContext.cs" />
     <Compile Include="Resources\NamesOfVariables.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
