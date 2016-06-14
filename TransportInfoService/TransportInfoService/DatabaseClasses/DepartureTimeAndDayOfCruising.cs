@@ -13,11 +13,9 @@ namespace TransportInfoService.DatabaseClasses
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DepartureTimeAndDayOfCruisingID { get; set; }
-        public Byte? FirstRouteStationDepartureHours { get; set; }
-        public Byte? FirstRouteStationDepartureMinutes { get; set; }
-        public Byte? LastRouteStationDepartureHours { get; set; }
-        public Byte? LastRouteStationDepartureMinutes { get; set; }
-
+        public Byte DepartureHours { get; set; }
+        public Byte DepartureMinutes { get; set; }
+        public bool IsFirstStationStart { get; set; }
         public virtual DayOfCruising DayOfCruisingInfo { get; set; }
 
         public DepartureTimeAndDayOfCruising()
