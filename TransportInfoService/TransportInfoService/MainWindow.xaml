@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:TransportInfoService"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <WrapPanel>
+        <ListBox Name="TestListBox">
+            
+        </ListBox>
+    </WrapPanel>
 </Window>

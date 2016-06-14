@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TransportInfoService.DatabaseClasses;
+using TransportInfoService.Resources;
 
 namespace TransportInfoService
 {
@@ -23,6 +25,18 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
+
+            List<string> StationTypes = new List<string>();
+
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion) )
+            {
+                foreach (StationType CurrentStationType in CurrentDBContext.ListOfStationTypes)
+                {
+                    StationTypes.Add(CurrentStationType.Name);
+                }
+            }
+
+            TestListBox.ItemsSource = StationTypes;
         }
     }
 }
