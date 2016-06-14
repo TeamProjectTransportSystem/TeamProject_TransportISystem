@@ -16,5 +16,10 @@ namespace TransportInfoService.DatabaseClasses
 
         public virtual ICollection<Station> ListOfStations { get; set; }
         public virtual ICollection<Train> ListOfTrains { get; set; }
+
+        public Route()
+        {
+
+        }
     }
 }
