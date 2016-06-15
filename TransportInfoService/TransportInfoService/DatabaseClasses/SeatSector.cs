@@ -21,6 +21,13 @@ namespace TransportInfoService.DatabaseClasses
 
         public virtual ICollection<WagonType> WagonTypes { get; set; }
 
+        public SeatSector(int NewNumberOfFirstSeat, int NewNumberOfLastSeat, SeatType TypeOfSeatsInSector)
+        {
+            NumberOfFirstSeat = NewNumberOfFirstSeat;
+            NumberOfLastSeat = NewNumberOfLastSeat;
+            TypeOfSeats = TypeOfSeatsInSector;
+        }
+
         public SeatSector()
         {
 

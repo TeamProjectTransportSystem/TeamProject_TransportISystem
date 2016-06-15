@@ -18,6 +18,14 @@ namespace TransportInfoService.DatabaseClasses
         public bool IsFirstStationStart { get; set; }
         public virtual DayOfCruising DayOfCruisingInfo { get; set; }
 
+        public DepartureTimeAndDayOfCruising(Byte NewDepartureHours, Byte NewDepartureMinutes, bool ThisIsFirstStationStart, DayOfCruising NewDayOfCruising)
+        {
+            DepartureHours = NewDepartureHours;
+            DepartureMinutes = NewDepartureMinutes;
+            IsFirstStationStart = ThisIsFirstStationStart;
+            DayOfCruisingInfo = NewDayOfCruising;
+        }
+
         public DepartureTimeAndDayOfCruising()
         {
 

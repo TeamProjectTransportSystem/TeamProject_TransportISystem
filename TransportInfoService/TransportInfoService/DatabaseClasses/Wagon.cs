@@ -11,6 +11,7 @@ namespace TransportInfoService.DatabaseClasses
     [Table("Wagons")]
     public class Wagon
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WagonID { get; set; }
 
         public string WagonTypeName { get; set; }
@@ -45,6 +46,12 @@ namespace TransportInfoService.DatabaseClasses
                 }
                 this.OccupiedSeatsAsString = BuilderForOccupiedSeatsAsString.ToString();
             }
+        }
+
+        public Wagon(WagonType TypeOfWagon)
+        {
+            Type = TypeOfWagon;
+            OccupiedSeatsAsString = string.Empty;
         }
 
         public Wagon()

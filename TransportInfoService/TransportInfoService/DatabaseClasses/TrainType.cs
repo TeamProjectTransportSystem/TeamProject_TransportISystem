@@ -12,11 +12,18 @@ namespace TransportInfoService.DatabaseClasses
     public class TrainType
     {
         [Key]
-        public string TypeName { get; set; }
+        public string Name { get; set; }
         public int PriceForKilometer { get; set; }
         public int Speed { get; set; }
 
         public virtual ICollection<Train> Trains { get; set; }
+
+        public TrainType(string NameOfType, int PriceForKilometerForThisType, int SpeedOfThisType)
+        {
+            Name = NameOfType;
+            PriceForKilometer = PriceForKilometerForThisType;
+            Speed = SpeedOfThisType;
+        }
 
         public TrainType()
         {

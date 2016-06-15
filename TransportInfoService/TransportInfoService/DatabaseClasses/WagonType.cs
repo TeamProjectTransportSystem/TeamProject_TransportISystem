@@ -17,6 +17,13 @@ namespace TransportInfoService.DatabaseClasses
         public bool HasUpperSeats { get; set; }
         public virtual ICollection<SeatSector> SeatSectors { get; set; }
 
+        public WagonType(string NameOfType, int PriceForKilometerForThisType, bool IsThisWagonTypeHasUpperSeats)
+        {
+            Name = NameOfType;
+            PriceForKilometer = PriceForKilometerForThisType;
+            HasUpperSeats = IsThisWagonTypeHasUpperSeats;
+        }
+
         public WagonType()
         {
 

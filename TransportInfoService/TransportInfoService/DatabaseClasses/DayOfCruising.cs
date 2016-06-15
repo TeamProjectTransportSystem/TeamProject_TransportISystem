@@ -14,6 +14,11 @@ namespace TransportInfoService.DatabaseClasses
         [Key]
         public string DayInfo { get; set; }
 
+        public DayOfCruising(string NewDayInfo)
+        {
+            DayInfo = NewDayInfo;
+        }
+
         public DayOfCruising()
         {
 

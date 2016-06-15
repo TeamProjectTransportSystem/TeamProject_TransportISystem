@@ -16,6 +16,11 @@ namespace TransportInfoService.DatabaseClasses
 
         public virtual ICollection<Station> ListOfStations { get; set; }
 
+        public StationType(string TypeName)
+        {
+            Name = TypeName;
+        }
+
         public StationType()
         {
 

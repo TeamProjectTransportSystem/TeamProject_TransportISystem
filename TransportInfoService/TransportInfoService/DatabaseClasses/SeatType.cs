@@ -16,6 +16,13 @@ namespace TransportInfoService.DatabaseClasses
         public bool CanBeUpper { get; set; }
         public int PriceForKilometer { get; set; }
 
+        public SeatType(string NewName, bool CanSeatBeUpper, int NewPriceForKilometer)
+        {
+            Name = NewName;
+            CanBeUpper = CanSeatBeUpper;
+            PriceForKilometer = NewPriceForKilometer;
+        }
+
         public SeatType()
         {
 
