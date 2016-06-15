@@ -23,6 +23,7 @@ namespace TransportInfoService.DatabaseClasses
             Name = NameOfType;
             PriceForKilometer = PriceForKilometerForThisType;
             Speed = SpeedOfThisType;
+            Trains = new List<Train>();
         }
 
         public TrainType()

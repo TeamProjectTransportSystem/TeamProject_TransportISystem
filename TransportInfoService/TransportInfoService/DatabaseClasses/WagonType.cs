@@ -22,6 +22,7 @@ namespace TransportInfoService.DatabaseClasses
             Name = NameOfType;
             PriceForKilometer = PriceForKilometerForThisType;
             HasUpperSeats = IsThisWagonTypeHasUpperSeats;
+            SeatSectors = new List<SeatSector>();
         }
 
         public WagonType()

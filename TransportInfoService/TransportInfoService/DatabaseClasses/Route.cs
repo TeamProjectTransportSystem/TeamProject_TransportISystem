@@ -20,6 +20,8 @@ namespace TransportInfoService.DatabaseClasses
         public Route(string NewRouteName)
         {
             Name = NewRouteName;
+            ListOfStations = new List<Station>();
+            ListOfTrains = new List<Train>();
         }
 
         public Route()

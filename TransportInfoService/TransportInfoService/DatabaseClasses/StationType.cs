@@ -19,6 +19,7 @@ namespace TransportInfoService.DatabaseClasses
         public StationType(string TypeName)
         {
             Name = TypeName;
+            ListOfStations = new List<Station>();
         }
 
         public StationType()

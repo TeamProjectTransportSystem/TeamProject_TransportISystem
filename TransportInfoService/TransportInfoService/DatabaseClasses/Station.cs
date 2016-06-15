@@ -23,6 +23,7 @@ namespace TransportInfoService.DatabaseClasses
             Name = StationName;
             Distance = NewDistance;
             Type = TypeOfStation;
+            Routes = new List<Route>();
         }
 
         public Station()

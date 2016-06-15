@@ -26,17 +26,45 @@ namespace TransportInfoService
         {
             InitializeComponent();
 
-            List<string> StationTypes = new List<string>();
+            //ReturnTrain();
+            //List<string> StationTypes = new List<string>();
 
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion) )
+            //using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            //{
+            //    foreach (StationType CurrentStationType in CurrentDBContext.ListOfStationTypes)
+            //    {
+            //        StationTypes.Add(CurrentStationType.Name);
+            //    }
+            //}
+
+            TestListBox.ItemsSource = ReturnTrain();
+        }
+
+        public List<string> ReturnTrain()
+        {
+
+            List<string> listOfTrains = new List<string>();
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
-                foreach (StationType CurrentStationType in CurrentDBContext.ListOfStationTypes)
+
+                foreach(Station s in CurrentDBContext.ListOfStations)
                 {
-                    StationTypes.Add(CurrentStationType.Name);
+                    listOfTrains.Add(s.Name);
                 }
+                //var trains = CurrentDBContext.ListOfTrains.Join(CurrentDBContext.ListOfRoutes,
+                //                                                  s => s.TrainIDAsString,
+                //                                                  c => c.Name,
+                //                                                  (s, c) => new
+                //                                                  {
+                //                                                      NameTrain = s.TrainIDAsString,
+                //                                                      StartStation = c.ListOfStations.First(),
+                //                                                      FinishStation = c.ListOfStations.Last()
+                //                                                  });
+                //listOfTrains = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
+                //listOfTrains = trains;
             }
 
-            TestListBox.ItemsSource = StationTypes;
+            return listOfTrains;
         }
     }
 }

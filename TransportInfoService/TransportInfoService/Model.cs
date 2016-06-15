@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransportInfoService.DatabaseClasses;
+using TransportInfoService.Resources;
 
 namespace TransportInfoService
 {
@@ -29,5 +31,7 @@ namespace TransportInfoService
                 return instance;
             }
         }
+
+        
     }
 }

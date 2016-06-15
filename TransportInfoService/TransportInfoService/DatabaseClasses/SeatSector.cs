@@ -26,6 +26,7 @@ namespace TransportInfoService.DatabaseClasses
             NumberOfFirstSeat = NewNumberOfFirstSeat;
             NumberOfLastSeat = NewNumberOfLastSeat;
             TypeOfSeats = TypeOfSeatsInSector;
+            WagonTypes = new List<WagonType>();
         }
 
         public SeatSector()
