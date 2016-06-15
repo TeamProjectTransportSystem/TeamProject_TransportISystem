@@ -59,5 +59,41 @@ namespace TransportInfoService.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Найти.
+        /// </summary>
+        public static string ButtonSearchTrains {
+            get {
+                return ResourceManager.GetString("ButtonSearchTrains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начните вводить название станции.
+        /// </summary>
+        public static string ComboBoxChooseStation {
+            get {
+                return ResourceManager.GetString("ComboBoxChooseStation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Откуда.
+        /// </summary>
+        public static string LabelDepartureStation {
+            get {
+                return ResourceManager.GetString("LabelDepartureStation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Куда.
+        /// </summary>
+        public static string LabelDestinationStation {
+            get {
+                return ResourceManager.GetString("LabelDestinationStation", resourceCulture);
+            }
+        }
     }
 }

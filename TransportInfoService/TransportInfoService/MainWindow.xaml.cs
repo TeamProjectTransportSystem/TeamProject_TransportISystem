@@ -26,6 +26,7 @@ namespace TransportInfoService
         {
             InitializeComponent();
 
+
             //ReturnTrain();
             //List<string> StationTypes = new List<string>();
 
@@ -45,6 +46,12 @@ namespace TransportInfoService
 
             List<string> listOfTrains = new List<string>();
             using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+
+            this.DataContext = new ViewModel();
+            List<string> StationTypes = new List<string>();
+
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion) )
+
             {
 
                 foreach(Station s in CurrentDBContext.ListOfStations)
@@ -64,7 +71,13 @@ namespace TransportInfoService
                 //listOfTrains = trains;
             }
 
+
             return listOfTrains;
+
+            //TestListBox.ItemsSource = StationTypes;
+
         }
+
+       
     }
 }
