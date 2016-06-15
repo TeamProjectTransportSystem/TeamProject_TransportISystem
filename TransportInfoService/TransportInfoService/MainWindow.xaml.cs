@@ -28,7 +28,7 @@ namespace TransportInfoService
 
             List<string> StationTypes = new List<string>();
 
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion) )
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion) )
             {
                 foreach (StationType CurrentStationType in CurrentDBContext.ListOfStationTypes)
                 {
