@@ -26,9 +26,10 @@ namespace TransportInfoService
         {
             InitializeComponent();
 
+            this.DataContext = new ViewModel();
             List<string> StationTypes = new List<string>();
 
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion) )
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion) )
             {
                 foreach (StationType CurrentStationType in CurrentDBContext.ListOfStationTypes)
                 {
@@ -36,7 +37,13 @@ namespace TransportInfoService
                 }
             }
 
-            TestListBox.ItemsSource = StationTypes;
+            //TestListBox.ItemsSource = StationTypes;
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

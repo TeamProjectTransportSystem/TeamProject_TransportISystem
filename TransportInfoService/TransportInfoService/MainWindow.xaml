@@ -4,11 +4,51 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TransportInfoService"
+        xmlns:MyRes="clr-namespace:TransportInfoService.Resources"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <WrapPanel>
-        <ListBox Name="TestListBox">
-            
-        </ListBox>
-    </WrapPanel>
+        Title="MainWindow" Height="450" Width="700">
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <WrapPanel>
+                <StackPanel>
+                    <Label Content="{x:Static MyRes:Texts.LabelDepartureStation}"></Label>
+                    <ComboBox Name="DepartureStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="Gray" Text="{ x:Static MyRes:Texts.ComboBoxChooseStation}"></ComboBox>
+                </StackPanel>
+                <StackPanel Margin="25,0,0,0">
+                    <StackPanel>
+                        <Label Content="{x:Static MyRes:Texts.LabelDestinationStation}"></Label>
+                        <WrapPanel>
+                            <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="Gray" Text="{ x:Static MyRes:Texts.ComboBoxChooseStation}"></ComboBox>
+                            <Button FontSize="16" Margin="25,0,0,0" Content="{x:Static MyRes:Texts.ButtonSearchTrains}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding CommandClickButtonSearchTrains}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>         
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Label Name="ProgramStateLabel"></Label>
+                <Ellipse Visibility="Collapsed"  Name="SearchDataAnimatedEllipse" Width="20" Height="20"  StrokeThickness="5" RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                        </TransformGroup>
+                    </Ellipse.RenderTransform>
+                    <Ellipse.Stroke>
+                        <LinearGradientBrush EndPoint="0.445,0.997" StartPoint="0.555,0.003">
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="#FF1AB48A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Stroke>
+                </Ellipse>
+            </WrapPanel>
+        </StackPanel>
+    </DockPanel>
 </Window>
