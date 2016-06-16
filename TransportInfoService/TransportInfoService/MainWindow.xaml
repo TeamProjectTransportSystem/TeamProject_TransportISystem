@@ -25,12 +25,18 @@
             <WrapPanel>
                 <StackPanel>
                     <Label Content="{x:Static MyRes:Texts.LabelDepartureStation}"></Label>
-                    <ComboBox Name="DepartureStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="Gray" Text="{ x:Static MyRes:Texts.ComboBoxChooseStation}"></ComboBox>
+                    <ComboBox Name="DepartureStationComboBox" Width="250"  IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDepartureStationComboBox}" Text="{Binding DepartureStationComboBoxText}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewTextInput">
+                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="PreviewTextInputForComboBoxesWithStations"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="25,0,0,0">
                     <StackPanel>
                         <Label Content="{x:Static MyRes:Texts.LabelDestinationStation}"></Label>
-                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="Gray" Text="{ x:Static MyRes:Texts.ComboBoxChooseStation}"></ComboBox>
+                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox}" Text="{Binding DestinationStationComboBoxText}"></ComboBox>
                     </StackPanel>         
                 </StackPanel>
                 <StackPanel>
@@ -68,7 +74,7 @@
                 <DataGrid Name="FoundTrainsDataGrid" MaxHeight="150" Visibility="{Binding VisibilityForFoundTrainsDataGrid}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="AutoGeneratingColumn">
-                            <ei:CallMethodAction TargetObject="{Binding}"  MethodName="TestEvent"/>
+                            <ei:CallMethodAction TargetObject="{Binding}"  MethodName="AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </DataGrid>

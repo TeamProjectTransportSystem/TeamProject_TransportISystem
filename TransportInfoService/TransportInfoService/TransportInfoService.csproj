@@ -80,7 +80,6 @@
     <Compile Include="DatabaseClasses\DepartureTimeAndDayOfCruising.cs" />
     <Compile Include="DatabaseClasses\Route.cs" />
     <Compile Include="DatabaseClasses\SeatSector.cs" />
-    <Compile Include="DatabaseClasses\SeatType.cs" />
     <Compile Include="DatabaseClasses\Station.cs" />
     <Compile Include="DatabaseClasses\StationType.cs" />
     <Compile Include="DatabaseClasses\Train.cs" />
@@ -89,7 +88,7 @@
     <Compile Include="DatabaseClasses\TransportDBseeder.cs" />
     <Compile Include="DatabaseClasses\Wagon.cs" />
     <Compile Include="DatabaseClasses\WagonType.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="TransportSystemLogicClasses\Model.cs" />
     <Compile Include="Resources\NamesOfVariables.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

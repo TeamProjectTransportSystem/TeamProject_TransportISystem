@@ -15,6 +15,7 @@ namespace TransportInfoService.DatabaseClasses
         public string Name { get; set; }
 
         public virtual ICollection<Station> ListOfStations { get; set; }
+        public virtual ICollection<TrainType> AllowedTypesOfTrains { get; set; }
 
         public StationType(string TypeName)
         {

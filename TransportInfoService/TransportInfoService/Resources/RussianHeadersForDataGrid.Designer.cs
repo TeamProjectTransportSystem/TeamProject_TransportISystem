@@ -61,11 +61,56 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Время прибытия.
+        /// </summary>
+        public static string ArrivalTime {
+            get {
+                return ResourceManager.GetString("ArrivalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дни курсирования.
+        /// </summary>
+        public static string DaysOfCruising {
+            get {
+                return ResourceManager.GetString("DaysOfCruising", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Время отправления.
+        /// </summary>
+        public static string DepartureTime {
+            get {
+                return ResourceManager.GetString("DepartureTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Остановки.
+        /// </summary>
+        public static string Stations {
+            get {
+                return ResourceManager.GetString("Stations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Поезд.
         /// </summary>
         public static string Train {
             get {
                 return ResourceManager.GetString("Train", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Время в пути.
+        /// </summary>
+        public static string TravelTime {
+            get {
+                return ResourceManager.GetString("TravelTime", resourceCulture);
             }
         }
     }

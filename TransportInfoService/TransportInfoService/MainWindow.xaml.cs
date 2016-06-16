@@ -24,27 +24,23 @@ namespace TransportInfoService
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
 
             this.DataContext = new ViewModel();
 
-            List<TrainWithDaysOfCruising> TestListOfTrains = new List<TrainWithDaysOfCruising>();
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("Blablabla"));
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("Hahahaha"));
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("Gygygygy"));
-            FoundTrainsDataGrid.ItemsSource = TestListOfTrains;
-            ThreadPool.QueueUserWorkItem(o => Button_Click());
+            ThreadPool.QueueUserWorkItem(o => ShowTestData());
         }
 
-        private void Button_Click()
+        private void ShowTestData()
         {
             Thread.Sleep(3000);
             List<TrainWithDaysOfCruising> TestListOfTrains = new List<TrainWithDaysOfCruising>();
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("Blabla"));
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("Hahha"));
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("Ggygy"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123D Эконом Минск - Москва", "19:30","20:30", "1:00", "ежедневно", "Везде", ""));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45","12:45", "6:00", "понедельник,\n четверг", "Гродно,\n Мозырь", ""));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09","8:09", "4:00", "суббота,\n воскресенье", "Кроме Орша,\n Минск", ""));
             Application.Current.Dispatcher.Invoke(new Action(() => FoundTrainsDataGrid.ItemsSource = TestListOfTrains));
         }
 

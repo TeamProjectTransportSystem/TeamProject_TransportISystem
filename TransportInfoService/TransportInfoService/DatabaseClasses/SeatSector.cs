@@ -14,19 +14,17 @@ namespace TransportInfoService.DatabaseClasses
         public int SeatSectorID { get; set; }
         public int NumberOfFirstSeat { get; set; }
         public int NumberOfLastSeat { get; set; }
-
-        public string NameOfSeatType { get; set; }
-        [ForeignKey("NameOfSeatType")]
-        public virtual SeatType TypeOfSeats { get; set; }
+        //Являются ли места боковыми (имеет смысл для плацкартных вагонов)
+        public bool IsSide { get; set; }
 
         public virtual ICollection<WagonType> WagonTypes { get; set; }
 
-        public SeatSector(int NewNumberOfFirstSeat, int NewNumberOfLastSeat, SeatType TypeOfSeatsInSector)
+        public SeatSector(int NewNumberOfFirstSeat, int NewNumberOfLastSeat, bool IsThisSectorSide)
         {
             NumberOfFirstSeat = NewNumberOfFirstSeat;
             NumberOfLastSeat = NewNumberOfLastSeat;
-            TypeOfSeats = TypeOfSeatsInSector;
             WagonTypes = new List<WagonType>();
+            IsSide = IsThisSectorSide;
         }
 
         public SeatSector()
