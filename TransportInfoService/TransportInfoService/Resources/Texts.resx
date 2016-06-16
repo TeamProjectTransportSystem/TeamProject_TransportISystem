@@ -120,6 +120,9 @@
   <data name="ButtonSearchTrains" xml:space="preserve">
     <value>Найти</value>
   </data>
+  <data name="CheckBoxAllDays" xml:space="preserve">
+    <value>На все дни</value>
+  </data>
   <data name="ComboBoxChooseStation" xml:space="preserve">
     <value>Начните вводить название станции</value>
   </data>

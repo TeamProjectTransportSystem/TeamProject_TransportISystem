@@ -18,6 +18,8 @@ namespace TransportInfoService
     {
         private Model LogisOfTransportSystem;
 
+        private bool checkBoxAllDaysIsChecked;
+
         private string departureStationComboBoxText;
         private string destinationStationComboBoxText;
         private Brush foregroundDepartureStationComboBox;
@@ -136,6 +138,19 @@ namespace TransportInfoService
             }
         }
 
+        public bool CheckBoxAllDaysIsChecked
+        {
+            get 
+            { 
+                return checkBoxAllDaysIsChecked; 
+            }
+            set 
+            { 
+                checkBoxAllDaysIsChecked = value; 
+                NotifyPropertyChanged();
+            }
+        }
+
         public void AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "TrainFullName")
@@ -169,11 +184,27 @@ namespace TransportInfoService
             if ((sender as ComboBox).Name == NamesOfVariables.ComboBoxDepartureStationName && DepartureStationComboBoxText == Texts.ComboBoxChooseStation)
             {
                 DepartureStationComboBoxText = string.Empty;
+                ForegroundDepartureStationComboBox = Brushes.Black;
             }
             else if ((sender as ComboBox).Name == NamesOfVariables.ComboBoxDestinationStationName && DestinationStationComboBoxText == Texts.ComboBoxChooseStation)
             {
                 DestinationStationComboBoxText = string.Empty;
+                ForegroundDestinationStationComboBox = Brushes.Black;
             }
+        }
+
+        public void EventHandlerForCheckedEventOfCheckBoxAllDays(object sender, EventArgs e)
+        {
+                CheckBoxAllDaysIsChecked = true;
+                VisibilityForCalendarControl = Visibility.Collapsed;
+        }
+
+        public void EventHandlerForUncheckedEventOfCheckBoxAllDays(object sender, EventArgs e)
+        {
+
+                CheckBoxAllDaysIsChecked = false;
+                VisibilityForCalendarControl = Visibility.Visible;
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -198,6 +229,8 @@ namespace TransportInfoService
             DestinationStationComboBoxText = Texts.ComboBoxChooseStation;
             ForegroundDepartureStationComboBox = Brushes.Gray;
             ForegroundDestinationStationComboBox = Brushes.Gray;
+
+            CheckBoxAllDaysIsChecked = false;
         }
     }
 }

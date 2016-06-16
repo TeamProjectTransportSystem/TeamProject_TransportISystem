@@ -8,55 +8,61 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="603" Width="800">
+        Title="MainWindow" Height="603" Width="1000">
     <Window.Resources>
-        <DataTemplate x:Key="FoundTrainsListBoxItemTemplate">
-            <WrapPanel>
-                <Label Content="{Binding TrainFullName}"></Label>
-                <Label Content="{Binding DepartureTime}"></Label>
-                <Label Content="{Binding TimeOfArrival}"></Label>
-                <Label Content="{Binding TravelTime}"></Label>
-                <Label Content="{Binding DaysOcruising}"></Label>
-            </WrapPanel>
-        </DataTemplate>
+
     </Window.Resources>
     <DockPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <WrapPanel>
                 <StackPanel>
                     <Label Content="{x:Static MyRes:Texts.LabelDepartureStation}"></Label>
-                    <ComboBox Name="DepartureStationComboBox" Width="250"  IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDepartureStationComboBox}" Text="{Binding DepartureStationComboBoxText}">
+                    <ComboBox Name="DepartureStationComboBox" Width="250"  IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDepartureStationComboBox, Mode=TwoWay}" Text="{Binding DepartureStationComboBoxText, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewTextInput">
                                 <ei:CallMethodAction TargetObject="{Binding}"  MethodName="PreviewTextInputForComboBoxesWithStations"/>
                             </i:EventTrigger>
-                            <i:EventTrigger EventName="TextChanged">
-                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="TextChangedEventHandlerForComboBoxesWithStations"/>
-                            </i:EventTrigger>
                         </i:Interaction.Triggers>
+                        <ComboBox.Style>
+                            <Style>
+                                <EventSetter Event="TextBox.TextChanged" Handler="TextChangedEventHandlerForComboBoxesWithStations"></EventSetter>
+                            </Style>
+                        </ComboBox.Style>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="25,0,0,0">
                     <StackPanel>
                         <Label Content="{x:Static MyRes:Texts.LabelDestinationStation}"></Label>
-                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox}" Text="{Binding DestinationStationComboBoxText}">
+                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox, Mode=TwoWay}" Text="{Binding DestinationStationComboBoxText, Mode=TwoWay}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding}"  MethodName="PreviewTextInputForComboBoxesWithStations"/>
                                 </i:EventTrigger>
-                                <i:EventTrigger EventName="TextChanged">
-                                    <ei:CallMethodAction TargetObject="{Binding}"  MethodName="TextChangedEventHandlerForComboBoxesWithStations"/>
-                                </i:EventTrigger>
                             </i:Interaction.Triggers>
+                            <ComboBox.Style>
+                                <Style>
+                                    <EventSetter Event="TextBox.TextChanged" Handler="TextChangedEventHandlerForComboBoxesWithStations"></EventSetter>
+                                </Style>
+                            </ComboBox.Style>
                         </ComboBox>
                     </StackPanel>         
                 </StackPanel>
                 <StackPanel>
-                    <Calendar Visibility="{Binding VisibilityForCalendarControl}"></Calendar>
+                    <CheckBox Name="AllDaysCheckBox" Content="{x:Static MyRes:Texts.CheckBoxAllDays}" IsChecked="{Binding CheckBoxAllDaysIsChecked, Mode=TwoWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="EventHandlerForCheckedEventOfCheckBoxAllDays"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="EventHandlerForUncheckedEventOfCheckBoxAllDays"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <Calendar Visibility="{Binding VisibilityForCalendarControl, Mode=TwoWay}"></Calendar>
                 </StackPanel>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">
-                <Button FontSize="16" Content="{x:Static MyRes:Texts.ButtonSearchTrains}" Visibility="{Binding VisibilityForSearchTrainsButton}">
+                <Button FontSize="16" Content="{x:Static MyRes:Texts.ButtonSearchTrains}" Visibility="{Binding VisibilityForSearchTrainsButton, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding CommandClickButtonSearchTrains}"/>
@@ -83,12 +89,12 @@
                 </Ellipse>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">
-                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="150" Visibility="{Binding VisibilityForFoundTrainsDataGrid}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="150" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="AutoGeneratingColumn">
                             <ei:CallMethodAction TargetObject="{Binding}"  MethodName="AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid"/>
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                    </i:Interaction.Triggers>                   
                 </DataGrid>
             </WrapPanel>
         </StackPanel>

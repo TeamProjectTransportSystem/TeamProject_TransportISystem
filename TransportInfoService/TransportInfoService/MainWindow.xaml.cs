@@ -28,20 +28,20 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-            TestListBox.ItemsSource = ReturnTrain();
+            //TestListBox.ItemsSource = ReturnTrain();
             this.DataContext = new ViewModel();
             
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
             //*****************************************************************************************************
             //Creating DB test code
-            List<Station> TestList = new List<Station>();
+            /*List<Station> TestList = new List<Station>();
             using (TransportDBContext TestDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 foreach (Station CurStation in TestDBContext.ListOfStations)
                 {
                     TestList.Add(CurStation);
                 }
-            }
+            }*/
             //*****************************************************************************************************
         }
 
@@ -84,6 +84,13 @@ namespace TransportInfoService
 
         }
 
-
+        private void TextChangedEventHandlerForComboBoxesWithStations(Object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).Text == string.Empty)
+            {
+                (sender as ComboBox).Text = Texts.ComboBoxChooseStation;
+                (sender as ComboBox).Foreground = Brushes.Gray;
+            }
+        }
     }
 }

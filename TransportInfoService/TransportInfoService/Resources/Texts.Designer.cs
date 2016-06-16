@@ -70,6 +70,15 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to На все дни.
+        /// </summary>
+        public static string CheckBoxAllDays {
+            get {
+                return ResourceManager.GetString("CheckBoxAllDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начните вводить название станции.
         /// </summary>
         public static string ComboBoxChooseStation {
