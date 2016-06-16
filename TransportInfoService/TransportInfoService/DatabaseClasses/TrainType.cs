@@ -12,7 +12,7 @@ namespace TransportInfoService.DatabaseClasses
     public class TrainType
     {
         [Key]
-        public string Name { get; set; }
+        public string TrainTypeName { get; set; }
         public int PriceForKilometer { get; set; }
         public int Speed { get; set; }
 
@@ -21,7 +21,7 @@ namespace TransportInfoService.DatabaseClasses
 
         public TrainType(string NameOfType, int PriceForKilometerForThisType, int SpeedOfThisType)
         {
-            Name = NameOfType;
+            TrainTypeName = NameOfType;
             PriceForKilometer = PriceForKilometerForThisType;
             Speed = SpeedOfThisType;
             Trains = new List<Train>();

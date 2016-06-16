@@ -30,13 +30,25 @@
                             <i:EventTrigger EventName="PreviewTextInput">
                                 <ei:CallMethodAction TargetObject="{Binding}"  MethodName="PreviewTextInputForComboBoxesWithStations"/>
                             </i:EventTrigger>
+                            <i:EventTrigger EventName="TextChanged">
+                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="TextChangedEventHandlerForComboBoxesWithStations"/>
+                            </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="25,0,0,0">
                     <StackPanel>
                         <Label Content="{x:Static MyRes:Texts.LabelDestinationStation}"></Label>
-                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox}" Text="{Binding DestinationStationComboBoxText}"></ComboBox>
+                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox}" Text="{Binding DestinationStationComboBoxText}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction TargetObject="{Binding}"  MethodName="PreviewTextInputForComboBoxesWithStations"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <ei:CallMethodAction TargetObject="{Binding}"  MethodName="TextChangedEventHandlerForComboBoxesWithStations"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
                     </StackPanel>         
                 </StackPanel>
                 <StackPanel>

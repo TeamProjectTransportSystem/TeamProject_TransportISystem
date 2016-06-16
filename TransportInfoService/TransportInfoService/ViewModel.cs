@@ -166,13 +166,13 @@ namespace TransportInfoService
 
         public void PreviewTextInputForComboBoxesWithStations(object sender, TextCompositionEventArgs e)
         {
-            if ((sender as ComboBox).Name == "")
+            if ((sender as ComboBox).Name == NamesOfVariables.ComboBoxDepartureStationName && DepartureStationComboBoxText == Texts.ComboBoxChooseStation)
             {
-
+                DepartureStationComboBoxText = string.Empty;
             }
-            else
+            else if ((sender as ComboBox).Name == NamesOfVariables.ComboBoxDestinationStationName && DestinationStationComboBoxText == Texts.ComboBoxChooseStation)
             {
-
+                DestinationStationComboBoxText = string.Empty;
             }
         }
 

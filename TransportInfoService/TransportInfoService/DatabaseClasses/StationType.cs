@@ -12,14 +12,14 @@ namespace TransportInfoService.DatabaseClasses
     public class StationType
     {
         [Key]
-        public string Name { get; set; }
+        public string StationTypeName { get; set; }
 
         public virtual ICollection<Station> ListOfStations { get; set; }
         public virtual ICollection<TrainType> AllowedTypesOfTrains { get; set; }
 
         public StationType(string TypeName)
         {
-            Name = TypeName;
+            StationTypeName = TypeName;
             ListOfStations = new List<Station>();
         }
 
