@@ -28,7 +28,9 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-            //TestListBox.ItemsSource = ReturnTrain();
+
+            //TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "tert","tttt");
+
             this.DataContext = new ViewModel();
             
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
