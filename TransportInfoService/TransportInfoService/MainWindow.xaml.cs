@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TransportInfoService.DatabaseClasses;
 using TransportInfoService.Resources;
+using TransportInfoService.TransportSystemLogicClasses;
 
 namespace TransportInfoService
 {
@@ -26,22 +28,27 @@ namespace TransportInfoService
         {
             InitializeComponent();
 
+            this.DataContext = new ViewModel();
 
-            //ReturnTrain();
-            //List<string> StationTypes = new List<string>();
-
-            //using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
-            //{
-            //    foreach (StationType CurrentStationType in CurrentDBContext.ListOfStationTypes)
-            //    {
-            //        StationTypes.Add(CurrentStationType.Name);
-            //    }
-            //}
-
-            TestListBox.ItemsSource = ReturnTrain();
+            List<TrainWithDaysOfCruising> TestListOfTrains = new List<TrainWithDaysOfCruising>();
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("Blablabla"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("Hahahaha"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("Gygygygy"));
+            FoundTrainsDataGrid.ItemsSource = TestListOfTrains;
+            ThreadPool.QueueUserWorkItem(o => Button_Click());
         }
 
-        public List<string> ReturnTrain()
+        private void Button_Click()
+        {
+            Thread.Sleep(3000);
+            List<TrainWithDaysOfCruising> TestListOfTrains = new List<TrainWithDaysOfCruising>();
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("Blabla"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("Hahha"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("Ggygy"));
+            Application.Current.Dispatcher.Invoke(new Action(() => FoundTrainsDataGrid.ItemsSource = TestListOfTrains));
+        }
+
+        /*public List<string> ReturnTrain()
         {
 
             List<string> listOfTrains = new List<string>();
@@ -76,8 +83,8 @@ namespace TransportInfoService
 
             //TestListBox.ItemsSource = StationTypes;
 
-        }
+        }*/
 
-       
+
     }
 }

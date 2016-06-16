@@ -6,8 +6,20 @@
         xmlns:local="clr-namespace:TransportInfoService"
         xmlns:MyRes="clr-namespace:TransportInfoService.Resources"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="700">
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="FoundTrainsListBoxItemTemplate">
+            <WrapPanel>
+                <Label Content="{Binding TrainFullName}"></Label>
+                <Label Content="{Binding DepartureTime}"></Label>
+                <Label Content="{Binding TimeOfArrival}"></Label>
+                <Label Content="{Binding TravelTime}"></Label>
+                <Label Content="{Binding DaysOcruising}"></Label>
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
     <DockPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <WrapPanel>
@@ -18,18 +30,21 @@
                 <StackPanel Margin="25,0,0,0">
                     <StackPanel>
                         <Label Content="{x:Static MyRes:Texts.LabelDestinationStation}"></Label>
-                        <WrapPanel>
-                            <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="Gray" Text="{ x:Static MyRes:Texts.ComboBoxChooseStation}"></ComboBox>
-                            <Button FontSize="16" Margin="25,0,0,0" Content="{x:Static MyRes:Texts.ButtonSearchTrains}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Click">
-                                        <i:InvokeCommandAction Command="{Binding CommandClickButtonSearchTrains}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </Button>
-                        </WrapPanel>
+                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="Gray" Text="{ x:Static MyRes:Texts.ComboBoxChooseStation}"></ComboBox>
                     </StackPanel>         
                 </StackPanel>
+                <StackPanel>
+                    <Calendar Visibility="{Binding VisibilityForCalendarControl}"></Calendar>
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button FontSize="16" Content="{x:Static MyRes:Texts.ButtonSearchTrains}" Visibility="{Binding VisibilityForSearchTrainsButton}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding CommandClickButtonSearchTrains}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">
                 <Label Name="ProgramStateLabel"></Label>
@@ -48,6 +63,15 @@
                         </LinearGradientBrush>
                     </Ellipse.Stroke>
                 </Ellipse>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="150" Visibility="{Binding VisibilityForFoundTrainsDataGrid}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="AutoGeneratingColumn">
+                            <ei:CallMethodAction TargetObject="{Binding}"  MethodName="TestEvent"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DataGrid>
             </WrapPanel>
         </StackPanel>
     </DockPanel>
