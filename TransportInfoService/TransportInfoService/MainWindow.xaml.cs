@@ -32,6 +32,17 @@ namespace TransportInfoService
             this.DataContext = new ViewModel();
             
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
+            //*****************************************************************************************************
+            //Creating DB test code
+            List<Station> TestList = new List<Station>();
+            using (TransportDBContext TestDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+            {
+                foreach (Station CurStation in TestDBContext.ListOfStations)
+                {
+                    TestList.Add(CurStation);
+                }
+            }
+            //*****************************************************************************************************
         }
 
         private void ShowTestData()
@@ -42,6 +53,7 @@ namespace TransportInfoService
             TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45","12:45", "6:00", "понедельник,\n четверг", "Гродно,\n Мозырь", ""));
             TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09","8:09", "4:00", "суббота,\n воскресенье", "Кроме Орша,\n Минск", ""));
             Application.Current.Dispatcher.Invoke(new Action(() => FoundTrainsDataGrid.ItemsSource = TestListOfTrains));
+
         }
 
         public List<string> ReturnTrain()

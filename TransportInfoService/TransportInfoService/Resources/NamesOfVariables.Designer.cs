@@ -61,6 +61,24 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DepartureStationComboBox.
+        /// </summary>
+        public static string ComboBoxDepartureStationName {
+            get {
+                return ResourceManager.GetString("ComboBoxDepartureStationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DestinationStationComboBox.
+        /// </summary>
+        public static string ComboBoxDestinationStationName {
+            get {
+                return ResourceManager.GetString("ComboBoxDestinationStationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TransportDBConnectionNewVersion.
         /// </summary>
         public static string ConnectionStringNewVersion {

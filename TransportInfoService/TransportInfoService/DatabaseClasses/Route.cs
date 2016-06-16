@@ -12,14 +12,14 @@ namespace TransportInfoService.DatabaseClasses
     public class Route
     {
         [Key]
-        public string Name { get; set; }
+        public string RouteName { get; set; }
 
         public virtual ICollection<Station> ListOfStations { get; set; }
         public virtual ICollection<Train> ListOfTrains { get; set; }
 
         public Route(string NewRouteName)
         {
-            Name = NewRouteName;
+            RouteName = NewRouteName;
             ListOfStations = new List<Station>();
             ListOfTrains = new List<Train>();
         }

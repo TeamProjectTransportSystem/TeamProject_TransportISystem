@@ -12,14 +12,14 @@ namespace TransportInfoService.DatabaseClasses
     public class WagonType
     {
         [Key]
-        public string Name { get; set; }
+        public string WagonName { get; set; }
         public int PriceForKilometer { get; set; }
         public bool HasUpperSeats { get; set; }
         public virtual ICollection<SeatSector> SeatSectors { get; set; }
 
         public WagonType(string NameOfType, int PriceForKilometerForThisType, bool IsThisWagonTypeHasUpperSeats)
         {
-            Name = NameOfType;
+            WagonName = NameOfType;
             PriceForKilometer = PriceForKilometerForThisType;
             HasUpperSeats = IsThisWagonTypeHasUpperSeats;
             SeatSectors = new List<SeatSector>();
