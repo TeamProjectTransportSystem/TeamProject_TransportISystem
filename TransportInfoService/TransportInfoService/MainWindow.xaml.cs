@@ -28,7 +28,7 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-            TestListBox.ItemsSource = ReturnTrain();
+            TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "tert","tttt");
             this.DataContext = new ViewModel();
             
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
@@ -56,34 +56,7 @@ namespace TransportInfoService
 
         }
 
-        public List<string> ReturnTrain()
-        {
-
-            List<string> listOfTrains = new List<string>();
-            //this.DataContext = new ViewModel();
-            //List<string> StationTypes = new List<string>();
-
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion) )
-
-            {
-                //var trains = CurrentDBContext.ListOfTrains.Join(CurrentDBContext.ListOfRoutes,
-                //                                                  s => s.TrainIDAsString,
-                //                                                  c => c.Name,
-                //                                                  (s, c) => new
-                //                                                  {
-                //                                                      NameTrain = s.TrainIDAsString,
-                //                                                      StartStation = c.ListOfStations.First(),
-                //                                                      FinishStation = c.ListOfStations.Last()
-                //                                                  });
-                listOfTrains = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
-                //listOfTrains = trains;
-            }
-
-
-            return listOfTrains;
-
-        }
-
+       
 
     }
 }
