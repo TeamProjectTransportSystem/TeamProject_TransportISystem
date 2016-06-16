@@ -28,9 +28,9 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-
+            TestListBox.ItemsSource = ReturnTrain();
             this.DataContext = new ViewModel();
-
+            
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
         }
 
@@ -44,23 +44,16 @@ namespace TransportInfoService
             Application.Current.Dispatcher.Invoke(new Action(() => FoundTrainsDataGrid.ItemsSource = TestListOfTrains));
         }
 
-        /*public List<string> ReturnTrain()
+        public List<string> ReturnTrain()
         {
 
             List<string> listOfTrains = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
-
-            this.DataContext = new ViewModel();
-            List<string> StationTypes = new List<string>();
+            //this.DataContext = new ViewModel();
+            //List<string> StationTypes = new List<string>();
 
             using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion) )
 
             {
-
-                foreach(Station s in CurrentDBContext.ListOfStations)
-                {
-                    listOfTrains.Add(s.Name);
-                }
                 //var trains = CurrentDBContext.ListOfTrains.Join(CurrentDBContext.ListOfRoutes,
                 //                                                  s => s.TrainIDAsString,
                 //                                                  c => c.Name,
@@ -70,16 +63,14 @@ namespace TransportInfoService
                 //                                                      StartStation = c.ListOfStations.First(),
                 //                                                      FinishStation = c.ListOfStations.Last()
                 //                                                  });
-                //listOfTrains = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
+                listOfTrains = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
                 //listOfTrains = trains;
             }
 
 
             return listOfTrains;
 
-            //TestListBox.ItemsSource = StationTypes;
-
-        }*/
+        }
 
 
     }

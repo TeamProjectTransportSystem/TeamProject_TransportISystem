@@ -15,7 +15,7 @@ namespace TransportInfoService.DatabaseClasses
         public string Name { get; set; }
         public int  Distance { get; set; }
 
-        public virtual StationType Type { get; set; }
+        public StationType Type { get; set; }
         public virtual ICollection<Route> Routes { get; set; }
 
         public Station(string StationName, int NewDistance, StationType TypeOfStation)
