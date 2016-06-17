@@ -29,7 +29,7 @@ namespace TransportInfoService
         {
             InitializeComponent();
 
-            //TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "tert","tttt");
+            TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "Тракторный", "Городище");
 
             this.DataContext = new ViewModel();
             
