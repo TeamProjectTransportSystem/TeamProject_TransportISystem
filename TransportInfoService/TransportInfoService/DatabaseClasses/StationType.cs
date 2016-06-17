@@ -21,6 +21,7 @@ namespace TransportInfoService.DatabaseClasses
         {
             StationTypeName = TypeName;
             ListOfStations = new List<Station>();
+            AllowedTypesOfTrains = new List<TrainType>();
         }
 
         public StationType()

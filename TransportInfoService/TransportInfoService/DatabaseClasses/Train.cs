@@ -25,6 +25,7 @@ namespace TransportInfoService.DatabaseClasses
             Type = TypeOfTrain;
             Route = RouteOfTrain;
             ListOfDepartureTimeAndDaysOfCruising = new List<DepartureTimeAndDayOfCruising>();
+            Wagons = new List<Wagon>();
         }
 
         public Train()
