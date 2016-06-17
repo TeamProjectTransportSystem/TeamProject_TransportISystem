@@ -10,7 +10,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="603" Width="1000">
     <Window.Resources>
-
+        <Storyboard x:Key="LoadingAnimationStoryBoard" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SearchDataAnimatedEllipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <DockPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -45,7 +49,7 @@
                                 </Style>
                             </ComboBox.Style>
                         </ComboBox>
-                    </StackPanel>         
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel>
                     <CheckBox Name="AllDaysCheckBox" Content="{x:Static MyRes:Texts.CheckBoxAllDays}" IsChecked="{Binding CheckBoxAllDaysIsChecked, Mode=TwoWay}">
@@ -60,9 +64,7 @@
                     </CheckBox>
                     <Calendar Visibility="{Binding VisibilityForCalendarControl, Mode=TwoWay}"></Calendar>
                 </StackPanel>
-            </WrapPanel>
-            <WrapPanel HorizontalAlignment="Center">
-                <Button FontSize="16" Content="{x:Static MyRes:Texts.ButtonSearchTrains}" Visibility="{Binding VisibilityForSearchTrainsButton, Mode=TwoWay}">
+                <Button Margin="0,20,0,0" VerticalAlignment="Top" FontSize="16" Content="{x:Static MyRes:Texts.ButtonSearchTrains}" Visibility="{Binding VisibilityForSearchTrainsButton, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding CommandClickButtonSearchTrains}"/>
@@ -71,8 +73,8 @@
                 </Button>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">
-                <Label Name="ProgramStateLabel"></Label>
-                <Ellipse Visibility="Collapsed"  Name="SearchDataAnimatedEllipse" Width="20" Height="20"  StrokeThickness="5" RenderTransformOrigin="0.5,0.5">
+                <Label Name="ProgramStateLabel" Content="{Binding ProgramStateLabelContent}" Foreground="{Binding ForegroundProgramStateLabel, Mode=TwoWay}"></Label>
+                <Ellipse Visibility="{Binding VisibilityForSearchDataAnimatedEllipse, Mode=TwoWay}"  Name="SearchDataAnimatedEllipse" Width="20" Height="20"  StrokeThickness="5" RenderTransformOrigin="0.5,0.5">
                     <Ellipse.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -86,6 +88,14 @@
                             <GradientStop Color="#FF1AB48A" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Stroke>
+                    <i:Interaction.Triggers>
+                        <ei:DataTrigger Binding="{Binding SearchDataAnimatedEllipseMustBeAnimated, Mode=TwoWay}" Value="true">
+                            <ei:ControlStoryboardAction Storyboard="{StaticResource LoadingAnimationStoryBoard}" ControlStoryboardOption="Play"/>
+                        </ei:DataTrigger>
+                        <ei:DataTrigger Binding="{Binding SearchDataAnimatedEllipseMustBeAnimated, Mode=TwoWay}" Value="false">
+                            <ei:ControlStoryboardAction Storyboard="{StaticResource LoadingAnimationStoryBoard}" ControlStoryboardOption="Stop"/>
+                        </ei:DataTrigger>
+                    </i:Interaction.Triggers>
                 </Ellipse>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">

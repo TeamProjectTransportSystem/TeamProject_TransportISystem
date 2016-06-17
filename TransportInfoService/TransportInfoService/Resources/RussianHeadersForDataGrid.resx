@@ -126,8 +126,8 @@
   <data name="DepartureTime" xml:space="preserve">
     <value>Время отправления</value>
   </data>
-  <data name="Stations" xml:space="preserve">
-    <value>Остановки</value>
+  <data name="InfoAboutSeats" xml:space="preserve">
+    <value>Свободные места и стоимость (руб)</value>
   </data>
   <data name="Train" xml:space="preserve">
     <value>Поезд</value>

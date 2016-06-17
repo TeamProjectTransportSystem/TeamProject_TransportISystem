@@ -51,11 +51,10 @@ namespace TransportInfoService
         {
             Thread.Sleep(3000);
             List<TrainWithDaysOfCruising> TestListOfTrains = new List<TrainWithDaysOfCruising>();
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("123D Эконом Минск - Москва", "19:30","20:30", "1:00", "ежедневно", "Везде", ""));
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45","12:45", "6:00", "понедельник,\n четверг", "Гродно,\n Мозырь", ""));
-            TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09","8:09", "4:00", "суббота,\n воскресенье", "Кроме Орша,\n Минск", ""));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123D Эконом Минск - Москва", "19:30","20:30", "1:00", "ежедневно"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45","12:45", "6:00", "понедельник,\n четверг"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09","8:09", "4:00", "суббота,\n воскресенье"));
             Application.Current.Dispatcher.Invoke(new Action(() => FoundTrainsDataGrid.ItemsSource = TestListOfTrains));
-
         }
 
         public List<string> ReturnTrain()

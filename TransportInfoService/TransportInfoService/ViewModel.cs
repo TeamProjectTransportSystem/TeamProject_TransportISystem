@@ -19,15 +19,20 @@ namespace TransportInfoService
         private Model LogisOfTransportSystem;
 
         private bool checkBoxAllDaysIsChecked;
+        private bool searchDataAnimatedEllipseMustBeAnimated;
 
         private string departureStationComboBoxText;
         private string destinationStationComboBoxText;
         private Brush foregroundDepartureStationComboBox;
         private Brush foregroundDestinationStationComboBox;
 
+        private Brush foregroundProgramStateLabel;
+        private string programStateLabelContent;
+
         private Visibility visibilityForFoundTrainsDataGrid;
         private Visibility visibilityForSearchTrainsButton;
         private Visibility visibilityForCalendarControl;
+        private Visibility visibilityForSearchDataAnimatedEllipse;
 
         private Command commandClickButtonSearchTrains = new Command(new Action(() => MessageBox.Show("Action method")));
 
@@ -151,6 +156,62 @@ namespace TransportInfoService
             }
         }
 
+        public Visibility VisibilityForSearchDataAnimatedEllipse
+        {
+            get
+            {
+                return visibilityForSearchDataAnimatedEllipse;
+            }
+
+            set
+            {
+                visibilityForSearchDataAnimatedEllipse = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool SearchDataAnimatedEllipseMustBeAnimated
+        {
+            get
+            {
+                return searchDataAnimatedEllipseMustBeAnimated;
+            }
+
+            set
+            {
+                searchDataAnimatedEllipseMustBeAnimated = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Brush ForegroundProgramStateLabel
+        {
+            get
+            {
+                return foregroundProgramStateLabel;
+            }
+
+            set
+            {
+                foregroundProgramStateLabel = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string ProgramStateLabelContent
+        {
+            get
+            {
+                return programStateLabelContent;
+            }
+
+            set
+            {
+                programStateLabelContent = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public void AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "TrainFullName")
@@ -173,9 +234,9 @@ namespace TransportInfoService
             {
                 e.Column.Header = RussianHeadersForDataGrid.DaysOfCruising;
             }
-            else if (e.Column.Header.ToString() == "Stations")
+            else if (e.Column.Header.ToString() == "InfoAboutSeats")
             {
-                e.Column.Header = RussianHeadersForDataGrid.Stations;
+                e.Column.Header = RussianHeadersForDataGrid.InfoAboutSeats;
             }
         }
 
@@ -221,14 +282,20 @@ namespace TransportInfoService
         {
             LogisOfTransportSystem = Model.Instance;
 
-            VisibilityForSearchTrainsButton = Visibility.Collapsed;
+            VisibilityForSearchTrainsButton = Visibility.Visible;
             VisibilityForFoundTrainsDataGrid = Visibility.Visible;
             VisibilityForCalendarControl = Visibility.Visible;
+            VisibilityForSearchDataAnimatedEllipse = Visibility.Collapsed;
 
             DepartureStationComboBoxText = Texts.ComboBoxChooseStation;
             DestinationStationComboBoxText = Texts.ComboBoxChooseStation;
             ForegroundDepartureStationComboBox = Brushes.Gray;
             ForegroundDestinationStationComboBox = Brushes.Gray;
+
+            ForegroundProgramStateLabel = Brushes.Orange;
+            ProgramStateLabelContent = string.Empty;
+
+            SearchDataAnimatedEllipseMustBeAnimated = false;
 
             CheckBoxAllDaysIsChecked = false;
         }

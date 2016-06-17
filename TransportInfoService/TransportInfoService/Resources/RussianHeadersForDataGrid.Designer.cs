@@ -88,11 +88,11 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Остановки.
+        ///   Ищет локализованную строку, похожую на Свободные места и стоимость (руб).
         /// </summary>
-        public static string Stations {
+        public static string InfoAboutSeats {
             get {
-                return ResourceManager.GetString("Stations", resourceCulture);
+                return ResourceManager.GetString("InfoAboutSeats", resourceCulture);
             }
         }
         

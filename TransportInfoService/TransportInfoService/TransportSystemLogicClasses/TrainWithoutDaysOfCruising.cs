@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TransportInfoService.TransportSystemLogicClasses
 {
-    public class TrainWithDaysOfCruising
+    public class TrainWithoutDaysOfCruising
     {
         //Содержит номер поезда и Первую и Последнюю станцию маршрута (зависит от того в какую сторону едет поезд) Пример - '665А Эконом Минск - Орша'
         public string TrainFullName { get; set; }
@@ -17,16 +16,17 @@ namespace TransportInfoService.TransportSystemLogicClasses
         public string ArrivalTime { get; set; }
         //Время езды от выбранной начальной до выбранной конечной остановки. Пример - "12:40"
         public string TravelTime { get; set; }
-        //Дни курсирования. Пример - "понедельник,\n суббота"
-        public string DaysOfCruising { get; set; }
+        //Содержит описание количества СВОБОДНЫХ мест в вагонах различного типа и их стоимость
+        //Пример - "Купе - 150000 руб. Свободно 50 шт.\nПлацкартный - 100000 руб. свободно 80 шт."
+        public string InfoAboutSeats { get; set; }
 
-        public TrainWithDaysOfCruising(string CurrentTrainFullName, string CurrentDepartureTime, string CurrentArrivalTime, string CurrentTravelTime, string CurrentDaysOfCruising)
+        public TrainWithoutDaysOfCruising(string CurrentTrainFullName, string CurrentDepartureTime, string CurrentArrivalTime, string CurrentTravelTime, string CurrentInfoAboutSeats)
         {
             TrainFullName = CurrentTrainFullName;
             DepartureTime = CurrentDepartureTime;
             ArrivalTime = CurrentArrivalTime;
             TravelTime = CurrentTravelTime;
-            DaysOfCruising = CurrentDaysOfCruising;
+            InfoAboutSeats = CurrentInfoAboutSeats;
         }
     }
 }

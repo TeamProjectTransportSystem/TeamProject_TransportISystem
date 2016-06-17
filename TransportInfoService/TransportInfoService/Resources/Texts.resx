@@ -132,4 +132,13 @@
   <data name="LabelDestinationStation" xml:space="preserve">
     <value>Куда</value>
   </data>
+  <data name="LabelProgramStateFail" xml:space="preserve">
+    <value>Не удалось найти подходящий поезд.</value>
+  </data>
+  <data name="LabelProgramStateReady" xml:space="preserve">
+    <value>Готово!</value>
+  </data>
+  <data name="LabelProgramStateWait" xml:space="preserve">
+    <value>Подождите...</value>
+  </data>
 </root>
