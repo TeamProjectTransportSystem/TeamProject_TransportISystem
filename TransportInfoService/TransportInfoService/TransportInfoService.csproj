@@ -107,7 +107,8 @@
     </Compile>
     <Compile Include="TransportSystemLogicClasses\TrainWithDaysOfCruising.cs" />
     <Compile Include="TransportSystemLogicClasses\TrainWithoutDaysOfCruising.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="TransportSystemViewModelClasses\TrainFiltersViewModel.cs" />
+    <Compile Include="TransportSystemViewModelClasses\ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

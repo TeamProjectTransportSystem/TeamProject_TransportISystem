@@ -79,6 +79,42 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на День (с 12.00 - 17.59).
+        /// </summary>
+        public static string CheckBoxesDay {
+            get {
+                return ResourceManager.GetString("CheckBoxesDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вечер (с 18.00 - 23.59).
+        /// </summary>
+        public static string CheckBoxesEvening {
+            get {
+                return ResourceManager.GetString("CheckBoxesEvening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Утро (с 06.00 - 11.59).
+        /// </summary>
+        public static string CheckBoxesMorning {
+            get {
+                return ResourceManager.GetString("CheckBoxesMorning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ночь (с 00.00 - 05.59).
+        /// </summary>
+        public static string CheckBoxesNight {
+            get {
+                return ResourceManager.GetString("CheckBoxesNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Начните вводить название станции.
         /// </summary>
         public static string ComboBoxChooseStation {
@@ -106,7 +142,7 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не удалось найти подходящий поезд..
+        ///   Ищет локализованную строку, похожую на Не удалось найти подходящий поезд!.
         /// </summary>
         public static string LabelProgramStateFail {
             get {
@@ -129,6 +165,42 @@ namespace TransportInfoService.Resources {
         public static string LabelProgramStateWait {
             get {
                 return ResourceManager.GetString("LabelProgramStateWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Станция не найдена!.
+        /// </summary>
+        public static string LabelsStationNotFound {
+            get {
+                return ResourceManager.GetString("LabelsStationNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ПОИСК ПОЕЗДОВ.
+        /// </summary>
+        public static string LabelTrainFilters {
+            get {
+                return ResourceManager.GetString("LabelTrainFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отправление.
+        /// </summary>
+        public static string TabItemDepartureTime {
+            get {
+                return ResourceManager.GetString("TabItemDepartureTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Прибытие.
+        /// </summary>
+        public static string TabItemDestinationTime {
+            get {
+                return ResourceManager.GetString("TabItemDestinationTime", resourceCulture);
             }
         }
     }

@@ -11,12 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TransportInfoService.Commands;
 using TransportInfoService.Resources;
+using TransportInfoService.TransportSystemViewModelClasses;
 
 namespace TransportInfoService
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        private Model LogisOfTransportSystem;
+        private TrainFiltersViewModel viewModelForTrainFilters;
+        private Model LogicOfTransportSystem;
 
         private bool checkBoxAllDaysIsChecked;
         private bool searchDataAnimatedEllipseMustBeAnimated;
@@ -33,6 +35,8 @@ namespace TransportInfoService
         private Visibility visibilityForSearchTrainsButton;
         private Visibility visibilityForCalendarControl;
         private Visibility visibilityForSearchDataAnimatedEllipse;
+        private Visibility visibilityForLabelDepartureStationNotFound;
+        private Visibility visibilityForLabelDestinationStationNotFound;
 
         private Command commandClickButtonSearchTrains = new Command(new Action(() => MessageBox.Show("Action method")));
 
@@ -212,6 +216,48 @@ namespace TransportInfoService
             }
         }
 
+        public Visibility VisibilityForLabelDepartureStationNotFound
+        {
+            get
+            {
+                return visibilityForLabelDepartureStationNotFound;
+            }
+
+            set
+            {
+                visibilityForLabelDepartureStationNotFound = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Visibility VisibilityForLabelDestinationStationNotFound
+        {
+            get
+            {
+                return visibilityForLabelDestinationStationNotFound;
+            }
+
+            set
+            {
+                visibilityForLabelDestinationStationNotFound = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public TrainFiltersViewModel ViewModelForTrainFilters
+        {
+            get
+            {
+                return viewModelForTrainFilters;
+            }
+
+            set
+            {
+                viewModelForTrainFilters = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public void AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "TrainFullName")
@@ -280,12 +326,15 @@ namespace TransportInfoService
 
         public ViewModel()
         {
-            LogisOfTransportSystem = Model.Instance;
+            LogicOfTransportSystem = Model.Instance;
+            ViewModelForTrainFilters = new TrainFiltersViewModel();
 
             VisibilityForSearchTrainsButton = Visibility.Visible;
             VisibilityForFoundTrainsDataGrid = Visibility.Visible;
             VisibilityForCalendarControl = Visibility.Visible;
             VisibilityForSearchDataAnimatedEllipse = Visibility.Collapsed;
+            VisibilityForLabelDepartureStationNotFound = Visibility.Collapsed;
+            VisibilityForLabelDestinationStationNotFound = Visibility.Collapsed;
 
             DepartureStationComboBoxText = Texts.ComboBoxChooseStation;
             DestinationStationComboBoxText = Texts.ComboBoxChooseStation;

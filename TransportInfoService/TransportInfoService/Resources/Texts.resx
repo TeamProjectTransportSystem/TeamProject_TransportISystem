@@ -123,6 +123,18 @@
   <data name="CheckBoxAllDays" xml:space="preserve">
     <value>На все дни</value>
   </data>
+  <data name="CheckBoxesDay" xml:space="preserve">
+    <value>День (с 12.00 - 17.59)</value>
+  </data>
+  <data name="CheckBoxesEvening" xml:space="preserve">
+    <value>Вечер (с 18.00 - 23.59)</value>
+  </data>
+  <data name="CheckBoxesMorning" xml:space="preserve">
+    <value>Утро (с 06.00 - 11.59)</value>
+  </data>
+  <data name="CheckBoxesNight" xml:space="preserve">
+    <value>Ночь (с 00.00 - 05.59)</value>
+  </data>
   <data name="ComboBoxChooseStation" xml:space="preserve">
     <value>Начните вводить название станции</value>
   </data>
@@ -133,12 +145,24 @@
     <value>Куда</value>
   </data>
   <data name="LabelProgramStateFail" xml:space="preserve">
-    <value>Не удалось найти подходящий поезд.</value>
+    <value>Не удалось найти подходящий поезд!</value>
   </data>
   <data name="LabelProgramStateReady" xml:space="preserve">
     <value>Готово!</value>
   </data>
   <data name="LabelProgramStateWait" xml:space="preserve">
     <value>Подождите...</value>
+  </data>
+  <data name="LabelsStationNotFound" xml:space="preserve">
+    <value>Станция не найдена!</value>
+  </data>
+  <data name="LabelTrainFilters" xml:space="preserve">
+    <value>ПОИСК ПОЕЗДОВ</value>
+  </data>
+  <data name="TabItemDepartureTime" xml:space="preserve">
+    <value>Отправление</value>
+  </data>
+  <data name="TabItemDestinationTime" xml:space="preserve">
+    <value>Прибытие</value>
   </data>
 </root>

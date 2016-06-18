@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CheckBoxArrivalTimeDayName" xml:space="preserve">
+    <value>ArrivalTimeDayCheckBox</value>
+  </data>
+  <data name="CheckBoxArrivalTimeEveningName" xml:space="preserve">
+    <value>ArrivalTimeEveningCheckBox</value>
+  </data>
+  <data name="CheckBoxArrivalTimeMorningName" xml:space="preserve">
+    <value>ArrivalTimeMorningCheckBox</value>
+  </data>
+  <data name="CheckBoxArrivalTimeNightName" xml:space="preserve">
+    <value>ArrivalTimeNightCheckBox</value>
+  </data>
+  <data name="CheckBoxDepartureTimeDayName" xml:space="preserve">
+    <value>DepartureTimeDayCheckBox</value>
+  </data>
+  <data name="CheckBoxDepartureTimeEveningName" xml:space="preserve">
+    <value>DepartureTimeEveningCheckBox</value>
+  </data>
+  <data name="CheckBoxDepartureTimeMorningName" xml:space="preserve">
+    <value>DepartureTimeMorningCheckBox</value>
+  </data>
+  <data name="CheckBoxDepartureTimeNightName" xml:space="preserve">
+    <value>DepartureTimeNightCheckBox</value>
+  </data>
   <data name="ComboBoxDepartureStationName" xml:space="preserve">
     <value>DepartureStationComboBox</value>
   </data>
