@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TransportInfoService.TransportSystemLogicClasses
 {
-    public class TrainWithDaysOfCruising
+    public class TrainWithDaysOfCruising : ITrainInfo
     {
         //Содержит номер поезда и Первую и Последнюю станцию маршрута (зависит от того в какую сторону едет поезд) Пример - '665А Эконом Минск - Орша'
         public string TrainFullName { get; set; }

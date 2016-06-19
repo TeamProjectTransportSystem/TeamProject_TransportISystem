@@ -157,12 +157,24 @@
     <value>Станция не найдена!</value>
   </data>
   <data name="LabelTrainFilters" xml:space="preserve">
-    <value>ПОИСК ПОЕЗДОВ</value>
+    <value>ПОДОБРАТЬ ПОЕЗД</value>
   </data>
   <data name="TabItemDepartureTime" xml:space="preserve">
     <value>Отправление</value>
   </data>
   <data name="TabItemDestinationTime" xml:space="preserve">
     <value>Прибытие</value>
+  </data>
+  <data name="CheckBoxTrainTypeBusiness" xml:space="preserve">
+    <value>Бизнес-класс</value>
+  </data>
+  <data name="CheckBoxTrainTypeEconom" xml:space="preserve">
+    <value>Эконом-класс</value>
+  </data>
+  <data name="LabelTrainTypeFilters" xml:space="preserve">
+    <value>ПО ТИПУ</value>
+  </data>
+  <data name="LabelTrainTimeFilters" xml:space="preserve">
+    <value>ПО ВРЕМЕНИ</value>
   </data>
 </root>

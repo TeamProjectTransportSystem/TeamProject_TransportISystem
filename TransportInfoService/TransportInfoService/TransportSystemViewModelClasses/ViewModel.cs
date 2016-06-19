@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TransportInfoService.Commands;
 using TransportInfoService.Resources;
+using TransportInfoService.TransportSystemLogicClasses;
 using TransportInfoService.TransportSystemViewModelClasses;
 
 namespace TransportInfoService
@@ -19,6 +21,8 @@ namespace TransportInfoService
     {
         private TrainFiltersViewModel viewModelForTrainFilters;
         private Model LogicOfTransportSystem;
+
+        private List<ITrainInfo> BufferForFoundTrains;
 
         private bool checkBoxAllDaysIsChecked;
         private bool searchDataAnimatedEllipseMustBeAnimated;
@@ -38,7 +42,7 @@ namespace TransportInfoService
         private Visibility visibilityForLabelDepartureStationNotFound;
         private Visibility visibilityForLabelDestinationStationNotFound;
 
-        private Command commandClickButtonSearchTrains = new Command(new Action(() => MessageBox.Show("Action method")));
+        /*private Command commandClickButtonSearchTrains = new Command(new Action(() => MessageBox.Show("Action method")));
 
         public Command CommandClickButtonSearchTrains
         {
@@ -47,7 +51,7 @@ namespace TransportInfoService
                     commandClickButtonSearchTrains = value;
                     NotifyPropertyChanged();
                 }
-        }
+        }*/
 
         public Visibility VisibilityForSearchTrainsButton
         {
@@ -314,6 +318,90 @@ namespace TransportInfoService
             
         }
 
+        public void ClickEventHandlerForApplyFiltersButton(object sender, EventArgs e)
+        {
+            bool AtLeastOneCheckBoxIsChecked = false;
+            if (viewModelForTrainFilters.DepartureTimeCheckBoxMorningIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (viewModelForTrainFilters.DepartureTimeCheckBoxDayIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (viewModelForTrainFilters.DepartureTimeCheckBoxEveningIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (viewModelForTrainFilters.DepartureTimeCheckBoxNightIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (viewModelForTrainFilters.ArrivalTimeCheckBoxMorningIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (viewModelForTrainFilters.ArrivalTimeCheckBoxDayIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (viewModelForTrainFilters.ArrivalTimeCheckBoxEveningIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (viewModelForTrainFilters.ArrivalTimeCheckBoxNightIsChecked)
+            {
+                AtLeastOneCheckBoxIsChecked = true;
+            }
+            if (!AtLeastOneCheckBoxIsChecked)
+            {
+
+            }
+            if (!(viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked) && 
+                !(!viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && !viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked))
+            {
+                if (viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked)
+                {
+
+                }
+                if (viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked)
+                {
+
+                }
+            }
+        }
+
+        private void SearchOfTrainsWithoutDate()
+        {
+
+        }
+
+        private void SearchOfTrainsWithDate()
+        {
+
+        }
+
+
+        public void ClickEventHandlerForSearchTrainsButton(object sender, EventArgs e)
+        {
+            VisibilityForSearchTrainsButton = Visibility.Collapsed;
+            VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
+            viewModelForTrainFilters.VisibilityForTrainFilters = Visibility.Collapsed;
+            ForegroundProgramStateLabel = Brushes.Orange;
+            ProgramStateLabelContent = Texts.LabelProgramStateWait;
+            VisibilityForSearchDataAnimatedEllipse = Visibility.Visible;
+            SearchDataAnimatedEllipseMustBeAnimated = true;
+
+            if (CheckBoxAllDaysIsChecked)
+            {
+                ThreadPool.QueueUserWorkItem(o => SearchOfTrainsWithoutDate());
+            }
+            else
+            {
+                ThreadPool.QueueUserWorkItem(o => SearchOfTrainsWithDate());
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void NotifyPropertyChanged([CallerMemberName] string PropertyName = "")
@@ -347,6 +435,8 @@ namespace TransportInfoService
             SearchDataAnimatedEllipseMustBeAnimated = false;
 
             CheckBoxAllDaysIsChecked = false;
+
+            BufferForFoundTrains = new List<ITrainInfo>();
         }
     }
 }

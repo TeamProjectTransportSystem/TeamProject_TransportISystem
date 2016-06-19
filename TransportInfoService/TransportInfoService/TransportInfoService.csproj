@@ -89,6 +89,7 @@
     <Compile Include="DatabaseClasses\TransportDBWorker.cs" />
     <Compile Include="DatabaseClasses\Wagon.cs" />
     <Compile Include="DatabaseClasses\WagonType.cs" />
+    <Compile Include="TransportSystemLogicClasses\ITrainInfo.cs" />
     <Compile Include="TransportSystemLogicClasses\Model.cs" />
     <Compile Include="Resources\NamesOfVariables.Designer.cs">
       <AutoGen>True</AutoGen>

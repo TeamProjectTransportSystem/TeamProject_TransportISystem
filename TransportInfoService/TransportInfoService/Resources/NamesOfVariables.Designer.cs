@@ -133,6 +133,24 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на TrainTypeBusinessCheckBox.
+        /// </summary>
+        public static string CheckBoxTypeOfTrainBusinessName {
+            get {
+                return ResourceManager.GetString("CheckBoxTypeOfTrainBusinessName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на TrainTypeEconomCheckBox.
+        /// </summary>
+        public static string CheckBoxTypeOfTrainEconomName {
+            get {
+                return ResourceManager.GetString("CheckBoxTypeOfTrainEconomName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на DepartureStationComboBox.
         /// </summary>
         public static string ComboBoxDepartureStationName {

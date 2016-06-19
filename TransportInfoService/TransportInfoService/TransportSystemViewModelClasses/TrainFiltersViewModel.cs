@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using TransportInfoService.Resources;
+using TransportInfoService.TransportSystemLogicClasses;
 
 namespace TransportInfoService.TransportSystemViewModelClasses
 {
     public class TrainFiltersViewModel : INotifyPropertyChanged
     {
+        private List<ITrainInfo> listOfFoundTrainsForDataGridWhichContainsFoundTrains;
+
         private Visibility visibilityForTrainFilters;
 
         private bool departureTimeCheckBoxMorningIsChecked;
@@ -24,6 +27,9 @@ namespace TransportInfoService.TransportSystemViewModelClasses
         private bool arrivalTimeCheckBoxDayIsChecked;
         private bool arrivalTimeCheckBoxEveningIsChecked;
         private bool arrivalTimeCheckBoxNightIsChecked;
+
+        private bool economTrainTypeCheckBoxIsChecked;
+        private bool businessTrainTypeCheckBoxIsChecked;
 
         public Visibility VisibilityForTrainFilters
         {
@@ -151,61 +157,45 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             }
         }
 
-        public void CheckedEventHandlerForDepartureTimeCheckBoxes(object sender, EventArgs e)
+        public bool EconomTrainTypeCheckBoxIsChecked
         {
-            if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxDepartureTimeMorningName)
+            get
             {
-                DepartureTimeCheckBoxDayIsChecked = false;
-                DepartureTimeCheckBoxEveningIsChecked = false;
-                DepartureTimeCheckBoxNightIsChecked = false;
+                return economTrainTypeCheckBoxIsChecked;
             }
-            else if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxDepartureTimeDayName)
-            {
 
-                DepartureTimeCheckBoxMorningIsChecked = false;
-                DepartureTimeCheckBoxEveningIsChecked = false;
-                DepartureTimeCheckBoxNightIsChecked = false;
-            }
-            else if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxDepartureTimeEveningName)
+            set
             {
-                DepartureTimeCheckBoxDayIsChecked = false;
-                DepartureTimeCheckBoxMorningIsChecked = false;
-                DepartureTimeCheckBoxNightIsChecked = false;
-            }
-            else if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxDepartureTimeNightName)
-            {
-                DepartureTimeCheckBoxDayIsChecked = false;
-                DepartureTimeCheckBoxEveningIsChecked = false;
-                DepartureTimeCheckBoxMorningIsChecked = false;
+                economTrainTypeCheckBoxIsChecked = value;
+                NotifyPropertyChanged();
             }
         }
 
-        public void CheckedEventHandlerForArrivalTimeCheckBoxes(object sender, EventArgs e)
+        public bool BusinessTrainTypeCheckBoxIsChecked
         {
-            if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxArrivalTimeMorningName)
+            get
             {
-                ArrivalTimeCheckBoxDayIsChecked = false;
-                ArrivalTimeCheckBoxEveningIsChecked = false;
-                ArrivalTimeCheckBoxNightIsChecked = false;
+                return businessTrainTypeCheckBoxIsChecked;
             }
-            else if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxArrivalTimeDayName)
-            {
 
-                ArrivalTimeCheckBoxMorningIsChecked = false;
-                ArrivalTimeCheckBoxEveningIsChecked = false;
-                ArrivalTimeCheckBoxNightIsChecked = false;
-            }
-            else if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxArrivalTimeEveningName)
+            set
             {
-                ArrivalTimeCheckBoxDayIsChecked = false;
-                ArrivalTimeCheckBoxMorningIsChecked = false;
-                ArrivalTimeCheckBoxNightIsChecked = false;
+                businessTrainTypeCheckBoxIsChecked = value;
+                NotifyPropertyChanged();
             }
-            else if ((sender as CheckBox).Name == NamesOfVariables.CheckBoxArrivalTimeNightName)
+        }
+
+        public List<ITrainInfo> ListOfFoundTrainsForDataGridWhichContainsFoundTrains
+        {
+            get
             {
-                ArrivalTimeCheckBoxDayIsChecked = false;
-                ArrivalTimeCheckBoxEveningIsChecked = false;
-                ArrivalTimeCheckBoxMorningIsChecked = false;
+                return listOfFoundTrainsForDataGridWhichContainsFoundTrains;
+            }
+
+            set
+            {
+                listOfFoundTrainsForDataGridWhichContainsFoundTrains = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -232,6 +222,11 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             ArrivalTimeCheckBoxDayIsChecked = false;
             ArrivalTimeCheckBoxEveningIsChecked = false;
             ArrivalTimeCheckBoxNightIsChecked = false;
+
+            EconomTrainTypeCheckBoxIsChecked = false;
+            BusinessTrainTypeCheckBoxIsChecked = false;
+
+            ListOfFoundTrainsForDataGridWhichContainsFoundTrains = new List<ITrainInfo>();
         }
     }
 }

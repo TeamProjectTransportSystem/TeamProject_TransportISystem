@@ -141,6 +141,12 @@
   <data name="CheckBoxDepartureTimeNightName" xml:space="preserve">
     <value>DepartureTimeNightCheckBox</value>
   </data>
+  <data name="CheckBoxTypeOfTrainBusinessName" xml:space="preserve">
+    <value>TrainTypeBusinessCheckBox</value>
+  </data>
+  <data name="CheckBoxTypeOfTrainEconomName" xml:space="preserve">
+    <value>TrainTypeEconomCheckBox</value>
+  </data>
   <data name="ComboBoxDepartureStationName" xml:space="preserve">
     <value>DepartureStationComboBox</value>
   </data>

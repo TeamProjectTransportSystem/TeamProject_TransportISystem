@@ -115,6 +115,24 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Бизнес-класс.
+        /// </summary>
+        public static string CheckBoxTrainTypeBusiness {
+            get {
+                return ResourceManager.GetString("CheckBoxTrainTypeBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Эконом-класс.
+        /// </summary>
+        public static string CheckBoxTrainTypeEconom {
+            get {
+                return ResourceManager.GetString("CheckBoxTrainTypeEconom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Начните вводить название станции.
         /// </summary>
         public static string ComboBoxChooseStation {
@@ -178,11 +196,29 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ПОИСК ПОЕЗДОВ.
+        ///   Ищет локализованную строку, похожую на ПОДОБРАТЬ ПОЕЗД.
         /// </summary>
         public static string LabelTrainFilters {
             get {
                 return ResourceManager.GetString("LabelTrainFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ПО ВРЕМЕНИ.
+        /// </summary>
+        public static string LabelTrainTimeFilters {
+            get {
+                return ResourceManager.GetString("LabelTrainTimeFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ПО ТИПУ.
+        /// </summary>
+        public static string LabelTrainTypeFilters {
+            get {
+                return ResourceManager.GetString("LabelTrainTypeFilters", resourceCulture);
             }
         }
         

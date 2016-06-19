@@ -28,12 +28,14 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-
-            TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "Тракторный", "Городище");
+            //TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "Тракторный", "Городище");
 
             this.DataContext = new ViewModel();
-            
+            //Не удалять 3 строки ниже при слиянии проекта
+            int AmountOfLogicalCores = Environment.ProcessorCount;
+            ThreadPool.SetMinThreads(AmountOfLogicalCores, AmountOfLogicalCores);
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
+
             //*****************************************************************************************************
             //Creating DB test code
             /*List<Station> TestList = new List<Station>();
@@ -50,10 +52,19 @@ namespace TransportInfoService
         private void ShowTestData()
         {
             Thread.Sleep(3000);
-            List<TrainWithDaysOfCruising> TestListOfTrains = new List<TrainWithDaysOfCruising>();
+            List<Object> TestListOfTrains = new List<Object>();
             TestListOfTrains.Add(new TrainWithDaysOfCruising("123D Эконом Минск - Москва", "19:30","20:30", "1:00", "ежедневно"));
             TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45","12:45", "6:00", "понедельник,\n четверг"));
             TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09","8:09", "4:00", "суббота,\n воскресенье"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123D Эконом Минск - Москва", "19:30", "20:30", "1:00", "ежедневно"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45", "12:45", "6:00", "понедельник,\n четверг"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09", "8:09", "4:00", "суббота,\n воскресенье"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123D Эконом Минск - Москва", "19:30", "20:30", "1:00", "ежедневно"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45", "12:45", "6:00", "понедельник,\n четверг"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09", "8:09", "4:00", "суббота,\n воскресенье"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123D Эконом Минск - Москва", "19:30", "20:30", "1:00", "ежедневно"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45", "12:45", "6:00", "понедельник,\n четверг"));
+            TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09", "8:09", "4:00", "суббота,\n воскресенье"));
             Application.Current.Dispatcher.Invoke(new Action(() => FoundTrainsDataGrid.ItemsSource = TestListOfTrains));
         }
 

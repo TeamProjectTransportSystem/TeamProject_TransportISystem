@@ -8,7 +8,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="603" Width="1000">
+        Title="MainWindow" Height="603" Width="1000" ResizeMode="CanMinimize">
     <Window.Resources>
         <Storyboard x:Key="LoadingAnimationStoryBoard" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SearchDataAnimatedEllipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
@@ -69,7 +69,7 @@
                 <Button Margin="0,20,0,0" VerticalAlignment="Top" FontSize="16" Content="{x:Static MyRes:Texts.ButtonSearchTrains}" Visibility="{Binding VisibilityForSearchTrainsButton, Mode=TwoWay}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
-                            <i:InvokeCommandAction Command="{Binding CommandClickButtonSearchTrains}"/>
+                            <ei:CallMethodAction TargetObject="{Binding}"  MethodName="ClickEventHandlerForSearchTrainsButton"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
@@ -101,7 +101,7 @@
                 </Ellipse>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">
-                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="150" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="350" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="AutoGeneratingColumn">
                             <ei:CallMethodAction TargetObject="{Binding}"  MethodName="AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid"/>
@@ -110,72 +110,40 @@
                 </DataGrid>
                 <StackPanel Visibility="{Binding ViewModelForTrainFilters.VisibilityForTrainFilters, Mode=TwoWay}">
                     <Label Content="{x:Static MyRes:Texts.LabelTrainFilters}" Foreground="Blue"></Label>
+                    <Label Content="{x:Static MyRes:Texts.LabelTrainTimeFilters}" Foreground="Magenta"></Label>
                     <TabControl>
                         <TabItem Header="{x:Static MyRes:Texts.TabItemDepartureTime}">
                             <StackPanel>
                                 <CheckBox Name="DepartureTimeMorningCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesMorning}" IsChecked="{Binding ViewModelForTrainFilters.DepartureTimeCheckBoxMorningIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForDepartureTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                                 <CheckBox Name="DepartureTimeDayCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesDay}" IsChecked="{Binding ViewModelForTrainFilters.DepartureTimeCheckBoxDayIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForDepartureTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                                 <CheckBox Name="DepartureTimeEveningCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesEvening}" IsChecked="{Binding ViewModelForTrainFilters.DepartureTimeCheckBoxEveningIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForDepartureTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                                 <CheckBox Name="DepartureTimeNightCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesNight}" IsChecked="{Binding ViewModelForTrainFilters.DepartureTimeCheckBoxNightIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForDepartureTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="{x:Static MyRes:Texts.TabItemDestinationTime}">
                             <StackPanel>
                                 <CheckBox Name="ArrivalTimeMorningCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesMorning}" IsChecked="{Binding ViewModelForTrainFilters.ArrivalTimeCheckBoxMorningIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForArrivalTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                                 <CheckBox Name="ArrivalTimeDayCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesDay}" IsChecked="{Binding ViewModelForTrainFilters.ArrivalTimeCheckBoxDayIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForArrivalTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                                 <CheckBox Name="ArrivalTimeEveningCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesEvening}" IsChecked="{Binding ViewModelForTrainFilters.ArrivalTimeCheckBoxEveningIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForArrivalTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                                 <CheckBox Name="ArrivalTimeNightCheckBox" Content="{x:Static MyRes:Texts.CheckBoxesNight}" IsChecked="{Binding ViewModelForTrainFilters.ArrivalTimeCheckBoxNightIsChecked, Mode=TwoWay}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Checked">
-                                            <ei:CallMethodAction TargetObject="{Binding ViewModelForTrainFilters}"  MethodName="CheckedEventHandlerForArrivalTimeCheckBoxes"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                 </CheckBox>
                             </StackPanel>
                         </TabItem>
                     </TabControl>
+                    <Label Foreground="Magenta"  Content="{x:Static MyRes:Texts.LabelTrainTypeFilters}"></Label>
+                    <CheckBox Name="TrainTypeEconomCheckBox" Content="{ x:Static MyRes:Texts.CheckBoxTrainTypeEconom}" IsChecked="{Binding ViewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked, Mode=TwoWay}">
+                        
+                    </CheckBox>
+                    <CheckBox Name="TrainTypeBusinessCheckBox" Content="{ x:Static MyRes:Texts.CheckBoxTrainTypeBusiness}" IsChecked="{Binding ViewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked, Mode=TwoWay}">
+
+                    </CheckBox>
                 </StackPanel>
             </WrapPanel>
         </StackPanel>
