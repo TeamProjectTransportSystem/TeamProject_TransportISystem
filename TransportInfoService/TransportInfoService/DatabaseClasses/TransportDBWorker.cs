@@ -76,47 +76,34 @@ namespace TransportInfoService.DatabaseClasses
             return listOfTrains;
         }
 
-        /*static string ReturnTrainFullName(string firstStation, string secondStation)
-        {
-            string trainFullName = null;
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
-            {
-                foreach (Route r in CurrentDBContext.ListOfRoutes)
-                {
+        //static string ReturnTrainFullName(string firstStation, string secondStation)
+        //{
+        //    string trainFullName = null;
+        //    using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+        //    {
+        //        foreach (Route r in CurrentDBContext.ListOfRoutes)
+        //        {
 
-                    if (r.ListOfStations.Where(s => s.Name == firstStation).FirstOrDefault() != null &&
-                        r.ListOfStations.Where(s => s.Name == secondStation).FirstOrDefault() != null)
-                    {
-                        string trainName = CurrentDBContext.ListOfTrains.
-                                           Where(s => s.Route.RouteName == r.RouteName).
-                                           Select(t => t.TrainIDAsString).FirstOrDefault();
-                        trainFullName = string.Format("{0} {1}", trainName, r.RouteName);
-                    }
-                }
-            }
-            return trainFullName;
-        }*/
+        //            if (r.ListOfStations.Where(s => s.Name == firstStation).FirstOrDefault() != null &&
+        //                r.ListOfStations.Where(s => s.Name == secondStation).FirstOrDefault() != null)
+        //            {
+        //                string trainName = CurrentDBContext.ListOfTrains.
+        //                                   Where(s => s.Route.RouteName == r.RouteName).
+        //                                   Select(t => t.TrainIDAsString).FirstOrDefault();
+        //                trainFullName = string.Format("{0} {1}", trainName, r.RouteName);
+        //            }
+        //        }
+        //    }
+        //    return trainFullName;
+        //}
 
         public static List<string> ReturnListOfStationNames()
         {
 
             List<string> NewListOfStations = new List<string>();
-            //this.DataContext = new ViewModel();
-            //List<string> StationTypes = new List<string>();
-
             using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
-                //var trains = CurrentDBContext.ListOfTrains.Join(CurrentDBContext.ListOfRoutes,
-                //                                                  s => s.TrainIDAsString,
-                //                                                  c => c.Name,
-                //                                                  (s, c) => new
-                //                                                  {
-                //                                                      NameTrain = s.TrainIDAsString,
-                //                                                      StartStation = c.ListOfStations.First(),
-                //                                                      FinishStation = c.ListOfStations.Last()
-                //                                                  });
-                NewListOfStations = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
-                //listOfTrains = trains;
+                NewListOfStations = CurrentDBContext.ListOfStations.OrderBy(p=>p.Name).Select(s => s.Name).ToList();
             }
 
             return NewListOfStations;
