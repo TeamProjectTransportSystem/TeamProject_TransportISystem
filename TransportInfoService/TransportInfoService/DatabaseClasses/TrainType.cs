@@ -17,6 +17,8 @@ namespace TransportInfoService.DatabaseClasses
         public int Speed { get; set; }
 
         public virtual ICollection<Train> Trains { get; set; }
+
+        //ЧТО ЭТО???
         public virtual ICollection<StationType> AllowedTypesOfStations { get; set; }
 
         public TrainType(string NameOfType, int PriceForKilometerForThisType, int SpeedOfThisType)

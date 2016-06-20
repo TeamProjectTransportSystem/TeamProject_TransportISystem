@@ -28,7 +28,7 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-            //TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "Тракторный", "Городище");
+            TestListBox.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
 
             //Не удалять 3 строки ниже при слиянии проекта
             int AmountOfLogicalCores = Environment.ProcessorCount;
