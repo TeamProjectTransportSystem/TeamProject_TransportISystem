@@ -336,8 +336,14 @@ namespace TransportInfoService.DatabaseClasses
             routeMinskPuhovichi.ListOfTrains.Add(trainPuhovichi3);
 
             routeMinskStolbcy.ListOfTrains.Add(trainStolbcy1);
-            routeMinskStolbcy.ListOfTrains.Add(trainStolbcy1);
-            routeMinskStolbcy.ListOfTrains.Add(trainStolbcy1);
+            routeMinskStolbcy.ListOfTrains.Add(trainStolbcy2);
+            routeMinskStolbcy.ListOfTrains.Add(trainStolbcy3);
+
+            WagonType sedentaryWagonEconom = new WagonType("Сидячий Эконом", 200, false);
+            Wagon sedentaryWagonEconomNuberOne = new Wagon(sedentaryWagonEconom);
+            SeatSector seatSectorSedentaryWagonEconom = new SeatSector(1, 91, false);
+            
+            
 
             context.ListOfRoutes.Add(routeMinskBorisov);
             context.ListOfRoutes.Add(routeMinskMolodechno);
