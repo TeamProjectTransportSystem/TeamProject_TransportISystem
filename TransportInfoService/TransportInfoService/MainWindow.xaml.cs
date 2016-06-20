@@ -33,8 +33,8 @@ namespace TransportInfoService
             //Не удалять 3 строки ниже при слиянии проекта
             int AmountOfLogicalCores = Environment.ProcessorCount;
             ThreadPool.SetMinThreads(AmountOfLogicalCores, AmountOfLogicalCores);
-            ThreadPool.QueueUserWorkItem(o => ShowTestData());
-
+            //ThreadPool.QueueUserWorkItem(o => ShowTestData());
+            FoundTrainsDataGrid.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
             this.DataContext = new ViewModel();
             
             //*****************************************************************************************************
