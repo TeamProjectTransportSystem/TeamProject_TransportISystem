@@ -180,4 +180,7 @@
   <data name="ButtonApplyFiltersForTrains" xml:space="preserve">
     <value>Подобрать</value>
   </data>
+  <data name="LabelApplyingOfFilters" xml:space="preserve">
+    <value>Идет подбор поездов...</value>
+  </data>
 </root>

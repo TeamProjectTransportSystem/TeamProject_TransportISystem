@@ -151,6 +151,15 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Идет подбор поездов....
+        /// </summary>
+        public static string LabelApplyingOfFilters {
+            get {
+                return ResourceManager.GetString("LabelApplyingOfFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Откуда.
         /// </summary>
         public static string LabelDepartureStation {

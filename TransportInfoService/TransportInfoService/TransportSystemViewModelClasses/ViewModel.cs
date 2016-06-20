@@ -343,6 +343,12 @@ namespace TransportInfoService
 
         public void ClickEventHandlerForApplyFiltersButton(object sender, EventArgs e)
         {
+            VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
+            ThreadPool.QueueUserWorkItem(o => ApplyFiltersOnListOfTrains());
+        }
+
+        private void ApplyFiltersOnListOfTrains()
+        {
             bool AtLeastOneCheckBoxIsChecked = false;
             if (viewModelForTrainFilters.DepartureTimeCheckBoxMorningIsChecked)
             {
@@ -380,7 +386,7 @@ namespace TransportInfoService
             {
 
             }
-            if (!(viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked) && 
+            if (!(viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked) &&
                 !(!viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && !viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked))
             {
                 if (viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked)
@@ -392,6 +398,7 @@ namespace TransportInfoService
 
                 }
             }
+            VisibilityForFoundTrainsDataGrid = Visibility.Visible;
         }
 
         private bool CheckingTheExistenceOfStations()

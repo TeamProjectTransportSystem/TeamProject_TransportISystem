@@ -15,6 +15,11 @@
                 <SplineDoubleKeyFrame KeyTime="00:00:02" Value="360"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="ApplyingOfFiltersAnimationStoryBoard" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ApplyingOfFiltersAnimatedEllipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <DockPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -113,6 +118,32 @@
                 </Ellipse>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Name="LabelApplyingFilters" Content="{ x:Static MyRes:Texts.LabelApplyingOfFilters}" Foreground="Orange"></Label>
+                    <Ellipse Name="ApplyingOfFiltersAnimatedEllipse" Width="20" Height="20"  StrokeThickness="5" RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Stroke>
+                            <LinearGradientBrush EndPoint="0.445,0.997" StartPoint="0.555,0.003">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="#FF1AB48A" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Stroke>
+                        <i:Interaction.Triggers>
+                            <ei:DataTrigger Binding="{Binding SearchDataAnimatedEllipseMustBeAnimated, Mode=TwoWay}" Value="true">
+                                <ei:ControlStoryboardAction Storyboard="{StaticResource LoadingAnimationStoryBoard}" ControlStoryboardOption="Play"/>
+                            </ei:DataTrigger>
+                            <ei:DataTrigger Binding="{Binding SearchDataAnimatedEllipseMustBeAnimated, Mode=TwoWay}" Value="false">
+                                <ei:ControlStoryboardAction Storyboard="{StaticResource LoadingAnimationStoryBoard}" ControlStoryboardOption="Stop"/>
+                            </ei:DataTrigger>
+                        </i:Interaction.Triggers>
+                    </Ellipse>
+                </WrapPanel>
                 <DataGrid Name="FoundTrainsDataGrid" MaxHeight="350" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="AutoGeneratingColumn">
