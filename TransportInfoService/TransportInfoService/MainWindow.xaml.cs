@@ -30,11 +30,12 @@ namespace TransportInfoService
             InitializeComponent();
             //TestListBox.ItemsSource = TransportDBWorker.ReturnTrain(null, "Тракторный", "Городище");
 
-            this.DataContext = new ViewModel();
             //Не удалять 3 строки ниже при слиянии проекта
             int AmountOfLogicalCores = Environment.ProcessorCount;
             ThreadPool.SetMinThreads(AmountOfLogicalCores, AmountOfLogicalCores);
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
+
+            this.DataContext = new ViewModel();
 
             //*****************************************************************************************************
             //Creating DB test code
@@ -98,10 +99,18 @@ namespace TransportInfoService
 
         private void TextChangedEventHandlerForComboBoxesWithStations(Object sender, EventArgs e)
         {
-            if ((sender as ComboBox).Text == string.Empty)
+            if ((this.DataContext as ViewModel).NoNeedForComboBoxTextChangedEvent)
+            {
+                (this.DataContext as ViewModel).NoNeedForComboBoxTextChangedEvent = false;
+            }
+            else if ((sender as ComboBox).Text == string.Empty)
             {
                 (sender as ComboBox).Text = Texts.ComboBoxChooseStation;
                 (sender as ComboBox).Foreground = Brushes.Gray;
+            }
+            else if ((sender as ComboBox).Text != Texts.ComboBoxChooseStation)
+            {
+                (sender as ComboBox).Foreground = Brushes.Black;
             }
         }
     }

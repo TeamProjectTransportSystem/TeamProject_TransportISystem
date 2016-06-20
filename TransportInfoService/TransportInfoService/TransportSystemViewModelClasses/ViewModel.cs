@@ -22,10 +22,12 @@ namespace TransportInfoService
         private TrainFiltersViewModel viewModelForTrainFilters;
         private Model LogicOfTransportSystem;
 
+        private List<string> listOfStations;
         private List<ITrainInfo> BufferForFoundTrains;
 
         private bool checkBoxAllDaysIsChecked;
         private bool searchDataAnimatedEllipseMustBeAnimated;
+        public bool NoNeedForComboBoxTextChangedEvent = false;
 
         private string departureStationComboBoxText;
         private string destinationStationComboBoxText;
@@ -262,6 +264,27 @@ namespace TransportInfoService
             }
         }
 
+        public List<string> ListOfStations
+        {
+            get
+            {
+                return listOfStations;
+            }
+
+            set
+            {
+                listOfStations = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void LoadNamesOfStationsFromTransportDB()
+        {
+            Application.Current.Dispatcher.Invoke(() => ListOfStations.Add("тест"));
+            Application.Current.Dispatcher.Invoke(() => ListOfStations.Add("лес"));
+            Application.Current.Dispatcher.Invoke(() => ListOfStations.Add("рог"));
+        }
+
         public void AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "TrainFullName")
@@ -371,19 +394,71 @@ namespace TransportInfoService
             }
         }
 
+        private bool CheckingTheExistenceOfStations()
+        {
+            bool BothStationsAreExists = true;
+            if (listOfStations.Where((res) => res == DepartureStationComboBoxText).FirstOrDefault() == null)
+            {
+                BothStationsAreExists = false;
+                VisibilityForLabelDepartureStationNotFound = Visibility.Visible;
+            }
+            if (listOfStations.Where((res) => res == DestinationStationComboBoxText).FirstOrDefault() == null)
+            {
+                BothStationsAreExists = false;
+                VisibilityForLabelDestinationStationNotFound = Visibility.Visible;
+            }
+            return BothStationsAreExists;
+        }
+
         private void SearchOfTrainsWithoutDate()
         {
+            if (!CheckingTheExistenceOfStations())
+            {
+                SearchOfTrainsEnded(null);
+            }
+            else
+            {
 
+            }
         }
 
         private void SearchOfTrainsWithDate()
         {
+            if (!CheckingTheExistenceOfStations())
+            {
+                SearchOfTrainsEnded(null);
+            }
+            else
+            {
 
+            }
+        }
+
+        private void SearchOfTrainsEnded(List<ITrainInfo> FoundTrains)
+        {
+            if (FoundTrains != null && FoundTrains.Count > 0)
+            {
+                VisibilityForFoundTrainsDataGrid = Visibility.Visible;
+                viewModelForTrainFilters.VisibilityForTrainFilters = Visibility.Visible;
+                ForegroundProgramStateLabel = Brushes.Green;
+                ProgramStateLabelContent = Texts.LabelProgramStateReady;
+                viewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrains = FoundTrains;
+            }
+            else
+            {
+                ForegroundProgramStateLabel = Brushes.Red;
+                ProgramStateLabelContent = Texts.LabelProgramStateFail;
+            }
+            VisibilityForSearchTrainsButton = Visibility.Visible;
+            SearchDataAnimatedEllipseMustBeAnimated = false;
+            VisibilityForSearchDataAnimatedEllipse = Visibility.Collapsed;
         }
 
 
         public void ClickEventHandlerForSearchTrainsButton(object sender, EventArgs e)
         {
+            VisibilityForLabelDepartureStationNotFound = Visibility.Collapsed;
+            VisibilityForLabelDestinationStationNotFound = Visibility.Collapsed;
             VisibilityForSearchTrainsButton = Visibility.Collapsed;
             VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
             viewModelForTrainFilters.VisibilityForTrainFilters = Visibility.Collapsed;
@@ -399,6 +474,26 @@ namespace TransportInfoService
             else
             {
                 ThreadPool.QueueUserWorkItem(o => SearchOfTrainsWithDate());
+            }
+        }
+
+        public void DropDownOpenedEventHandlerForComboBoxesWithStations(object sender, EventArgs e)
+        {
+            NoNeedForComboBoxTextChangedEvent = true;
+            if ((sender as ComboBox).Text == Texts.ComboBoxChooseStation)
+            {
+                (sender as ComboBox).Foreground = Brushes.Black;
+                (sender as ComboBox).Text = string.Empty;
+            }
+        }
+
+        public void DropDownClosedEventHandlerForComboBoxesWithStations(object sender, EventArgs e)
+        {
+            NoNeedForComboBoxTextChangedEvent = true;
+            if ((sender as ComboBox).Text == string.Empty)
+            {
+                (sender as ComboBox).Foreground = Brushes.Gray;
+                (sender as ComboBox).Text = Texts.ComboBoxChooseStation;
             }
         }
 
@@ -437,6 +532,9 @@ namespace TransportInfoService
             CheckBoxAllDaysIsChecked = false;
 
             BufferForFoundTrains = new List<ITrainInfo>();
+            ListOfStations = new List<string>();
+
+            ThreadPool.QueueUserWorkItem(o => LoadNamesOfStationsFromTransportDB());
         }
     }
 }

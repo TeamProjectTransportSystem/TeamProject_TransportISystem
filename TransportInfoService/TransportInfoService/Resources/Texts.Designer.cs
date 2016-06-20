@@ -61,6 +61,15 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Подобрать.
+        /// </summary>
+        public static string ButtonApplyFiltersForTrains {
+            get {
+                return ResourceManager.GetString("ButtonApplyFiltersForTrains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Найти.
         /// </summary>
         public static string ButtonSearchTrains {

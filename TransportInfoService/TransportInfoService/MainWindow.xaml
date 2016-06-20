@@ -21,10 +21,16 @@
             <WrapPanel>
                 <StackPanel>
                     <Label Content="{x:Static MyRes:Texts.LabelDepartureStation}"></Label>
-                    <ComboBox Name="DepartureStationComboBox" Width="250"  IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDepartureStationComboBox, Mode=TwoWay}" Text="{Binding DepartureStationComboBoxText, Mode=TwoWay}">
+                    <ComboBox Name="DepartureStationComboBox" Width="250" ItemsSource="{Binding ListOfStations, Mode=OneWay}"  IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDepartureStationComboBox, Mode=TwoWay}" Text="{Binding DepartureStationComboBoxText, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewTextInput">
                                 <ei:CallMethodAction TargetObject="{Binding}"  MethodName="PreviewTextInputForComboBoxesWithStations"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="DropDownOpened">
+                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="DropDownOpenedEventHandlerForComboBoxesWithStations"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="DropDownClosed">
+                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="DropDownClosedEventHandlerForComboBoxesWithStations"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ComboBox.Style>
@@ -38,10 +44,16 @@
                 <StackPanel Margin="25,0,0,0">
                     <StackPanel>
                         <Label Content="{x:Static MyRes:Texts.LabelDestinationStation}"></Label>
-                        <ComboBox Name="DestinationStationComboBox" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox, Mode=TwoWay}" Text="{Binding DestinationStationComboBoxText, Mode=TwoWay}">
+                        <ComboBox Name="DestinationStationComboBox" ItemsSource="{Binding ListOfStations, Mode=OneWay}" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox, Mode=TwoWay}" Text="{Binding DestinationStationComboBoxText, Mode=TwoWay}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding}"  MethodName="PreviewTextInputForComboBoxesWithStations"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="DropDownOpened">
+                                    <ei:CallMethodAction TargetObject="{Binding}"  MethodName="DropDownOpenedEventHandlerForComboBoxesWithStations"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="DropDownClosed">
+                                    <ei:CallMethodAction TargetObject="{Binding}"  MethodName="DropDownClosedEventHandlerForComboBoxesWithStations"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <ComboBox.Style>
@@ -144,6 +156,13 @@
                     <CheckBox Name="TrainTypeBusinessCheckBox" Content="{ x:Static MyRes:Texts.CheckBoxTrainTypeBusiness}" IsChecked="{Binding ViewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked, Mode=TwoWay}">
 
                     </CheckBox>
+                    <Button Content="{x:Static MyRes:Texts.ButtonApplyFiltersForTrains}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="ClickEventHandlerForApplyFiltersButton"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
                 </StackPanel>
             </WrapPanel>
         </StackPanel>

@@ -177,4 +177,7 @@
   <data name="LabelTrainTimeFilters" xml:space="preserve">
     <value>ПО ВРЕМЕНИ</value>
   </data>
+  <data name="ButtonApplyFiltersForTrains" xml:space="preserve">
+    <value>Подобрать</value>
+  </data>
 </root>
