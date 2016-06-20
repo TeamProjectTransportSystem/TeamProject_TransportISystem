@@ -323,6 +323,22 @@ namespace TransportInfoService.DatabaseClasses
             trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 10, true, daily));
             trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(21, 00, true, daily));
 
+            routeMinskBorisov.ListOfTrains.Add(trainBorisov1);
+            routeMinskBorisov.ListOfTrains.Add(trainBorisov2);
+            routeMinskBorisov.ListOfTrains.Add(trainBorisov3);
+
+            routeMinskMolodechno.ListOfTrains.Add(trainMolodechno1);
+            routeMinskMolodechno.ListOfTrains.Add(trainMolodechno2);
+            routeMinskMolodechno.ListOfTrains.Add(trainMolodechno3);
+
+            routeMinskPuhovichi.ListOfTrains.Add(trainPuhovichi1);
+            routeMinskPuhovichi.ListOfTrains.Add(trainPuhovichi2);
+            routeMinskPuhovichi.ListOfTrains.Add(trainPuhovichi3);
+
+            routeMinskStolbcy.ListOfTrains.Add(trainStolbcy1);
+            routeMinskStolbcy.ListOfTrains.Add(trainStolbcy1);
+            routeMinskStolbcy.ListOfTrains.Add(trainStolbcy1);
+
             context.ListOfRoutes.Add(routeMinskBorisov);
             context.ListOfRoutes.Add(routeMinskMolodechno);
             context.ListOfRoutes.Add(routeMinskPuhovichi);

@@ -28,13 +28,13 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-            TestListBox.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
+            //TestListBox.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
 
             //Не удалять 3 строки ниже при слиянии проекта
             int AmountOfLogicalCores = Environment.ProcessorCount;
             ThreadPool.SetMinThreads(AmountOfLogicalCores, AmountOfLogicalCores);
-            ThreadPool.QueueUserWorkItem(o => ShowTestData());
-
+            //ThreadPool.QueueUserWorkItem(o => ShowTestData());
+            FoundTrainsDataGrid.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
             this.DataContext = new ViewModel();
 
             //*****************************************************************************************************
@@ -72,7 +72,7 @@ namespace TransportInfoService
         public List<string> ReturnTrain()
         {
 
-            List<string> listOfTrains = new List<string>();
+            List<string> listOfStation = new List<string>();
             //this.DataContext = new ViewModel();
             //List<string> StationTypes = new List<string>();
 
@@ -88,12 +88,12 @@ namespace TransportInfoService
                 //                                                      StartStation = c.ListOfStations.First(),
                 //                                                      FinishStation = c.ListOfStations.Last()
                 //                                                  });
-                listOfTrains = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
+                listOfStation = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
                 //listOfTrains = trains;
             }
 
 
-            return listOfTrains;
+            return listOfStation;
 
         }
 
