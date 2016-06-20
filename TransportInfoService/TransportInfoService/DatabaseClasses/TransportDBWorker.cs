@@ -99,6 +99,31 @@ namespace TransportInfoService.DatabaseClasses
             return trainFullName;
         }
 
+        public static List<string> ReturnListOfStationNames()
+        {
+
+            List<string> NewListOfStations = new List<string>();
+            //this.DataContext = new ViewModel();
+            //List<string> StationTypes = new List<string>();
+
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+            {
+                //var trains = CurrentDBContext.ListOfTrains.Join(CurrentDBContext.ListOfRoutes,
+                //                                                  s => s.TrainIDAsString,
+                //                                                  c => c.Name,
+                //                                                  (s, c) => new
+                //                                                  {
+                //                                                      NameTrain = s.TrainIDAsString,
+                //                                                      StartStation = c.ListOfStations.First(),
+                //                                                      FinishStation = c.ListOfStations.Last()
+                //                                                  });
+                NewListOfStations = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
+                //listOfTrains = trains;
+            }
+
+            return NewListOfStations;
+        }
+
         //static string ReturnCurrentDepartureTime()
         //{
         //    string DepartureTime = null;

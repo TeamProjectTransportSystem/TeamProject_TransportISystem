@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="TransportSystemLogicClasses\TrainWithDaysOfCruising.cs" />
     <Compile Include="TransportSystemLogicClasses\TrainWithoutDaysOfCruising.cs" />
+    <Compile Include="TransportSystemViewModelClasses\BookingViewModel.cs" />
     <Compile Include="TransportSystemViewModelClasses\TrainFiltersViewModel.cs" />
     <Compile Include="TransportSystemViewModelClasses\ViewModel.cs" />
     <Page Include="MainWindow.xaml">

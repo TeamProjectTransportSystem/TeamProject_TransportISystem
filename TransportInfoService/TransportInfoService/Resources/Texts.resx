@@ -183,4 +183,7 @@
   <data name="LabelApplyingOfFilters" xml:space="preserve">
     <value>Идет подбор поездов...</value>
   </data>
+  <data name="TextStationStillLoading" xml:space="preserve">
+    <value>Загружаются станции...</value>
+  </data>
 </root>

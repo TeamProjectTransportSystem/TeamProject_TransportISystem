@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using TransportInfoService.Commands;
+using TransportInfoService.DatabaseClasses;
 using TransportInfoService.Resources;
 using TransportInfoService.TransportSystemLogicClasses;
 using TransportInfoService.TransportSystemViewModelClasses;
@@ -20,11 +21,16 @@ namespace TransportInfoService
     public class ViewModel : INotifyPropertyChanged
     {
         private TrainFiltersViewModel viewModelForTrainFilters;
+        private BookingViewModel viewModelForBookingStackPanel;
+
+        private DateTime? selectedDateInCalendarControl;
+
         private Model LogicOfTransportSystem;
 
         private List<string> listOfStations;
         private List<ITrainInfo> BufferForFoundTrains;
 
+        public bool StationsLoaded = false;
         private bool checkBoxAllDaysIsChecked;
         private bool searchDataAnimatedEllipseMustBeAnimated;
         public bool NoNeedForComboBoxTextChangedEvent = false;
@@ -278,11 +284,46 @@ namespace TransportInfoService
             }
         }
 
+        public DateTime? SelectedDateInCalendarControl
+        {
+            get 
+            { 
+                return selectedDateInCalendarControl; 
+            }
+
+            set 
+            { 
+                selectedDateInCalendarControl = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public BookingViewModel ViewModelForBookingStackPanel
+        {
+            get 
+            { 
+                return viewModelForBookingStackPanel; 
+            }
+
+            set
+            { 
+                viewModelForBookingStackPanel = value;
+                NotifyPropertyChanged();
+            }
+        }
         private void LoadNamesOfStationsFromTransportDB()
         {
-            Application.Current.Dispatcher.Invoke(() => ListOfStations.Add("тест"));
-            Application.Current.Dispatcher.Invoke(() => ListOfStations.Add("лес"));
-            Application.Current.Dispatcher.Invoke(() => ListOfStations.Add("рог"));
+            List<string> BufferForStations = TransportDBWorker.ReturnListOfStationNames();
+            ListOfStations = BufferForStations;
+            StationsLoaded = true;
+        }
+
+        public void SelectionChangedEventHandlerForComboBoxesWithStations(object sender, EventArgs e)
+        {
+            if (!StationsLoaded && (sender as ComboBox).SelectedIndex >= 0)
+            {
+                (sender as ComboBox).SelectedIndex = -1;
+            }
         }
 
         public void AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -344,6 +385,8 @@ namespace TransportInfoService
         public void ClickEventHandlerForApplyFiltersButton(object sender, EventArgs e)
         {
             VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
+            ViewModelForTrainFilters.VisibilityForAnimatedEclipseForApplyingFilters = Visibility.Visible;
+            ViewModelForTrainFilters.ApplyingFiltersEllipseMustBeAnimated = true;
             ThreadPool.QueueUserWorkItem(o => ApplyFiltersOnListOfTrains());
         }
 
@@ -398,6 +441,8 @@ namespace TransportInfoService
 
                 }
             }
+            ViewModelForTrainFilters.ApplyingFiltersEllipseMustBeAnimated = false;
+            ViewModelForTrainFilters.VisibilityForAnimatedEclipseForApplyingFilters = Visibility.Collapsed;
             VisibilityForFoundTrainsDataGrid = Visibility.Visible;
         }
 
@@ -439,6 +484,7 @@ namespace TransportInfoService
             {
 
             }
+            ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Visible;
         }
 
         private void SearchOfTrainsEnded(List<ITrainInfo> FoundTrains)
@@ -464,6 +510,7 @@ namespace TransportInfoService
 
         public void ClickEventHandlerForSearchTrainsButton(object sender, EventArgs e)
         {
+            ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Collapsed;
             VisibilityForLabelDepartureStationNotFound = Visibility.Collapsed;
             VisibilityForLabelDestinationStationNotFound = Visibility.Collapsed;
             VisibilityForSearchTrainsButton = Visibility.Collapsed;
@@ -518,6 +565,7 @@ namespace TransportInfoService
         {
             LogicOfTransportSystem = Model.Instance;
             ViewModelForTrainFilters = new TrainFiltersViewModel();
+            ViewModelForBookingStackPanel = new BookingViewModel();
 
             VisibilityForSearchTrainsButton = Visibility.Visible;
             VisibilityForFoundTrainsDataGrid = Visibility.Visible;
@@ -540,8 +588,9 @@ namespace TransportInfoService
 
             BufferForFoundTrains = new List<ITrainInfo>();
             ListOfStations = new List<string>();
+            ListOfStations.Add(Texts.TextStationStillLoading);
 
-            ThreadPool.QueueUserWorkItem(o => LoadNamesOfStationsFromTransportDB());
+            //ThreadPool.QueueUserWorkItem(o => LoadNamesOfStationsFromTransportDB());
         }
     }
 }

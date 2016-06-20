@@ -15,7 +15,9 @@ namespace TransportInfoService.TransportSystemViewModelClasses
     public class TrainFiltersViewModel : INotifyPropertyChanged
     {
         private List<ITrainInfo> listOfFoundTrainsForDataGridWhichContainsFoundTrains;
+        private bool applyingFiltersEllipseMustBeAnimated;
 
+        private Visibility visibilityForAnimatedEclipseForApplyingFilters;
         private Visibility visibilityForTrainFilters;
 
         private bool departureTimeCheckBoxMorningIsChecked;
@@ -185,6 +187,19 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             }
         }
 
+        public Visibility VisibilityForAnimatedEclipseForApplyingFilters
+        {
+            get 
+            { 
+                return visibilityForAnimatedEclipseForApplyingFilters; 
+            }
+            set
+            {
+                visibilityForAnimatedEclipseForApplyingFilters = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public List<ITrainInfo> ListOfFoundTrainsForDataGridWhichContainsFoundTrains
         {
             get
@@ -195,6 +210,19 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             set
             {
                 listOfFoundTrainsForDataGridWhichContainsFoundTrains = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool ApplyingFiltersEllipseMustBeAnimated
+        {
+            get 
+            { 
+                return applyingFiltersEllipseMustBeAnimated; 
+            }
+            set 
+            { 
+                applyingFiltersEllipseMustBeAnimated = value;
                 NotifyPropertyChanged();
             }
         }
@@ -212,6 +240,7 @@ namespace TransportInfoService.TransportSystemViewModelClasses
         public TrainFiltersViewModel()
         {
             VisibilityForTrainFilters = Visibility.Visible;
+            VisibilityForAnimatedEclipseForApplyingFilters = Visibility.Collapsed;
 
             DepartureTimeCheckBoxMorningIsChecked = false;
             DepartureTimeCheckBoxDayIsChecked = false;
@@ -227,6 +256,8 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             BusinessTrainTypeCheckBoxIsChecked = false;
 
             ListOfFoundTrainsForDataGridWhichContainsFoundTrains = new List<ITrainInfo>();
+
+            ApplyingFiltersEllipseMustBeAnimated = false;
         }
     }
 }

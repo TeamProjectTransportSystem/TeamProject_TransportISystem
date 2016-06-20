@@ -28,7 +28,7 @@ namespace TransportInfoService
         public MainWindow()
         {
             InitializeComponent();
-            TestListBox.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
+            //TestListBox.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
 
             //Не удалять 3 строки ниже при слиянии проекта
             int AmountOfLogicalCores = Environment.ProcessorCount;
@@ -36,7 +36,7 @@ namespace TransportInfoService
             ThreadPool.QueueUserWorkItem(o => ShowTestData());
 
             this.DataContext = new ViewModel();
-
+            
             //*****************************************************************************************************
             //Creating DB test code
             /*List<Station> TestList = new List<Station>();
@@ -67,34 +67,6 @@ namespace TransportInfoService
             TestListOfTrains.Add(new TrainWithDaysOfCruising("432А Бизнес Минск - Киев", "5:45", "12:45", "6:00", "понедельник,\n четверг"));
             TestListOfTrains.Add(new TrainWithDaysOfCruising("123Б Скоростной Минск - Витебск", "4:09", "8:09", "4:00", "суббота,\n воскресенье"));
             Application.Current.Dispatcher.Invoke(new Action(() => FoundTrainsDataGrid.ItemsSource = TestListOfTrains));
-        }
-
-        public List<string> ReturnTrain()
-        {
-
-            List<string> listOfTrains = new List<string>();
-            //this.DataContext = new ViewModel();
-            //List<string> StationTypes = new List<string>();
-
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion) )
-
-            {
-                //var trains = CurrentDBContext.ListOfTrains.Join(CurrentDBContext.ListOfRoutes,
-                //                                                  s => s.TrainIDAsString,
-                //                                                  c => c.Name,
-                //                                                  (s, c) => new
-                //                                                  {
-                //                                                      NameTrain = s.TrainIDAsString,
-                //                                                      StartStation = c.ListOfStations.First(),
-                //                                                      FinishStation = c.ListOfStations.Last()
-                //                                                  });
-                listOfTrains = CurrentDBContext.ListOfStations.Select(s => s.Name).ToList();
-                //listOfTrains = trains;
-            }
-
-
-            return listOfTrains;
-
         }
 
         private void TextChangedEventHandlerForComboBoxesWithStations(Object sender, EventArgs e)
