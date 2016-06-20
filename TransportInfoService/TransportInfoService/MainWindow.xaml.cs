@@ -34,7 +34,7 @@ namespace TransportInfoService
             int AmountOfLogicalCores = Environment.ProcessorCount;
             ThreadPool.SetMinThreads(AmountOfLogicalCores, AmountOfLogicalCores);
             //ThreadPool.QueueUserWorkItem(o => ShowTestData());
-            FoundTrainsDataGrid.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
+            //FoundTrainsDataGrid.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
             this.DataContext = new ViewModel();
             
             //*****************************************************************************************************

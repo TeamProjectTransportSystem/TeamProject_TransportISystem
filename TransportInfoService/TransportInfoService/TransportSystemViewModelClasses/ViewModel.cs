@@ -30,6 +30,7 @@ namespace TransportInfoService
         private List<string> listOfStations;
         private List<ITrainInfo> BufferForFoundTrains;
 
+        private bool comboBoxesFosStationsMustBeActive;
         public bool StationsLoaded = false;
         private bool checkBoxAllDaysIsChecked;
         private bool searchDataAnimatedEllipseMustBeAnimated;
@@ -61,6 +62,19 @@ namespace TransportInfoService
                 }
         }*/
 
+        public bool ComboBoxesFosStationsMustBeActive
+        {
+            get 
+            { 
+                return comboBoxesFosStationsMustBeActive; 
+            }
+
+            set 
+            { 
+                comboBoxesFosStationsMustBeActive = value;
+                NotifyPropertyChanged();
+            }
+        }
         public Visibility VisibilityForSearchTrainsButton
         {
             get
@@ -470,7 +484,11 @@ namespace TransportInfoService
             }
             else
             {
-
+                foreach (ITrainInfo CurrentTrainInfo in TransportDBWorker.GetListOfTrainsInfoWithOutDate(DepartureStationComboBoxText, DestinationStationComboBoxText))
+                {
+                    BufferForFoundTrains.Add(CurrentTrainInfo);
+                }
+                SearchOfTrainsEnded(BufferForFoundTrains);
             }
         }
 
@@ -505,11 +523,15 @@ namespace TransportInfoService
             VisibilityForSearchTrainsButton = Visibility.Visible;
             SearchDataAnimatedEllipseMustBeAnimated = false;
             VisibilityForSearchDataAnimatedEllipse = Visibility.Collapsed;
+            ComboBoxesFosStationsMustBeActive = true;
         }
 
 
         public void ClickEventHandlerForSearchTrainsButton(object sender, EventArgs e)
         {
+            BufferForFoundTrains.Clear();
+            ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrains = null;
+            ComboBoxesFosStationsMustBeActive = false;
             ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Collapsed;
             VisibilityForLabelDepartureStationNotFound = Visibility.Collapsed;
             VisibilityForLabelDestinationStationNotFound = Visibility.Collapsed;
@@ -583,6 +605,7 @@ namespace TransportInfoService
             ProgramStateLabelContent = string.Empty;
 
             SearchDataAnimatedEllipseMustBeAnimated = false;
+            ComboBoxesFosStationsMustBeActive = true;
 
             CheckBoxAllDaysIsChecked = false;
 
@@ -590,7 +613,7 @@ namespace TransportInfoService
             ListOfStations = new List<string>();
             ListOfStations.Add(Texts.TextStationStillLoading);
 
-            //ThreadPool.QueueUserWorkItem(o => LoadNamesOfStationsFromTransportDB());
+            ThreadPool.QueueUserWorkItem(o => LoadNamesOfStationsFromTransportDB());
         }
     }
 }

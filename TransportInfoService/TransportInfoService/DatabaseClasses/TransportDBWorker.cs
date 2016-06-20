@@ -76,7 +76,7 @@ namespace TransportInfoService.DatabaseClasses
             return listOfTrains;
         }
 
-        static string ReturnTrainFullName(string firstStation, string secondStation)
+        /*static string ReturnTrainFullName(string firstStation, string secondStation)
         {
             string trainFullName = null;
             using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
@@ -95,7 +95,7 @@ namespace TransportInfoService.DatabaseClasses
                 }
             }
             return trainFullName;
-        }
+        }*/
 
         public static List<string> ReturnListOfStationNames()
         {
