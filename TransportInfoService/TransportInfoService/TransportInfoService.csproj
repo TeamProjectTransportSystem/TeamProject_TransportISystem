@@ -88,7 +88,7 @@
     <Compile Include="DatabaseClasses\TransportDBContext.cs" />
     <Compile Include="DatabaseClasses\TransportDBseeder.cs" />
     <Compile Include="DatabaseClasses\TransportDBWorker.cs" />
-    <Compile Include="DatabaseClasses\Wagon.cs" />
+    <Compile Include="DatabaseClasses\WagonSector.cs" />
     <Compile Include="DatabaseClasses\WagonBookingInfo.cs" />
     <Compile Include="DatabaseClasses\WagonType.cs" />
     <Compile Include="TransportSystemLogicClasses\ITrainInfo.cs" />

@@ -341,7 +341,7 @@ namespace TransportInfoService.DatabaseClasses
             routeMinskStolbcy.ListOfTrains.Add(trainStolbcy3);
 
             WagonType sedentaryWagonForTrainEconom = new WagonType("Сидячий Эконом", 200, false);
-            Wagon sedentaryWagonEconom = new Wagon(sedentaryWagonForTrainEconom);
+            WagonSector sedentaryWagonEconom = new WagonSector(sedentaryWagonForTrainEconom, 1, 5);
             SeatSector seatSectorSedentaryWagonEconom = new SeatSector(1, 91, false);
 
             for (int i = 0; i < 10; ++i)

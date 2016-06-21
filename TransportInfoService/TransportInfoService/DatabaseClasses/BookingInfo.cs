@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TransportInfoService.DatabaseClasses
 {
+    [Table("BookingInfo")]
     public class BookingInfo
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

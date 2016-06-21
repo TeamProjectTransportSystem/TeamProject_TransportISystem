@@ -14,6 +14,8 @@ namespace TransportInfoService.DatabaseClasses
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long WagonBookingInfoId { get; set; }
+
+        public int WagonNumberRelatedToTrainInBookingInfo { get; set; }
         public virtual BookingInfo RelatedBookingInfo { get; set; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -43,9 +45,10 @@ namespace TransportInfoService.DatabaseClasses
             }
         }
 
-        public WagonBookingInfo(List<int> NumbersOfOccupiedSeats)
+        public WagonBookingInfo(List<int> NumbersOfOccupiedSeats, int CurrentWagonNumberRelatedToTrainInBookingInfo)
         {
             OccupiedSeats = NumbersOfOccupiedSeats;
+            WagonNumberRelatedToTrainInBookingInfo = CurrentWagonNumberRelatedToTrainInBookingInfo;
         }
 
         public WagonBookingInfo()

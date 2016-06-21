@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace TransportInfoService.DatabaseClasses
 {
-    [Table("Wagons")]
-    public class Wagon
+    [Table("WagonSectors")]
+    public class WagonSector
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WagonID { get; set; }
+        public int WagonSectorID { get; set; }
+
+        public int FirstNumberOfWagon { get; set; }
+        public int LastNumberOfWagon { get; set; }
 
         public string WagonTypeName { get; set; }
         [ForeignKey("WagonTypeName")]
@@ -20,12 +23,14 @@ namespace TransportInfoService.DatabaseClasses
 
         public virtual ICollection<Train> TrainWhichUsesThisWagon { get; set; }
 
-        public Wagon(WagonType TypeOfWagon)
+        public WagonSector(WagonType TypeOfWagon, int CurrentFirstNumberOfWagon, int CurrentLastNumberOfWagon)
         {
             Type = TypeOfWagon;
+            FirstNumberOfWagon = CurrentFirstNumberOfWagon;
+            LastNumberOfWagon = CurrentLastNumberOfWagon;
         }
 
-        public Wagon()
+        public WagonSector()
         {
 
         }
