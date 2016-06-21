@@ -36,7 +36,7 @@ namespace TransportInfoService
             //ThreadPool.QueueUserWorkItem(o => ShowTestData());
             //FoundTrainsDataGrid.ItemsSource = TransportDBWorker.GetListOfTrainsInfoWithOutDate("Тракторный", "Городище");
             this.DataContext = new ViewModel();
-            
+
             //*****************************************************************************************************
             //Creating DB test code
             /*List<Station> TestList = new List<Station>();

@@ -14,7 +14,8 @@ namespace TransportInfoService.TransportSystemViewModelClasses
 {
     public class TrainFiltersViewModel : INotifyPropertyChanged
     {
-        private List<ITrainInfo> listOfFoundTrainsForDataGridWhichContainsFoundTrains;
+        private List<TrainWithoutDaysOfCruising> listOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising;
+        private List<TrainWithDaysOfCruising> listOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising;
         private bool applyingFiltersEllipseMustBeAnimated;
 
         private Visibility visibilityForAnimatedEclipseForApplyingFilters;
@@ -200,19 +201,7 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             }
         }
 
-        public List<ITrainInfo> ListOfFoundTrainsForDataGridWhichContainsFoundTrains
-        {
-            get
-            {
-                return listOfFoundTrainsForDataGridWhichContainsFoundTrains;
-            }
 
-            set
-            {
-                listOfFoundTrainsForDataGridWhichContainsFoundTrains = value;
-                NotifyPropertyChanged();
-            }
-        }
 
         public bool ApplyingFiltersEllipseMustBeAnimated
         {
@@ -223,6 +212,34 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             set 
             { 
                 applyingFiltersEllipseMustBeAnimated = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public List<TrainWithoutDaysOfCruising> ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising
+        {
+            get
+            {
+                return listOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising;
+            }
+
+            set
+            {
+                listOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public List<TrainWithDaysOfCruising> ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising
+        {
+            get
+            {
+                return listOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising;
+            }
+
+            set
+            {
+                listOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising = value;
                 NotifyPropertyChanged();
             }
         }
@@ -255,7 +272,8 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             EconomTrainTypeCheckBoxIsChecked = false;
             BusinessTrainTypeCheckBoxIsChecked = false;
 
-            ListOfFoundTrainsForDataGridWhichContainsFoundTrains = new List<ITrainInfo>();
+            ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising = new List<TrainWithoutDaysOfCruising>();
+            ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising = new List<TrainWithDaysOfCruising>();
 
             ApplyingFiltersEllipseMustBeAnimated = false;
         }

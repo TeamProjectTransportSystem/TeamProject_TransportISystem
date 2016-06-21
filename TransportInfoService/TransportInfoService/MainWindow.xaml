@@ -26,7 +26,7 @@
             <WrapPanel>
                 <StackPanel>
                     <Label Content="{x:Static MyRes:Texts.LabelDepartureStation}"></Label>
-                    <ComboBox IsEnabled="{Binding ComboBoxesFosStationsMustBeActive, Mode=TwoWay}" Name="DepartureStationComboBox" Width="250" ItemsSource="{Binding ListOfStations, Mode=OneWay}"  IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDepartureStationComboBox, Mode=TwoWay}" Text="{Binding DepartureStationComboBoxText, Mode=TwoWay}">
+                    <ComboBox IsEnabled="{Binding ControlsMustBeEnabled, Mode=TwoWay}" Name="DepartureStationComboBox" Width="250" ItemsSource="{Binding ListOfStations, Mode=OneWay}"  IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDepartureStationComboBox, Mode=TwoWay}" Text="{Binding DepartureStationComboBoxText, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <ei:CallMethodAction TargetObject="{Binding}"  MethodName="SelectionChangedEventHandlerForComboBoxesWithStations"/>
@@ -52,7 +52,7 @@
                 <StackPanel Margin="25,0,0,0">
                     <StackPanel>
                         <Label Content="{x:Static MyRes:Texts.LabelDestinationStation}"></Label>
-                        <ComboBox IsEnabled="{Binding ComboBoxesFosStationsMustBeActive, Mode=TwoWay}" Name="DestinationStationComboBox" ItemsSource="{Binding ListOfStations, Mode=OneWay}" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox, Mode=TwoWay}" Text="{Binding DestinationStationComboBoxText, Mode=TwoWay}">
+                        <ComboBox IsEnabled="{Binding ControlsMustBeEnabled, Mode=TwoWay}" Name="DestinationStationComboBox" ItemsSource="{Binding ListOfStations, Mode=OneWay}" Width="250" IsEditable="True" IsTextSearchEnabled="True" Foreground="{Binding ForegroundDestinationStationComboBox, Mode=TwoWay}" Text="{Binding DestinationStationComboBoxText, Mode=TwoWay}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <ei:CallMethodAction TargetObject="{Binding}"  MethodName="SelectionChangedEventHandlerForComboBoxesWithStations"/>
@@ -77,7 +77,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel>
-                    <CheckBox Name="AllDaysCheckBox" Content="{x:Static MyRes:Texts.CheckBoxAllDays}" IsChecked="{Binding CheckBoxAllDaysIsChecked, Mode=TwoWay}">
+                    <CheckBox Name="AllDaysCheckBox" IsEnabled="{Binding ControlsMustBeEnabled, Mode=TwoWay}" Content="{x:Static MyRes:Texts.CheckBoxAllDays}" IsChecked="{Binding CheckBoxAllDaysIsChecked, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Checked">
                                 <ei:CallMethodAction TargetObject="{Binding}"  MethodName="EventHandlerForCheckedEventOfCheckBoxAllDays"/>
@@ -87,7 +87,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </CheckBox>
-                    <Calendar SelectedDate="{Binding SelectedDateInCalendarControl}" Visibility="{Binding VisibilityForCalendarControl, Mode=TwoWay}"></Calendar>
+                    <Calendar IsEnabled="{Binding ControlsMustBeEnabled, Mode=TwoWay}" SelectedDate="{Binding SelectedDateInCalendarControl, Mode=TwoWay}" Visibility="{Binding VisibilityForCalendarControl, Mode=TwoWay}"></Calendar>
                 </StackPanel>
                 <Button Margin="0,20,0,0" VerticalAlignment="Top" FontSize="16" Content="{x:Static MyRes:Texts.ButtonSearchTrains}" Visibility="{Binding VisibilityForSearchTrainsButton, Mode=TwoWay}">
                     <i:Interaction.Triggers>
@@ -150,12 +150,20 @@
                         </i:Interaction.Triggers>
                     </Ellipse>
                 </WrapPanel>
-                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="350" ItemsSource="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrains, Mode=OneWay}" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="350" ItemsSource="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising, Mode=OneWay}" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="AutoGeneratingColumn">
-                            <ei:CallMethodAction TargetObject="{Binding}"  MethodName="AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid"/>
+                            <ei:CallMethodAction TargetObject="{Binding}"  MethodName="AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid" />
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>                   
+                        <ei:DataTrigger Binding="{Binding LoadedTrainsWithDaysOfCruising, Mode=TwoWay}" Value="false">
+                            <ei:ChangePropertyAction PropertyName="ItemsSource" Value="null"  TargetName="FoundTrainsDataGrid"></ei:ChangePropertyAction>
+                            <ei:ChangePropertyAction PropertyName="ItemsSource" Value="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising, Mode=OneWay}"  TargetName="FoundTrainsDataGrid"></ei:ChangePropertyAction>
+                        </ei:DataTrigger>
+                        <ei:DataTrigger Binding="{Binding LoadedTrainsWithDaysOfCruising, Mode=TwoWay}" Value="true">
+                            <ei:ChangePropertyAction PropertyName="ItemsSource" Value="null"  TargetName="FoundTrainsDataGrid"></ei:ChangePropertyAction>
+                            <ei:ChangePropertyAction PropertyName="ItemsSource" Value="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising, Mode=OneWay}"  TargetName="FoundTrainsDataGrid"></ei:ChangePropertyAction>
+                        </ei:DataTrigger>
+                    </i:Interaction.Triggers>
                 </DataGrid>
                 <StackPanel Visibility="{Binding ViewModelForTrainFilters.VisibilityForTrainFilters, Mode=TwoWay}">
                     <Label Content="{x:Static MyRes:Texts.LabelTrainFilters}" Foreground="Blue"></Label>
