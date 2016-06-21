@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CommandsForViewModel\Command.cs" />
+    <Compile Include="DatabaseClasses\BookingInfo.cs" />
     <Compile Include="DatabaseClasses\DayOfCruising.cs" />
     <Compile Include="DatabaseClasses\DepartureTimeAndDayOfCruising.cs" />
     <Compile Include="DatabaseClasses\Route.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="DatabaseClasses\TransportDBseeder.cs" />
     <Compile Include="DatabaseClasses\TransportDBWorker.cs" />
     <Compile Include="DatabaseClasses\Wagon.cs" />
+    <Compile Include="DatabaseClasses\WagonBookingInfo.cs" />
     <Compile Include="DatabaseClasses\WagonType.cs" />
     <Compile Include="TransportSystemLogicClasses\ITrainInfo.cs" />
     <Compile Include="TransportSystemLogicClasses\Model.cs" />
