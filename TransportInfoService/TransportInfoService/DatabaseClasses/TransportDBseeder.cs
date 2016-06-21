@@ -226,102 +226,103 @@ namespace TransportInfoService.DatabaseClasses
 
             //первый поезд на Борисов
             Train trainBorisov1 = new Train("061B", econom, routeMinskBorisov);
-            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 00, true, daily));
-            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 20, true, daily));
-            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 40, true, daily));
-            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, daily));
-            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 50, true, daily));
+            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 00, true, new List<DayOfCruising>() {saturday, sunday}));
+
+            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 20, true, new List<DayOfCruising>() {daily}));
+            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 40, true, new List<DayOfCruising>() { daily }));
+            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainBorisov1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 50, true, new List<DayOfCruising>() {daily}));
 
             //второй поезд на Борисов
             Train trainBorisov2 = new Train("095A", econom, routeMinskBorisov);
-            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 30, true, daily));
-            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 40, true, daily));
-            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 00, true, daily));
-            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 50, true, daily));
-            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 10, true, daily));
+            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 30, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 40, true, new List<DayOfCruising>() { daily }));
+            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 00, true, new List<DayOfCruising>() { daily }));
+            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 50, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainBorisov2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 10, true, new List<DayOfCruising>() { daily }));
 
             //третий поезд на Борисов
             Train trainBorisov3 = new Train("086С", econom, routeMinskBorisov);
-            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 50, true, daily));
-            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 00, true, daily));
-            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 30, true, daily));
-            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 20, true, daily));
-            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 30, true, daily));
+            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 50, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 00, true, new List<DayOfCruising>() { daily }));
+            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 30, true, new List<DayOfCruising>() { daily }));
+            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 20, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainBorisov3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 30, true, new List<DayOfCruising>() { daily }));
 
             //первый поезд на Молодечно
             Train trainMolodechno1 = new Train("136A", econom, routeMinskMolodechno);
-            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 10, true, daily));
-            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 40, true, daily));
-            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 50, true, daily));
-            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 00, true, daily));
-            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 10, true, daily));
+            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 10, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 40, true, new List<DayOfCruising>() { daily }));
+            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 50, true, new List<DayOfCruising>() { daily }));
+            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 00, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainMolodechno1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 10, true, new List<DayOfCruising>() { daily }));
 
             //второй поезд на Молодечно
             Train trainMolodechno2 = new Train("152B", econom, routeMinskMolodechno);
-            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 40, true, daily));
-            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 10, true, daily));
-            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 20, true, daily));
-            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, daily));
-            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 40, true, daily));
+            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 40, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 10, true, new List<DayOfCruising>() { daily }));
+            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 20, true, new List<DayOfCruising>() { daily }));
+            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainMolodechno2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 40, true, new List<DayOfCruising>() { daily }));
 
             //третий поезд на Молодечно
             Train trainMolodechno3 = new Train("174С", econom, routeMinskMolodechno);
-            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 40, true, daily));
-            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 10, true, daily));
-            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 20, true, daily));
-            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, daily));
-            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 40, true, daily));
+            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 40, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 10, true, new List<DayOfCruising>() { daily }));
+            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 20, true, new List<DayOfCruising>() { daily }));
+            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainMolodechno3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 40, true, new List<DayOfCruising>() { daily }));
 
             //первый поезд на Столбцы
             Train trainStolbcy1 = new Train("261B", econom, routeMinskStolbcy);
-            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 00, true, daily));
-            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 20, true, daily));
-            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 40, true, daily));
-            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, daily));
-            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 50, true, daily));
+            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 00, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 20, true, new List<DayOfCruising>() { daily }));
+            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 40, true, new List<DayOfCruising>() { daily }));
+            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 30, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainStolbcy1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(22, 50, true, new List<DayOfCruising>() { daily }));
 
             //второй поезд на Столбцы
             Train trainStolbcy2 = new Train("295A", econom, routeMinskStolbcy);
-            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 30, true, daily));
-            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 40, true, daily));
-            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 00, true, daily));
-            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 50, true, daily));
-            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 10, true, daily));
+            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 30, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(11, 40, true, new List<DayOfCruising>() { daily }));
+            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 00, true, new List<DayOfCruising>() { daily }));
+            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(19, 50, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainStolbcy2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 10, true, new List<DayOfCruising>() { daily }));
 
             //третий поезд на Столбцы
             Train trainStolbcy3 = new Train("286С", econom, routeMinskStolbcy);
-            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 50, true, daily));
-            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 00, true, daily));
-            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 30, true, daily));
-            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 20, true, daily));
-            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 30, true, daily));
+            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(7, 50, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(12, 00, true, new List<DayOfCruising>() { daily }));
+            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(17, 30, true, new List<DayOfCruising>() { daily }));
+            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 20, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainStolbcy3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(23, 30, true, new List<DayOfCruising>() { daily }));
 
             //первый поезд на Пуховичи
             Train trainPuhovichi1 = new Train("335A", econom, routeMinskPuhovichi);
-            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(6, 50, true, daily));
-            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(10, 40, true, daily));
-            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 30, true, daily));
-            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(18, 20, true, daily));
-            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 10, true, daily));
-            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(21, 00, true, daily));
+            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(6, 50, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(10, 40, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 30, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(18, 20, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 10, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi1.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(21, 00, true, new List<DayOfCruising>() { daily }));
 
             //второй поезд на Пуховичи
             Train trainPuhovichi2 = new Train("358B", econom, routeMinskPuhovichi);
-            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(6, 50, true, daily));
-            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(10, 40, true, daily));
-            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 30, true, daily));
-            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(18, 20, true, daily));
-            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 10, true, daily));
-            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(21, 00, true, daily));
+            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(6, 50, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(10, 40, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 30, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(18, 20, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 10, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi2.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(21, 00, true, new List<DayOfCruising>() { daily }));
 
             //третий поезд на Пуховичи
             Train trainPuhovichi3 = new Train("377С", econom, routeMinskPuhovichi);
-            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(6, 50, true, daily));
-            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(10, 40, true, daily));
-            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 30, true, daily));
-            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(18, 20, true, daily));
-            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 10, true, daily));
-            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(21, 00, true, daily));
+            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(6, 50, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(10, 40, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(16, 30, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(18, 20, true, new List<DayOfCruising>() { saturday, sunday }));
+            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(20, 10, true, new List<DayOfCruising>() { daily }));
+            trainPuhovichi3.ListOfDepartureTimeAndDaysOfCruising.Add(new DepartureTimeAndDayOfCruising(21, 00, true, new List<DayOfCruising>() { daily }));
 
             routeMinskBorisov.ListOfTrains.Add(trainBorisov1);
             routeMinskBorisov.ListOfTrains.Add(trainBorisov2);

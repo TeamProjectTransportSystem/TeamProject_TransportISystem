@@ -14,6 +14,8 @@ namespace TransportInfoService.DatabaseClasses
         [Key]
         public string DayInfo { get; set; }
 
+        public virtual ICollection<DepartureTimeAndDayOfCruising> DepartureTimeAndDayOfCruising { get; set; }
+
         public DayOfCruising(string NewDayInfo)
         {
             DayInfo = NewDayInfo;

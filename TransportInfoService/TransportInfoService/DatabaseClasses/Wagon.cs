@@ -18,7 +18,7 @@ namespace TransportInfoService.DatabaseClasses
         [ForeignKey("WagonTypeName")]
         public virtual WagonType Type { get; set; }
 
-        public virtual Train TrainWhichUsesThisWagon { get; set; }
+        public virtual ICollection<Train> TrainWhichUsesThisWagon { get; set; }
 
         //Номера занятых мест перечисленные в строке, через запятую
         [EditorBrowsable(EditorBrowsableState.Never)]

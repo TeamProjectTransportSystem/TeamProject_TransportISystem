@@ -16,9 +16,9 @@ namespace TransportInfoService.DatabaseClasses
         public Byte DepartureHours { get; set; }
         public Byte DepartureMinutes { get; set; }
         public bool IsFirstStationStart { get; set; }
-        public virtual DayOfCruising DayOfCruisingInfo { get; set; }
+        public virtual ICollection<DayOfCruising> DayOfCruisingInfo { get; set; }
 
-        public DepartureTimeAndDayOfCruising(Byte NewDepartureHours, Byte NewDepartureMinutes, bool ThisIsFirstStationStart, DayOfCruising NewDayOfCruising)
+        public DepartureTimeAndDayOfCruising(Byte NewDepartureHours, Byte NewDepartureMinutes, bool ThisIsFirstStationStart,  List<DayOfCruising> NewDayOfCruising)
         {
             DepartureHours = NewDepartureHours;
             DepartureMinutes = NewDepartureMinutes;
