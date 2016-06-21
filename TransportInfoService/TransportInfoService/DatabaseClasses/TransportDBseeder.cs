@@ -220,9 +220,9 @@ namespace TransportInfoService.DatabaseClasses
             routeMinskPuhovichi.ListOfStations.Add(puhovichi);
 
             //типы поездов
-            TrainType econom = new TrainType("Эконом", 700, 70);
-            TrainType business = new TrainType("Бизнес", 1000, 90);
-            TrainType fast = new TrainType("Скорый", 1500, 120);
+            TrainType econom = new TrainType("Эконом", 700, 50);
+            TrainType business = new TrainType("Бизнес", 1000, 70);
+            TrainType fast = new TrainType("Скорый", 1500, 100);
 
             //первый поезд на Борисов
             Train trainBorisov1 = new Train("061B", econom, routeMinskBorisov);
@@ -339,11 +339,45 @@ namespace TransportInfoService.DatabaseClasses
             routeMinskStolbcy.ListOfTrains.Add(trainStolbcy2);
             routeMinskStolbcy.ListOfTrains.Add(trainStolbcy3);
 
-            WagonType sedentaryWagonEconom = new WagonType("Сидячий Эконом", 200, false);
-            Wagon sedentaryWagonEconomNuberOne = new Wagon(sedentaryWagonEconom);
+            WagonType sedentaryWagonForTrainEconom = new WagonType("Сидячий Эконом", 200, false);
+            Wagon sedentaryWagonEconom = new Wagon(sedentaryWagonForTrainEconom);
             SeatSector seatSectorSedentaryWagonEconom = new SeatSector(1, 91, false);
-            
-            
+
+            for (int i = 0; i < 10; ++i)
+                trainBorisov1.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainBorisov2.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainBorisov3.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainMolodechno1.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainMolodechno2.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainMolodechno3.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainPuhovichi1.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainPuhovichi2.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainPuhovichi3.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainStolbcy1.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainStolbcy2.Wagons.Add(sedentaryWagonEconom);
+
+            for (int i = 0; i < 10; ++i)
+                trainStolbcy3.Wagons.Add(sedentaryWagonEconom);
 
             context.ListOfRoutes.Add(routeMinskBorisov);
             context.ListOfRoutes.Add(routeMinskMolodechno);
