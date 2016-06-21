@@ -19,7 +19,8 @@ namespace TransportInfoService.DatabaseClasses
         public DbSet<Wagon> ListOfWagons { get; set; }
         public DbSet<WagonType> ListOfWagonTypes { get; set; }
         public DbSet<SeatSector> ListOfSeatSectors { get; set; }
-
+        public DbSet<BookingInfo> ListOfBookingInfo { get; set; }
+        public DbSet<WagonBookingInfo> ListOfBookingInfoForWagons { get; set; }
         public TransportDBContext(string ConnectionStringName) : base(ConnectionStringName)
         {
             Database.SetInitializer<TransportDBContext>(new TransportDBseeder());

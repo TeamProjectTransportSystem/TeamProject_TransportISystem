@@ -18,40 +18,11 @@ namespace TransportInfoService.DatabaseClasses
         [ForeignKey("WagonTypeName")]
         public virtual WagonType Type { get; set; }
 
-        public virtual Train TrainWhichUsesThisWagon { get; set; }
-
-        //Номера занятых мест перечисленные в строке, через запятую
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string OccupiedSeatsAsString { get; set; }
-
-        [NotMapped]
-        public IEnumerable<int> OccupiedSeats
-        {
-            get
-            {
-                string[] ListOfOccupiedSeatsNumbersAsString = this.OccupiedSeatsAsString.Split(',');
-                List<int> ListOfOccupiedSeats = new List<int>();
-                foreach (string NumberOfSeat in ListOfOccupiedSeatsNumbersAsString)
-                {
-                    ListOfOccupiedSeats.Add(Int32.Parse(NumberOfSeat));
-                }
-                return ListOfOccupiedSeats;
-            }
-            set
-            {
-                StringBuilder BuilderForOccupiedSeatsAsString = new StringBuilder();
-                foreach (int NumberOfSeat in value)
-                {
-                    BuilderForOccupiedSeatsAsString.Append(NumberOfSeat.ToString() + ",");
-                }
-                this.OccupiedSeatsAsString = BuilderForOccupiedSeatsAsString.ToString();
-            }
-        }
+        public virtual ICollection<Train> TrainWhichUsesThisWagon { get; set; }
 
         public Wagon(WagonType TypeOfWagon)
         {
             Type = TypeOfWagon;
-            OccupiedSeatsAsString = string.Empty;
         }
 
         public Wagon()
