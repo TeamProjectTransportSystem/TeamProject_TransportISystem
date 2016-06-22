@@ -195,4 +195,44 @@
   <data name="MainWindowName" xml:space="preserve">
     <value>Расписание поездов (БЖД)</value>
   </data>
+  <data name="ButtonLogIn" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="ButtonStartRegistration" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="LabelBookingHeader" xml:space="preserve">
+    <value>БРОНИРОВАНИЕ</value>
+  </data>
+  <data name="LabelEnterLogin" xml:space="preserve">
+    <value>Введите свой логин</value>
+  </data>
+  <data name="LabelEnterPassword" xml:space="preserve">
+    <value>Введите свой пароль</value>
+  </data>
+  <data name="LabelTypeEmail" xml:space="preserve">
+    <value>Введите ваш email.
+(Для получения уведомлений 
+об изменении статуса
+бронирования или цен на
+услуги )</value>
+  </data>
+  <data name="LabelTypeNewLogin" xml:space="preserve">
+    <value>Введите новый логин</value>
+  </data>
+  <data name="LabelTypePasswordFirstTime" xml:space="preserve">
+    <value>Введите пароль.</value>
+  </data>
+  <data name="LabelTypePasswordSecondTime" xml:space="preserve">
+    <value>Введите повторно пароль.</value>
+  </data>
+  <data name="LabelYouMustLoginBeforeStartBooking" xml:space="preserve">
+    <value>Сначала  войдите в систему!</value>
+  </data>
+  <data name="TabItemLogInSystem" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="TabItemRegistrationSystem" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
 </root>
