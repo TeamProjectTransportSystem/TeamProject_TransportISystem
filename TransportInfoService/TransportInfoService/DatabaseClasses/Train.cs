@@ -17,7 +17,7 @@ namespace TransportInfoService.DatabaseClasses
         public virtual TrainType Type { get; set; }
         public virtual ICollection<DepartureTimeAndDayOfCruising> ListOfDepartureTimeAndDaysOfCruising { get; set; }
         public virtual Route Route { get; set; }
-        public virtual ICollection<WagonSector> Wagons { get; set; }
+        public virtual ICollection<Wagon> Wagons { get; set; }
         public virtual ICollection<BookingInfo> ListOfRelatedToThisTrainBookingInfo { get; set; }
 
         public Train(string TrainID, TrainType TypeOfTrain, Route RouteOfTrain)
@@ -26,7 +26,7 @@ namespace TransportInfoService.DatabaseClasses
             Type = TypeOfTrain;
             Route = RouteOfTrain;
             ListOfDepartureTimeAndDaysOfCruising = new List<DepartureTimeAndDayOfCruising>();
-            Wagons = new List<WagonSector>();
+            Wagons = new List<Wagon>();
         }
 
         public Train()

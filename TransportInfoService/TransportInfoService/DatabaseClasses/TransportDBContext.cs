@@ -16,7 +16,7 @@ namespace TransportInfoService.DatabaseClasses
         public DbSet<StationType> ListOfStationTypes { get; set; }
         public DbSet<DayOfCruising> DaysOfCruising { get; set; }
         public DbSet<DepartureTimeAndDayOfCruising> DepartueTimesAndDaysOfCrusing { get; set; }
-        public DbSet<WagonSector> ListOfWagonSectors { get; set; }
+        public DbSet<Wagon> ListOfWagonSectors { get; set; }
         public DbSet<WagonType> ListOfWagonTypes { get; set; }
         public DbSet<SeatSector> ListOfSeatSectors { get; set; }
         public DbSet<BookingInfo> ListOfBookingInfo { get; set; }

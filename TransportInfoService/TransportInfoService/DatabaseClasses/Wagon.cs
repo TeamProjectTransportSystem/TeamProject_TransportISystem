@@ -8,29 +8,25 @@ using System.Threading.Tasks;
 
 namespace TransportInfoService.DatabaseClasses
 {
-    [Table("WagonSectors")]
-    public class WagonSector
+    [Table("Wagons")]
+    public class Wagon
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WagonSectorID { get; set; }
-
-        public int FirstNumberOfWagon { get; set; }
-        public int LastNumberOfWagon { get; set; }
-
+        public int WagonID { get; set; }
+        public int NumberOfThisWagon { get; set; }
         public string WagonTypeName { get; set; }
         [ForeignKey("WagonTypeName")]
         public virtual WagonType Type { get; set; }
 
         public virtual ICollection<Train> TrainWhichUsesThisWagon { get; set; }
 
-        public WagonSector(WagonType TypeOfWagon, int CurrentFirstNumberOfWagon, int CurrentLastNumberOfWagon)
+        public Wagon(WagonType TypeOfWagon, int NewNumberOfThisWagon)
         {
             Type = TypeOfWagon;
-            FirstNumberOfWagon = CurrentFirstNumberOfWagon;
-            LastNumberOfWagon = CurrentLastNumberOfWagon;
+            NumberOfThisWagon = NewNumberOfThisWagon;
         }
 
-        public WagonSector()
+        public Wagon()
         {
 
         }

@@ -342,7 +342,7 @@ namespace TransportInfoService.DatabaseClasses
 
 
             WagonType sedentaryWagonForTrainEconom = new WagonType("Сидячий Эконом", 200, false);
-            WagonSector sedentaryWagonEconom = new WagonSector(sedentaryWagonForTrainEconom, 1, 5);
+            Wagon sedentaryWagonEconom = new Wagon(sedentaryWagonForTrainEconom, 5);
             SeatSector seatSectorSedentaryWagonEconom = new SeatSector(1, 91, false);
 
             for (int i = 0; i < 10; ++i)
