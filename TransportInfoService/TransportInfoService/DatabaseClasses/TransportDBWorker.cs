@@ -40,12 +40,12 @@ namespace TransportInfoService.DatabaseClasses
                         {
                             r.RouteName = ReturnNewRoute(r.RouteName);
                             currentSecondStation.Distance = r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance +
-                                                           (r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance - 
+                                                           (r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance -
                                                             currentSecondStation.Distance);
                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
                                 d.DepartureMinutes += 20;
                         }
-                           
+
                         //полное имя поезда
                         trainFullName = String.Format("{0} {1} {2}", t.TrainIDAsString, t.Type.TrainTypeName, r.RouteName);
 
@@ -54,7 +54,7 @@ namespace TransportInfoService.DatabaseClasses
 
                         foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
                         {
-                            
+
                             //время отправления поезда
                             TimeSpan startTime = new TimeSpan(d.DepartureHours, d.DepartureMinutes, 0);
 
@@ -124,89 +124,91 @@ namespace TransportInfoService.DatabaseClasses
                 foreach (Route r in routes)
                 {
 
-                    if(date == null)
+                    if (date == null)
                         listTrainWithDate = r.ListOfTrains.ToList();
                     else
-                        switch(date.Value.DayOfWeek)
+                    {
+                        switch (date.Value.DayOfWeek)
                         {
                             case DayOfWeek.Monday:
-                                foreach(Train t in r.ListOfTrains)
+                                foreach (Train t in r.ListOfTrains)
                                 {
-                                    foreach(DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                       foreach(DayOfCruising day in d.DayOfCruisingInfo)
-                                       {
-                                           if(day.DayInfo == "Понедельник")
-                                               listTrainWithDate.Add(t);
-                                       }
+                                    foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                        foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                                        {
+                                            if (day.DayInfo == "Понедельник" || day.DayInfo == "Ежедневно")
+                                                listTrainWithDate.Add(t);
+                                        }
                                 }
                                 break;
                             case DayOfWeek.Tuesday:
-                                foreach(Train t in r.ListOfTrains)
+                                foreach (Train t in r.ListOfTrains)
                                 {
-                                    foreach(DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                       foreach(DayOfCruising day in d.DayOfCruisingInfo)
-                                       {
-                                           if(day.DayInfo == "Вторник")
-                                               listTrainWithDate.Add(t);
-                                       }
+                                    foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                        foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                                        {
+                                            if (day.DayInfo == "Вторник" || day.DayInfo == "Ежедневно")
+                                                listTrainWithDate.Add(t);
+                                        }
                                 }
                                 break;
                             case DayOfWeek.Wednesday:
-                                foreach(Train t in r.ListOfTrains)
+                                foreach (Train t in r.ListOfTrains)
                                 {
-                                    foreach(DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                       foreach(DayOfCruising day in d.DayOfCruisingInfo)
-                                       {
-                                           if(day.DayInfo == "Среда")
-                                               listTrainWithDate.Add(t);
-                                       }
+                                    foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                        foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                                        {
+                                            if (day.DayInfo == "Среда" || day.DayInfo == "Ежедневно")
+                                                listTrainWithDate.Add(t);
+                                        }
                                 }
                                 break;
                             case DayOfWeek.Thursday:
-                                foreach(Train t in r.ListOfTrains)
+                                foreach (Train t in r.ListOfTrains)
                                 {
-                                    foreach(DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                       foreach(DayOfCruising day in d.DayOfCruisingInfo)
-                                       {
-                                           if(day.DayInfo == "Четверг")
-                                               listTrainWithDate.Add(t);
-                                       }
+                                    foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                        foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                                        {
+                                            if (day.DayInfo == "Четверг" || day.DayInfo == "Ежедневно")
+                                                listTrainWithDate.Add(t);
+                                        }
                                 }
                                 break;
                             case DayOfWeek.Friday:
-                                foreach(Train t in r.ListOfTrains)
+                                foreach (Train t in r.ListOfTrains)
                                 {
-                                    foreach(DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                       foreach(DayOfCruising day in d.DayOfCruisingInfo)
-                                       {
-                                           if(day.DayInfo == "Пятница")
-                                               listTrainWithDate.Add(t);
-                                       }
+                                    foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                        foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                                        {
+                                            if (day.DayInfo == "Пятница" || day.DayInfo == "Ежедневно")
+                                                listTrainWithDate.Add(t);
+                                        }
                                 }
                                 break;
                             case DayOfWeek.Saturday:
-                                foreach(Train t in r.ListOfTrains)
+                                foreach (Train t in r.ListOfTrains)
                                 {
-                                    foreach(DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                       foreach(DayOfCruising day in d.DayOfCruisingInfo)
-                                       {
-                                           if(day.DayInfo == "Суббота")
-                                               listTrainWithDate.Add(t);
-                                       }
+                                    foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                        foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                                        {
+                                            if (day.DayInfo == "Суббота" || day.DayInfo == "Ежедневно")
+                                                listTrainWithDate.Add(t);
+                                        }
                                 }
                                 break;
                             case DayOfWeek.Sunday:
-                                foreach(Train t in r.ListOfTrains)
+                                foreach (Train t in r.ListOfTrains)
                                 {
-                                    foreach(DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                       foreach(DayOfCruising day in d.DayOfCruisingInfo)
-                                       {
-                                           if(day.DayInfo == "Воскресенье")
-                                               listTrainWithDate.Add(t);
-                                       }
+                                    foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                        foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                                        {
+                                            if (day.DayInfo == "Воскресенье" || day.DayInfo == "Ежедневно")
+                                                listTrainWithDate.Add(t);
+                                        }
                                 }
                                 break;
                         }
+                    } 
                     foreach (Train t in listTrainWithDate)
                     {
                         if (currentFirstStation.Distance > currentSecondStation.Distance)
@@ -252,27 +254,57 @@ namespace TransportInfoService.DatabaseClasses
                             travelTime = String.Format("{0:hh\\:mm}", travelTimeAsTimeSpan);
 
                             //дни курсирования(если вбивать как массив, то они должны содержать в расписании как массив!!!)
-                            foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                            //foreach (DayOfCruising day in d.DayOfCruisingInfo)
+                            //{
+                            //    infoAboutSeats += String.Format("{0}\n", day.DayInfo); 
+                            //}
+                            //string str = null;
+
+                            List<TypeWagon> types = new List<TypeWagon>();
+                            foreach (Wagon ws in t.Wagons)
                             {
-                                infoAboutSeats += String.Format("{0}\n", day.DayInfo); 
+                                types.Add(new TypeWagon()
+                                {
+                                    Name = String.Format("{0}-{1} руб.",
+                                                  ws.Type.WagonName, currentSecondStation.Distance *
+                                                  (t.Type.PriceForKilometer + ws.Type.PriceForKilometer)),
+                                    Count = ws.Type.SeatSectors.ToList()[0].NumberOfLastSeat
+                                });
                             }
-                            string str = null;
 
-                            foreach(Wagon ws in t.Wagons)
+                            int countSeat = t.Wagons.Select(s => s.Type.SeatSectors.ToList()[0].NumberOfLastSeat).FirstOrDefault();
+
+                            for(int i = 0; i < types.Count; ++i)
                             {
-                                
-                                str += String.Format("{0}-{1} руб. Свободно {2} шт", 
-                                       ws.Type.WagonName, currentSecondStation.Distance * 
-                                       (t.Type.PriceForKilometer + ws.Type.PriceForKilometer),
-                                       ws.Type.SeatSectors.Select(s=>s.NumberOfLastSeat).FirstOrDefault());
-                            }
+                                if (types[i].Name != null)
+                                {
+                                    for (int j = i + 1; j <= types.Count - 1; ++j)
+                                    {
+                                        if (types[i].Name == types[j].Name)
+                                        {
+                                            countSeat += types[i].Count;
+                                            types[i].Name = types[j].Name;
+                                            types[j].Name = null;
+                                            types[j].Count = 0;
+                                        }
+                                        else
+                                        {
+                                            types[i].Name += types[j].Name;
 
-                           // daysOfCruising = d.DayOfCruisingInfo.DayInfo;
-
+                                        }
+                                    }
+                                }
+                                else
+                                    break;
+                                infoAboutSeats = String.Format("{0} Свободно {1} шт\n", types[i].Name, countSeat);
+                            } 
+                          
                             TrainWithoutDaysOfCruising trainCruising =
                                     new TrainWithoutDaysOfCruising(trainFullName, departureTime, arrivalTime, travelTime, infoAboutSeats);
 
                             listOfTrains.Add(trainCruising);
+
+                            infoAboutSeats = null;
                         }
                     }
                 }
@@ -317,6 +349,12 @@ namespace TransportInfoService.DatabaseClasses
             }
 
             return NewListOfStations;
+        }
+
+        public class TypeWagon
+        {
+            public string Name { get; set; }
+            public int Count { get; set; }
         }
 
         //static string ReturnCurrentDepartureTime()
