@@ -26,6 +26,8 @@ namespace TransportInfoService.TransportSystemViewModelClasses
         private bool departureTimeCheckBoxEveningIsChecked;
         private bool departureTimeCheckBoxNightIsChecked;
 
+        private bool filtersMustBeEnabled;
+
         private bool arrivalTimeCheckBoxMorningIsChecked;
         private bool arrivalTimeCheckBoxDayIsChecked;
         private bool arrivalTimeCheckBoxEveningIsChecked;
@@ -244,6 +246,20 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             }
         }
 
+        public bool FiltersMustBeEnabled
+        {
+            get
+            {
+                return filtersMustBeEnabled;
+            }
+
+            set
+            {
+                filtersMustBeEnabled = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void NotifyPropertyChanged([CallerMemberName] string PropertyName = "")
@@ -256,7 +272,7 @@ namespace TransportInfoService.TransportSystemViewModelClasses
 
         public TrainFiltersViewModel()
         {
-            VisibilityForTrainFilters = Visibility.Visible;
+            VisibilityForTrainFilters = Visibility.Collapsed;
             VisibilityForAnimatedEclipseForApplyingFilters = Visibility.Collapsed;
 
             DepartureTimeCheckBoxMorningIsChecked = false;
@@ -276,6 +292,8 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising = new List<TrainWithDaysOfCruising>();
 
             ApplyingFiltersEllipseMustBeAnimated = false;
+
+            FiltersMustBeEnabled = true;
         }
     }
 }

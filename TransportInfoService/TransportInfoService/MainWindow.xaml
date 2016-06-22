@@ -8,7 +8,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="603" Width="1000" ResizeMode="CanMinimize">
+        Title="{x:Static MyRes:Texts.MainWindowName}" Height="603" Width="1000" ResizeMode="CanMinimize" Icon="Resources/Icons/MainWindowIcon.ico">
     <Window.Resources>
         <Storyboard x:Key="LoadingAnimationStoryBoard" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SearchDataAnimatedEllipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
@@ -150,7 +150,7 @@
                         </i:Interaction.Triggers>
                     </Ellipse>
                 </WrapPanel>
-                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="350" ItemsSource="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising, Mode=OneWay}" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="450" ItemsSource="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising, Mode=OneWay}" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="AutoGeneratingColumn">
                             <ei:CallMethodAction TargetObject="{Binding}"  MethodName="AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid" />
@@ -165,7 +165,7 @@
                         </ei:DataTrigger>
                     </i:Interaction.Triggers>
                 </DataGrid>
-                <StackPanel Visibility="{Binding ViewModelForTrainFilters.VisibilityForTrainFilters, Mode=TwoWay}">
+                <StackPanel Visibility="{Binding ViewModelForTrainFilters.VisibilityForTrainFilters, Mode=TwoWay}" IsEnabled="{Binding ViewModelForTrainFilters.FiltersMustBeEnabled, Mode=TwoWay}">
                     <Label Content="{x:Static MyRes:Texts.LabelTrainFilters}" Foreground="Blue"></Label>
                     <Label Content="{x:Static MyRes:Texts.LabelTrainTimeFilters}" Foreground="Magenta"></Label>
                     <TabControl>
@@ -196,7 +196,7 @@
                     </TabControl>
                     <Label Foreground="Magenta"  Content="{x:Static MyRes:Texts.LabelTrainTypeFilters}"></Label>
                     <CheckBox Name="TrainTypeEconomCheckBox" Content="{ x:Static MyRes:Texts.CheckBoxTrainTypeEconom}" IsChecked="{Binding ViewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked, Mode=TwoWay}">
-                        
+
                     </CheckBox>
                     <CheckBox Name="TrainTypeBusinessCheckBox" Content="{ x:Static MyRes:Texts.CheckBoxTrainTypeBusiness}" IsChecked="{Binding ViewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked, Mode=TwoWay}">
 
@@ -209,11 +209,10 @@
                         </i:Interaction.Triggers>
                     </Button>
                 </StackPanel>
-                <StackPanel Visibility="{Binding ViewModelForBookingStackPanel.VisibilityForBookingStackPanel}">
+                <StackPanel Visibility="{Binding ViewModelForBookingStackPanel.VisibilityForBookingStackPanel, Mode=TwoWay}">
                     <Label>Booking is here</Label>
                 </StackPanel>
             </WrapPanel>
         </StackPanel>
-        <ListBox x:Name="TestListBox"></ListBox>
     </DockPanel>
 </Window>

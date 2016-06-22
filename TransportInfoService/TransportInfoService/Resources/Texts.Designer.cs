@@ -241,6 +241,15 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Расписание поездов (БЖД).
+        /// </summary>
+        public static string MainWindowName {
+            get {
+                return ResourceManager.GetString("MainWindowName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Отправление.
         /// </summary>
         public static string TabItemDepartureTime {
