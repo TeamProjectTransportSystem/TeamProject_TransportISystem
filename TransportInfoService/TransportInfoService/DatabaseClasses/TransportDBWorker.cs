@@ -258,7 +258,7 @@ namespace TransportInfoService.DatabaseClasses
                             }
                             string str = null;
 
-                            foreach(WagonSector ws in t.Wagons)
+                            foreach(Wagon ws in t.Wagons)
                             {
                                 
                                 str += String.Format("{0}-{1} руб. Свободно {2} шт", 
