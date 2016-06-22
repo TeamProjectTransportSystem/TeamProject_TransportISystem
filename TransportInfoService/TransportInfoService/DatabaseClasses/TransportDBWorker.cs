@@ -14,7 +14,7 @@ namespace TransportInfoService.DatabaseClasses
         {
             string trainFullName, departureTime, arrivalTime, travelTime, daysOfCruising = null;
             List<TrainWithDaysOfCruising> listOfTrains = new List<TrainWithDaysOfCruising>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -25,7 +25,14 @@ namespace TransportInfoService.DatabaseClasses
                         currentSecondStation = s;
                 }
 
-                foreach (Route r in currentSecondStation.Routes)
+
+                List<Route> routes = new List<Route>();
+                if (currentFirstStation.Distance > currentSecondStation.Distance)
+                    routes = currentFirstStation.Routes.ToList();
+                else
+                    routes = currentSecondStation.Routes.ToList();
+
+                foreach (Route r in routes)
                 {
                     foreach (Train t in r.ListOfTrains)
                     {
@@ -91,13 +98,13 @@ namespace TransportInfoService.DatabaseClasses
         }
 
 
-        public static List<TrainWithDaysOfCruising> GetListOfTrainsInfoWithDate(DateTime? date, string firstStation, string secondStation)
+        public static List<TrainWithoutDaysOfCruising> GetListOfTrainsInfoWithDate(DateTime? date, string firstStation, string secondStation)
         {
-            string trainFullName, departureTime, arrivalTime, travelTime, daysOfCruising = null;
-            List<TrainWithDaysOfCruising> listOfTrains = new List<TrainWithDaysOfCruising>();
+            string trainFullName, departureTime, arrivalTime, travelTime, infoAboutSeats = null;
+            List<TrainWithoutDaysOfCruising> listOfTrains = new List<TrainWithoutDaysOfCruising>();
 
             List<Train> listTrainWithDate = new List<Train>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -108,7 +115,13 @@ namespace TransportInfoService.DatabaseClasses
                         currentSecondStation = s;
                 }
 
-                foreach (Route r in currentSecondStation.Routes)
+                List<Route> routes = new List<Route>();
+                if (currentFirstStation.Distance > currentSecondStation.Distance)
+                    routes = currentFirstStation.Routes.ToList();
+                else
+                    routes = currentSecondStation.Routes.ToList();
+
+                foreach (Route r in routes)
                 {
 
                     if(date == null)
@@ -196,6 +209,15 @@ namespace TransportInfoService.DatabaseClasses
                         }
                     foreach (Train t in listTrainWithDate)
                     {
+                        if (currentFirstStation.Distance > currentSecondStation.Distance)
+                        {
+                            r.RouteName = ReturnNewRoute(r.RouteName);
+                            currentSecondStation.Distance = r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance +
+                                                           (r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance -
+                                                            currentSecondStation.Distance);
+                            foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                d.DepartureMinutes += 20;
+                        }
                         //полное имя поезда
                         trainFullName = String.Format("{0} {1} {2}", t.TrainIDAsString, t.Type.TrainTypeName, r.RouteName);
 
@@ -232,7 +254,7 @@ namespace TransportInfoService.DatabaseClasses
                             //дни курсирования(если вбивать как массив, то они должны содержать в расписании как массив!!!)
                             foreach (DayOfCruising day in d.DayOfCruisingInfo)
                             {
-                                daysOfCruising += String.Format("{0}\n", day.DayInfo); 
+                                infoAboutSeats += String.Format("{0}\n", day.DayInfo); 
                             }
                             string str = null;
 
@@ -247,8 +269,8 @@ namespace TransportInfoService.DatabaseClasses
 
                            // daysOfCruising = d.DayOfCruisingInfo.DayInfo;
 
-                            TrainWithDaysOfCruising trainCruising =
-                                    new TrainWithDaysOfCruising(trainFullName, departureTime, arrivalTime, travelTime, daysOfCruising);
+                            TrainWithoutDaysOfCruising trainCruising =
+                                    new TrainWithoutDaysOfCruising(trainFullName, departureTime, arrivalTime, travelTime, infoAboutSeats);
 
                             listOfTrains.Add(trainCruising);
                         }
@@ -289,7 +311,7 @@ namespace TransportInfoService.DatabaseClasses
         {
 
             List<string> NewListOfStations = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 NewListOfStations = CurrentDBContext.ListOfStations.OrderBy(p => p.Name).Select(s => s.Name).ToList();
             }
