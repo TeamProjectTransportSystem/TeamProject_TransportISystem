@@ -634,11 +634,11 @@ namespace TransportInfoService
             }
             else
             {
-                /*foreach (TrainWithoutDaysOfCruising CurrentTrainInfo in TransportDBWorker.GetListOfTrainsInfoWithDate(SelectedDateInCalendarControl, DepartureStationComboBoxText, DestinationStationComboBoxText))
+                foreach (TrainWithoutDaysOfCruising CurrentTrainInfo in TransportDBWorker.GetListOfTrainsInfoWithDate(SelectedDateInCalendarControl, DepartureStationComboBoxText, DestinationStationComboBoxText))
                 {
                     BufferForFoundTrainsWithoutDaysOfCruising.Add(CurrentTrainInfo);
                 }
-                SearchOfTrainsWithoutDaysOfCruisingEnded(BufferForFoundTrainsWithoutDaysOfCruising);*/
+                SearchOfTrainsWithoutDaysOfCruisingEnded(BufferForFoundTrainsWithoutDaysOfCruising);
             }
         }
 
