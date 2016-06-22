@@ -33,6 +33,7 @@ namespace TransportInfoService
 
         private bool AtLeastOneCheckBoxIsChecked = false;
         private bool AtLeastOneCheckBoxForArrivalTimeIsChecked = false;
+        private bool AtLeastOneCheckBoxForTrainTypeIsChecked = false;
         private bool loadedTrainsWithDaysOfCruising;
         private bool controlsMustBeEnabled;
         public bool StationsLoaded = false;
@@ -476,10 +477,39 @@ namespace TransportInfoService
             }
         }
 
+        private bool TrainTypeSuitUs(TrainWithDaysOfCruising CurrentTrainInfo)
+        {
+            if ((viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked) ||
+                (!viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && !viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked))
+            {
+                return true;
+            }
+            if (viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked)
+            {
+                AtLeastOneCheckBoxForTrainTypeIsChecked = true;
+                AtLeastOneCheckBoxIsChecked = true;
+                if (CurrentTrainInfo.TrainFullName.Split(' ')[1] == Texts.TrainTypeBusiness)
+                {
+                    return true;
+                }
+            }
+            if (viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked)
+            {
+                AtLeastOneCheckBoxForTrainTypeIsChecked = true;
+                AtLeastOneCheckBoxIsChecked = true;
+                if (CurrentTrainInfo.TrainFullName.Split(' ')[1] == Texts.TrainTypeEconom)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void ApplyFiltersOnListOfTrains()
         {
             AtLeastOneCheckBoxIsChecked = false;
             AtLeastOneCheckBoxForArrivalTimeIsChecked = false;
+            AtLeastOneCheckBoxForTrainTypeIsChecked = false;
             if (LoadedTrainsWithDaysOfCruising)
             {
                 ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising = null;
@@ -490,7 +520,7 @@ namespace TransportInfoService
                     foreach (TrainWithDaysOfCruising TrainInfo in BufferForFoundTrainsWithDaysOfCruising)
                     {
                         DateTime TestDate = DateTime.Parse(TrainInfo.DepartureTime);
-                        if (TestDate.Hour >= 6 && TestDate.Hour <= 11 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo))
+                        if (TestDate.Hour >= 6 && TestDate.Hour <= 11 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo) && TrainTypeSuitUs(TrainInfo))
                         {
                             BufferForFilteredTrains.Add(TrainInfo);
                         }
@@ -502,7 +532,7 @@ namespace TransportInfoService
                     foreach (TrainWithDaysOfCruising TrainInfo in BufferForFoundTrainsWithDaysOfCruising)
                     {
                         DateTime TestDate = DateTime.Parse(TrainInfo.DepartureTime);
-                        if (TestDate.Hour >= 12 && TestDate.Hour <= 17 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo))
+                        if (TestDate.Hour >= 12 && TestDate.Hour <= 17 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo) && TrainTypeSuitUs(TrainInfo))
                         {
                             BufferForFilteredTrains.Add(TrainInfo);
                         }
@@ -514,7 +544,7 @@ namespace TransportInfoService
                     foreach (TrainWithDaysOfCruising TrainInfo in BufferForFoundTrainsWithDaysOfCruising)
                     {
                         DateTime TestDate = DateTime.Parse(TrainInfo.DepartureTime);
-                        if (TestDate.Hour >= 18 && TestDate.Hour <= 23 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo))
+                        if (TestDate.Hour >= 18 && TestDate.Hour <= 23 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo) && TrainTypeSuitUs(TrainInfo))
                         {
                             BufferForFilteredTrains.Add(TrainInfo);
                         }
@@ -526,7 +556,7 @@ namespace TransportInfoService
                     foreach (TrainWithDaysOfCruising TrainInfo in BufferForFoundTrainsWithDaysOfCruising)
                     {
                         DateTime TestDate = DateTime.Parse(TrainInfo.DepartureTime);
-                        if (TestDate.Hour >= 0 && TestDate.Hour <= 5 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo))
+                        if (TestDate.Hour >= 0 && TestDate.Hour <= 5 && ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo) && TrainTypeSuitUs(TrainInfo))
                         {
                             BufferForFilteredTrains.Add(TrainInfo);
                         }
@@ -537,27 +567,16 @@ namespace TransportInfoService
                     foreach (TrainWithDaysOfCruising TrainInfo in BufferForFoundTrainsWithDaysOfCruising)
                     {
                         DateTime TestDate = DateTime.Parse(TrainInfo.ArrivalTime);
-                        if (ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo))
+                        if (ArrivalTimeOfTrainWithDaysOfCruisingSuitsUs(TrainInfo) && TrainTypeSuitUs(TrainInfo))
                         {
                             BufferForFilteredTrains.Add(TrainInfo);
                         }
                     }
                 }
+
                 if (!AtLeastOneCheckBoxIsChecked)
                 {
                     ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising = BufferForFoundTrainsWithDaysOfCruising;
-                }
-                if (!(viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked) &&
-                    !(!viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked && !viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked))
-                {
-                    if (viewModelForTrainFilters.BusinessTrainTypeCheckBoxIsChecked)
-                    {
-
-                    }
-                    if (viewModelForTrainFilters.EconomTrainTypeCheckBoxIsChecked)
-                    {
-
-                    }
                 }
                 ViewModelForTrainFilters.ApplyingFiltersEllipseMustBeAnimated = false;
                 ViewModelForTrainFilters.VisibilityForAnimatedEclipseForApplyingFilters = Visibility.Collapsed;
@@ -610,11 +629,15 @@ namespace TransportInfoService
         {
             if (!CheckingTheExistenceOfStations())
             {
-                SearchOfTrainsWithDaysOfCruisingEnded(null);
+                SearchOfTrainsWithoutDaysOfCruisingEnded(null);
             }
             else
             {
-
+                /*foreach (TrainWithoutDaysOfCruising CurrentTrainInfo in TransportDBWorker.GetListOfTrainsInfoWithDate(SelectedDateInCalendarControl, DepartureStationComboBoxText, DestinationStationComboBoxText))
+                {
+                    BufferForFoundTrainsWithoutDaysOfCruising.Add(CurrentTrainInfo);
+                }
+                SearchOfTrainsWithoutDaysOfCruisingEnded(BufferForFoundTrainsWithoutDaysOfCruising);*/
             }
             ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Visible;
         }
