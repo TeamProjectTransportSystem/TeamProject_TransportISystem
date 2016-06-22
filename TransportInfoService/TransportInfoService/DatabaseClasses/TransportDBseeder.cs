@@ -340,13 +340,14 @@ namespace TransportInfoService.DatabaseClasses
             routeMinskStolbcy.ListOfTrains.Add(trainStolbcy2);
             routeMinskStolbcy.ListOfTrains.Add(trainStolbcy3);
 
+
             WagonType sedentaryWagonForTrainEconom = new WagonType("Сидячий Эконом", 200, false);
             WagonSector sedentaryWagonEconom = new WagonSector(sedentaryWagonForTrainEconom, 1, 5);
             SeatSector seatSectorSedentaryWagonEconom = new SeatSector(1, 91, false);
 
             for (int i = 0; i < 10; ++i)
                 trainBorisov1.Wagons.Add(sedentaryWagonEconom);
-
+                
             for (int i = 0; i < 10; ++i)
                 trainBorisov2.Wagons.Add(sedentaryWagonEconom);
 

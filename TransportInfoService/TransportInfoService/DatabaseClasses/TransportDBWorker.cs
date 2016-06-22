@@ -32,7 +32,9 @@ namespace TransportInfoService.DatabaseClasses
                         if (currentFirstStation.Distance > currentSecondStation.Distance)
                         {
                             r.RouteName = ReturnNewRoute(r.RouteName);
-                            currentSecondStation.Distance = currentFirstStation.Distance * 2;
+                            currentSecondStation.Distance = r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance +
+                                                           (r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance - 
+                                                            currentSecondStation.Distance);
                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
                                 d.DepartureMinutes += 20;
                         }
@@ -231,6 +233,16 @@ namespace TransportInfoService.DatabaseClasses
                             foreach (DayOfCruising day in d.DayOfCruisingInfo)
                             {
                                 daysOfCruising += String.Format("{0}\n", day.DayInfo); 
+                            }
+                            string str = null;
+
+                            foreach(WagonSector ws in t.Wagons)
+                            {
+                                
+                                str += String.Format("{0}-{1} руб. Свободно {2} шт", 
+                                       ws.Type.WagonName, currentSecondStation.Distance * 
+                                       (t.Type.PriceForKilometer + ws.Type.PriceForKilometer),
+                                       ws.Type.SeatSectors.Select(s=>s.NumberOfLastSeat).FirstOrDefault());
                             }
 
                            // daysOfCruising = d.DayOfCruisingInfo.DayInfo;
