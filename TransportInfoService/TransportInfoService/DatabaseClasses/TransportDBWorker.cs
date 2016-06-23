@@ -168,105 +168,162 @@ namespace TransportInfoService.DatabaseClasses
                                 listTrainWithDate = r.ListOfTrains.ToList();
                             else
                             {
+                                bool TrainAlreadyAdded = false;
                                 switch (date.Value.DayOfWeek)
                                 {
                                     case DayOfWeek.Monday:
                                         foreach (Train t in r.ListOfTrains)
                                         {
                                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                            {
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Понедельник" || day.DayInfo == "Ежедневно")
                                                     {
                                                         listTrainWithDate.Add(t);
+                                                        TrainAlreadyAdded = true;
                                                         break;
                                                     }
-                                                        
                                                 }
+                                                if (TrainAlreadyAdded)
+                                                {
+                                                    TrainAlreadyAdded = false;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         break;
                                     case DayOfWeek.Tuesday:
                                         foreach (Train t in r.ListOfTrains)
                                         {
                                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                            {
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Вторник" || day.DayInfo == "Ежедневно")
                                                     {
                                                         listTrainWithDate.Add(t);
+                                                        TrainAlreadyAdded = true;
                                                         break;
                                                     }
                                                 }
+                                                if (TrainAlreadyAdded)
+                                                {
+                                                    TrainAlreadyAdded = false;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         break;
                                     case DayOfWeek.Wednesday:
                                         foreach (Train t in r.ListOfTrains)
                                         {
                                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                            {
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Среда" || day.DayInfo == "Ежедневно")
                                                     {
                                                         listTrainWithDate.Add(t);
+                                                        TrainAlreadyAdded = true;
                                                         break;
                                                     }
                                                 }
+                                                if (TrainAlreadyAdded)
+                                                {
+                                                    TrainAlreadyAdded = false;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         break;
                                     case DayOfWeek.Thursday:
                                         foreach (Train t in r.ListOfTrains)
                                         {
                                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                            {
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Четверг" || day.DayInfo == "Ежедневно")
                                                     {
                                                         listTrainWithDate.Add(t);
+                                                        TrainAlreadyAdded = true;
                                                         break;
                                                     }
                                                 }
+                                                if (TrainAlreadyAdded)
+                                                {
+                                                    TrainAlreadyAdded = false;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         break;
                                     case DayOfWeek.Friday:
                                         foreach (Train t in r.ListOfTrains)
                                         {
                                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                            {
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Пятница" || day.DayInfo == "Ежедневно")
                                                     {
                                                         listTrainWithDate.Add(t);
+                                                        TrainAlreadyAdded = true;
                                                         break;
                                                     }
                                                 }
+                                                if (TrainAlreadyAdded)
+                                                {
+                                                    TrainAlreadyAdded = false;
+                                                    break;
+                                                }
+                                            }
+
                                         }
                                         break;
                                     case DayOfWeek.Saturday:
                                         foreach (Train t in r.ListOfTrains)
                                         {
                                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                            {
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Суббота" || day.DayInfo == "Ежедневно")
                                                     {
                                                         listTrainWithDate.Add(t);
+                                                        TrainAlreadyAdded = true;
                                                         break;
                                                     }
                                                 }
+                                                if (TrainAlreadyAdded)
+                                                {
+                                                    TrainAlreadyAdded = false;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         break;
                                     case DayOfWeek.Sunday:
                                         foreach (Train t in r.ListOfTrains)
                                         {
                                             foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
+                                            {
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Воскресенье" || day.DayInfo == "Ежедневно")
                                                     {
                                                         listTrainWithDate.Add(t);
+                                                        TrainAlreadyAdded = true;
                                                         break;
                                                     }
                                                 }
+                                                if (TrainAlreadyAdded)
+                                                {
+                                                    TrainAlreadyAdded = false;
+                                                    break;
+                                                }
+                                            }
                                         }
                                         break;
                                 }
