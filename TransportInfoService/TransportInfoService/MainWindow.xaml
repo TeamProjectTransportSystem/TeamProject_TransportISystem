@@ -294,10 +294,10 @@
                                 </LinearGradientBrush>
                             </Ellipse.Stroke>
                             <i:Interaction.Triggers>
-                                <ei:DataTrigger Binding="{Binding ViewModelForTrainFilters.ApplyingFiltersEllipseMustBeAnimated, Mode=TwoWay}" Value="true">
+                                <ei:DataTrigger Binding="{Binding ViewModelForBookingStackPanel.EllipseForLoginAndRegistrationMustBeAnimated, Mode=TwoWay}" Value="true">
                                     <ei:ControlStoryboardAction Storyboard="{StaticResource WaitForLoginOrRegistrationAnimationStoryBoard}" ControlStoryboardOption="Play"/>
                                 </ei:DataTrigger>
-                                <ei:DataTrigger Binding="{Binding ViewModelForTrainFilters.ApplyingFiltersEllipseMustBeAnimated, Mode=TwoWay}" Value="false">
+                                <ei:DataTrigger Binding="{Binding ViewModelForBookingStackPanel.EllipseForLoginAndRegistrationMustBeAnimated, Mode=TwoWay}" Value="false">
                                     <ei:ControlStoryboardAction Storyboard="{StaticResource WaitForLoginOrRegistrationAnimationStoryBoard}" ControlStoryboardOption="Stop"/>
                                 </ei:DataTrigger>
                             </i:Interaction.Triggers>
