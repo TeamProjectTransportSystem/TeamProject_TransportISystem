@@ -14,7 +14,7 @@ namespace TransportInfoService.DatabaseClasses
         {
             string trainFullName, departureTime, arrivalTime, travelTime, daysOfCruising = null;
             List<TrainWithDaysOfCruising> listOfTrains = new List<TrainWithDaysOfCruising>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -38,12 +38,7 @@ namespace TransportInfoService.DatabaseClasses
                     {
                         if (currentFirstStation.Distance > currentSecondStation.Distance)
                         {
-                            r.RouteName = ReturnNewRoute(r.RouteName);
-                            currentSecondStation.Distance = r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance +
-                                                           (r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance -
-                                                            currentSecondStation.Distance);
-                            foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                d.DepartureMinutes += 20;
+                            r.RouteName = ReturnNewRoute(r.RouteName);  
                         }
 
                         //полное имя поезда
@@ -55,8 +50,25 @@ namespace TransportInfoService.DatabaseClasses
                         foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
                         {
 
+                            //максимальная длина маршрута
+                            int maxStationDistance = r.ListOfStations.Select(s => s.Distance).Max();
+                            double maxTimeAsDouble = (double)maxStationDistance / (double)speedTrain;
+                            int maxTimeHour = (int)maxTimeAsDouble;
+                            int maxTimeMinute = (int)((maxTimeAsDouble - (double)maxTimeHour) * 60);
+
                             //время отправления поезда
-                            TimeSpan startTime = new TimeSpan(d.DepartureHours, d.DepartureMinutes, 0);
+                            TimeSpan startTime = new TimeSpan();
+
+                            if (currentFirstStation.Distance > currentSecondStation.Distance)
+                            {
+                                startTime = new TimeSpan(d.DepartureHours + maxTimeHour,
+                                                        d.DepartureMinutes + maxTimeMinute + 20, 0);
+
+                                currentFirstStation.Distance = maxStationDistance - currentFirstStation.Distance;
+                                currentSecondStation.Distance = maxStationDistance - currentSecondStation.Distance;
+                            }
+                            else
+                                startTime = new TimeSpan(d.DepartureHours, d.DepartureMinutes, 0);
 
                             double firstTimeAsDouble = (double)currentFirstStation.Distance / (double)speedTrain;
                             int firstTimeHour = (int)firstTimeAsDouble;
@@ -104,7 +116,7 @@ namespace TransportInfoService.DatabaseClasses
             List<TrainWithoutDaysOfCruising> listOfTrains = new List<TrainWithoutDaysOfCruising>();
 
             List<Train> listTrainWithDate = new List<Train>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -208,17 +220,12 @@ namespace TransportInfoService.DatabaseClasses
                                 }
                                 break;
                         }
-                    } 
+                    }
                     foreach (Train t in listTrainWithDate)
                     {
                         if (currentFirstStation.Distance > currentSecondStation.Distance)
                         {
-                            r.RouteName = ReturnNewRoute(r.RouteName);
-                            currentSecondStation.Distance = r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance +
-                                                           (r.ListOfStations.ToList()[r.ListOfStations.Count - 1].Distance -
-                                                            currentSecondStation.Distance);
-                            foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
-                                d.DepartureMinutes += 20;
+                            r.RouteName = ReturnNewRoute(r.RouteName);   
                         }
                         //полное имя поезда
                         trainFullName = String.Format("{0} {1} {2}", t.TrainIDAsString, t.Type.TrainTypeName, r.RouteName);
@@ -228,21 +235,40 @@ namespace TransportInfoService.DatabaseClasses
 
                         foreach (DepartureTimeAndDayOfCruising d in t.ListOfDepartureTimeAndDaysOfCruising)
                         {
-                            //время отправления поезда
-                            TimeSpan startTime = new TimeSpan(d.DepartureHours, d.DepartureMinutes, 0);
+                            //максимальная длина маршрута
+                            int maxStationDistance = r.ListOfStations.Select(s => s.Distance).Max();
+                            double maxTimeAsDouble = (double)maxStationDistance / (double)speedTrain;
+                            int maxTimeHour = (int)maxTimeAsDouble;
+                            int maxTimeMinute = (int)((maxTimeAsDouble - (double)maxTimeHour) * 60);
 
+                            //время отправления поезда
+                            TimeSpan startTime = new TimeSpan();
+
+                            if (currentFirstStation.Distance > currentSecondStation.Distance)
+                            {
+                                startTime = new TimeSpan(d.DepartureHours + maxTimeHour, 
+                                                        d.DepartureMinutes + maxTimeMinute + 20, 0);
+
+                                currentFirstStation.Distance = maxStationDistance - currentFirstStation.Distance;
+                                currentSecondStation.Distance = maxStationDistance - currentSecondStation.Distance;
+                            }
+                            else
+                                startTime = new TimeSpan(d.DepartureHours, d.DepartureMinutes, 0);
+
+                            
                             double firstTimeAsDouble = (double)currentFirstStation.Distance / (double)speedTrain;
                             int firstTimeHour = (int)firstTimeAsDouble;
                             int firstTimeMinute = (int)((firstTimeAsDouble - (double)firstTimeHour) * 60);
+
+                            double secondTimeAsDouble = (double)currentSecondStation.Distance / (double)speedTrain;
+                            int secondTimeHour = (int)secondTimeAsDouble;
+                            int secondTimeMinute = (int)((secondTimeAsDouble - (double)secondTimeHour) * 60);
 
                             TimeSpan currentFirstTime = startTime.Add(new TimeSpan(firstTimeHour, firstTimeMinute, 0));
                             //время прибытия на первую выбранную станцию
                             departureTime = String.Format("{0:hh\\:mm}", currentFirstTime);
                             TimeSpan timeOfFirstStation = new TimeSpan(firstTimeHour, firstTimeMinute, 0);
 
-                            double secondTimeAsDouble = (double)currentSecondStation.Distance / (double)speedTrain;
-                            int secondTimeHour = (int)secondTimeAsDouble;
-                            int secondTimeMinute = (int)((secondTimeAsDouble - (double)secondTimeHour) * 60);
 
                             TimeSpan currentSecondTime = startTime.Add(new TimeSpan(secondTimeHour, secondTimeMinute, 0));
                             //время прибытия на конечную выбранную станцию
@@ -253,52 +279,38 @@ namespace TransportInfoService.DatabaseClasses
                             TimeSpan travelTimeAsTimeSpan = timeOfSecondStation.Subtract(timeOfFirstStation);
                             travelTime = String.Format("{0:hh\\:mm}", travelTimeAsTimeSpan);
 
-                            //дни курсирования(если вбивать как массив, то они должны содержать в расписании как массив!!!)
-                            //foreach (DayOfCruising day in d.DayOfCruisingInfo)
-                            //{
-                            //    infoAboutSeats += String.Format("{0}\n", day.DayInfo); 
-                            //}
-                            //string str = null;
 
                             List<TypeWagon> types = new List<TypeWagon>();
-                            foreach (Wagon ws in t.Wagons)
+
+                            //заполнения коллекции типов вагонов
+                            foreach(string s in GetWagonTypeName())
                             {
-                                types.Add(new TypeWagon()
-                                {
-                                    Name = String.Format("{0}-{1} руб.",
-                                                  ws.Type.WagonName, currentSecondStation.Distance *
-                                                  (t.Type.PriceForKilometer + ws.Type.PriceForKilometer)),
-                                    Count = ws.Type.SeatSectors.ToList()[0].NumberOfLastSeat
-                                });
+                                types.Add(new TypeWagon() { Name = s });
                             }
 
-                            int countSeat = t.Wagons.Select(s => s.Type.SeatSectors.ToList()[0].NumberOfLastSeat).FirstOrDefault();
-
-                            for(int i = 0; i < types.Count; ++i)
+                            //заполнение значениями коллекции из типов вагонов
+                            foreach(TypeWagon tw in types)
                             {
-                                if (types[i].Name != null)
+                                foreach(Wagon ws in t.Wagons)
                                 {
-                                    for (int j = i + 1; j <= types.Count - 1; ++j)
+                                    if(tw.Name == ws.Type.WagonName)
                                     {
-                                        if (types[i].Name == types[j].Name)
-                                        {
-                                            countSeat += types[i].Count;
-                                            types[i].Name = types[j].Name;
-                                            types[j].Name = null;
-                                            types[j].Count = 0;
-                                        }
-                                        else
-                                        {
-                                            types[i].Name += types[j].Name;
-
-                                        }
+                                        tw.Price = currentSecondStation.Distance *
+                                                  (t.Type.PriceForKilometer + ws.Type.PriceForKilometer);
+                                        tw.Count += ws.Type.SeatSectors.ToList()[0].NumberOfLastSeat;
                                     }
+                                        
                                 }
-                                else
-                                    break;
-                                infoAboutSeats = String.Format("{0} Свободно {1} шт\n", types[i].Name, countSeat);
-                            } 
-                          
+                            }
+
+                            //получения данных о типе вагона. цене и количестве свободных мест
+                            foreach(TypeWagon tw in types)
+                            {
+                                if (tw.Price != 0 && tw.Count != 0)
+                                    infoAboutSeats += String.Format("{0}-{1} руб. Свободно {2} шт\n",
+                                                      tw.Name, tw.Price, tw.Count);
+                            }
+
                             TrainWithoutDaysOfCruising trainCruising =
                                     new TrainWithoutDaysOfCruising(trainFullName, departureTime, arrivalTime, travelTime, infoAboutSeats);
 
@@ -312,38 +324,33 @@ namespace TransportInfoService.DatabaseClasses
             return listOfTrains;
         }
 
+
+        //метод возваращающий название обратного маршрута
         static string ReturnNewRoute(string nameRoute)
         {
             string firstNameStation = nameRoute.Substring(0, nameRoute.IndexOf('-'));
             string secondNameStation = nameRoute.Substring(nameRoute.IndexOf('-') + 1);
             return String.Format("{0}-{1}", secondNameStation, firstNameStation);
         }
-        //static string ReturnTrainFullName(string firstStation, string secondStation)
-        //{
-        //    string trainFullName = null;
-        //    using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
-        //    {
-        //        foreach (Route r in CurrentDBContext.ListOfRoutes)
-        //        {
 
-        //            if (r.ListOfStations.Where(s => s.Name == firstStation).FirstOrDefault() != null &&
-        //                r.ListOfStations.Where(s => s.Name == secondStation).FirstOrDefault() != null)
-        //            {
-        //                string trainName = CurrentDBContext.ListOfTrains.
-        //                                   Where(s => s.Route.RouteName == r.RouteName).
-        //                                   Select(t => t.TrainIDAsString).FirstOrDefault();
-        //                trainFullName = string.Format("{0} {1}", trainName, r.RouteName);
-        //            }
-        //        }
-        //    }
-        //    return trainFullName;
-        //}
 
+        //метод возвращающий коллекцию названий типов вагонов
+        static List<string> GetWagonTypeName()
+        {
+            List<string> NewListOfWagonTypeNames = new List<string>();
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+            {
+                NewListOfWagonTypeNames = CurrentDBContext.ListOfWagonTypes.Select(s => s.WagonName).ToList();
+            }
+            return NewListOfWagonTypeNames;
+        }
+       
+        //метод возвращающий коллекцию станций 
         public static List<string> ReturnListOfStationNames()
         {
 
             List<string> NewListOfStations = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 NewListOfStations = CurrentDBContext.ListOfStations.OrderBy(p => p.Name).Select(s => s.Name).ToList();
             }
@@ -351,20 +358,14 @@ namespace TransportInfoService.DatabaseClasses
             return NewListOfStations;
         }
 
+
         public class TypeWagon
         {
             public string Name { get; set; }
+            public int Price { get; set; }
             public int Count { get; set; }
         }
 
-        //static string ReturnCurrentDepartureTime()
-        //{
-        //    string DepartureTime = null;
-        //    using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
-        //    {
-
-        //    }
-        //}
 
         static public bool RegisterNewUser(string UserLogin, string UserEmail, string UserPassword)
         {
