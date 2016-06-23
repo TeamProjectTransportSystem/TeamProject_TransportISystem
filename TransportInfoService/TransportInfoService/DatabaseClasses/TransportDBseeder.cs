@@ -341,11 +341,11 @@ namespace TransportInfoService.DatabaseClasses
             routeMinskStolbcy.ListOfTrains.Add(trainStolbcy3);
 
 
-            WagonType sedentaryWagonForTrainEconom = new WagonType("Сидячий Эконом", 200, false);
+            WagonType sedentaryWagonForTrainEconom = new WagonType("Сидячий Эконом", 100, false);
             WagonType sedentaryWagonForTrainPlatz = new WagonType("Плацкарт", 200, false);
             //Wagon sedentaryWagonEconom = new Wagon(sedentaryWagonForTrainEconom, 5);
             SeatSector seatSectorSedentaryWagonEconom = new SeatSector(1, 91, false);
-            SeatSector seatSectorSedentaryWagonPlatz = new SeatSector(1, 91, false);
+            SeatSector seatSectorSedentaryWagonPlatz = new SeatSector(1, 25, false);
             sedentaryWagonForTrainEconom.SeatSectors.Add(seatSectorSedentaryWagonEconom);
             sedentaryWagonForTrainPlatz.SeatSectors.Add(seatSectorSedentaryWagonPlatz);
 
