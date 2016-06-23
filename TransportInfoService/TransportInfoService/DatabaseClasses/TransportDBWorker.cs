@@ -32,6 +32,9 @@ namespace TransportInfoService.DatabaseClasses
                 else
                     routes = currentSecondStation.Routes.ToList();
 
+                if (currentFirstStation.Distance == currentSecondStation.Distance)
+                    routes = new List<Route>();
+
                 foreach (Route r in routes)
                 {
                     foreach (Train t in r.ListOfTrains)
@@ -64,8 +67,8 @@ namespace TransportInfoService.DatabaseClasses
                                 startTime = new TimeSpan(d.DepartureHours + maxTimeHour,
                                                         d.DepartureMinutes + maxTimeMinute + 20, 0);
 
-                                currentFirstStation.Distance = maxStationDistance - currentFirstStation.Distance;
-                                currentSecondStation.Distance = maxStationDistance - currentSecondStation.Distance;
+                                currentFirstStation.Distance = maxStationDistance - (maxStationDistance - currentFirstStation.Distance);
+                                currentSecondStation.Distance = maxStationDistance - (maxStationDistance - currentSecondStation.Distance);
                             }
                             else
                                 startTime = new TimeSpan(d.DepartureHours, d.DepartureMinutes, 0);
@@ -132,6 +135,9 @@ namespace TransportInfoService.DatabaseClasses
                     routes = currentFirstStation.Routes.ToList();
                 else
                     routes = currentSecondStation.Routes.ToList();
+
+                if (currentFirstStation.Distance == currentSecondStation.Distance)
+                    routes = new List<Route>();
 
                 foreach (Route r in routes)
                 {
@@ -249,8 +255,8 @@ namespace TransportInfoService.DatabaseClasses
                                 startTime = new TimeSpan(d.DepartureHours + maxTimeHour, 
                                                         d.DepartureMinutes + maxTimeMinute + 20, 0);
 
-                                currentFirstStation.Distance = maxStationDistance - currentFirstStation.Distance;
-                                currentSecondStation.Distance = maxStationDistance - currentSecondStation.Distance;
+                                currentFirstStation.Distance = maxStationDistance - (maxStationDistance - currentFirstStation.Distance);
+                                currentSecondStation.Distance = maxStationDistance - (maxStationDistance - currentSecondStation.Distance);
                             }
                             else
                                 startTime = new TimeSpan(d.DepartureHours, d.DepartureMinutes, 0);
@@ -288,6 +294,7 @@ namespace TransportInfoService.DatabaseClasses
                                 types.Add(new TypeWagon() { Name = s });
                             }
 
+                            int resultDistance = 0;
                             //заполнение значениями коллекции из типов вагонов
                             foreach(TypeWagon tw in types)
                             {
@@ -295,7 +302,12 @@ namespace TransportInfoService.DatabaseClasses
                                 {
                                     if(tw.Name == ws.Type.WagonName)
                                     {
-                                        tw.Price = currentSecondStation.Distance *
+                                        if (currentFirstStation.Distance > currentSecondStation.Distance)
+                                            resultDistance = currentFirstStation.Distance - currentSecondStation.Distance;
+                                        else
+                                            resultDistance = currentSecondStation.Distance - currentFirstStation.Distance;
+
+                                        tw.Price = resultDistance *
                                                   (t.Type.PriceForKilometer + ws.Type.PriceForKilometer);
                                         tw.Count += ws.Type.SeatSectors.ToList()[0].NumberOfLastSeat;
                                     }
