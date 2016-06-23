@@ -14,7 +14,7 @@ namespace TransportInfoService.DatabaseClasses
         {
             string trainFullName, departureTime, arrivalTime, travelTime, daysOfCruising = null;
             List<TrainWithDaysOfCruising> listOfTrains = new List<TrainWithDaysOfCruising>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -27,13 +27,11 @@ namespace TransportInfoService.DatabaseClasses
 
 
                 List<Route> routes = new List<Route>();
-                if (currentFirstStation.Distance > currentSecondStation.Distance)
-                    routes = currentFirstStation.Routes.ToList();
-                else
-                    routes = currentSecondStation.Routes.ToList();
 
                 if (currentFirstStation.Distance == currentSecondStation.Distance)
                     routes = new List<Route>();
+                else
+                    routes = currentSecondStation.Routes.ToList();
 
                 foreach (Route r in routes)
                 {
@@ -137,7 +135,7 @@ namespace TransportInfoService.DatabaseClasses
 
             List<Train> listTrainWithDate = new List<Train>();
 
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
 
             {
                 Station currentFirstStation = null, currentSecondStation = null;
@@ -150,8 +148,8 @@ namespace TransportInfoService.DatabaseClasses
                 }
 
                 List<Route> routes = new List<Route>();
-                if (currentFirstStation.Distance > currentSecondStation.Distance)
-                    routes = currentFirstStation.Routes.ToList();
+                if (currentFirstStation.Distance == currentSecondStation.Distance)
+                    routes = new List<Route>();
                 else
                     routes = currentSecondStation.Routes.ToList();
 
@@ -385,7 +383,7 @@ namespace TransportInfoService.DatabaseClasses
         static List<string> GetWagonTypeName()
         {
             List<string> NewListOfWagonTypeNames = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 NewListOfWagonTypeNames = CurrentDBContext.ListOfWagonTypes.Select(s => s.WagonName).ToList();
             }
@@ -397,7 +395,7 @@ namespace TransportInfoService.DatabaseClasses
         {
 
             List<string> NewListOfStations = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 NewListOfStations = CurrentDBContext.ListOfStations.OrderBy(p => p.Name).Select(s => s.Name).ToList();
             }
