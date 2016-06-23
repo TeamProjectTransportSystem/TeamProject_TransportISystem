@@ -14,7 +14,7 @@ namespace TransportInfoService.DatabaseClasses
         {
             string trainFullName, departureTime, arrivalTime, travelTime, daysOfCruising = null;
             List<TrainWithDaysOfCruising> listOfTrains = new List<TrainWithDaysOfCruising>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -135,7 +135,7 @@ namespace TransportInfoService.DatabaseClasses
 
             List<Train> listTrainWithDate = new List<Train>();
 
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
 
             {
                 Station currentFirstStation = null, currentSecondStation = null;
@@ -177,7 +177,11 @@ namespace TransportInfoService.DatabaseClasses
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Понедельник" || day.DayInfo == "Ежедневно")
+                                                    {
                                                         listTrainWithDate.Add(t);
+                                                        break;
+                                                    }
+                                                        
                                                 }
                                         }
                                         break;
@@ -188,7 +192,10 @@ namespace TransportInfoService.DatabaseClasses
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Вторник" || day.DayInfo == "Ежедневно")
+                                                    {
                                                         listTrainWithDate.Add(t);
+                                                        break;
+                                                    }
                                                 }
                                         }
                                         break;
@@ -199,7 +206,10 @@ namespace TransportInfoService.DatabaseClasses
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Среда" || day.DayInfo == "Ежедневно")
+                                                    {
                                                         listTrainWithDate.Add(t);
+                                                        break;
+                                                    }
                                                 }
                                         }
                                         break;
@@ -210,7 +220,10 @@ namespace TransportInfoService.DatabaseClasses
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Четверг" || day.DayInfo == "Ежедневно")
+                                                    {
                                                         listTrainWithDate.Add(t);
+                                                        break;
+                                                    }
                                                 }
                                         }
                                         break;
@@ -221,7 +234,10 @@ namespace TransportInfoService.DatabaseClasses
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Пятница" || day.DayInfo == "Ежедневно")
+                                                    {
                                                         listTrainWithDate.Add(t);
+                                                        break;
+                                                    }
                                                 }
                                         }
                                         break;
@@ -232,7 +248,10 @@ namespace TransportInfoService.DatabaseClasses
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Суббота" || day.DayInfo == "Ежедневно")
+                                                    {
                                                         listTrainWithDate.Add(t);
+                                                        break;
+                                                    }
                                                 }
                                         }
                                         break;
@@ -243,7 +262,10 @@ namespace TransportInfoService.DatabaseClasses
                                                 foreach (DayOfCruising day in d.DayOfCruisingInfo)
                                                 {
                                                     if (day.DayInfo == "Воскресенье" || day.DayInfo == "Ежедневно")
+                                                    {
                                                         listTrainWithDate.Add(t);
+                                                        break;
+                                                    }
                                                 }
                                         }
                                         break;
@@ -383,7 +405,7 @@ namespace TransportInfoService.DatabaseClasses
         static List<string> GetWagonTypeName()
         {
             List<string> NewListOfWagonTypeNames = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 NewListOfWagonTypeNames = CurrentDBContext.ListOfWagonTypes.Select(s => s.WagonName).ToList();
             }
@@ -395,7 +417,7 @@ namespace TransportInfoService.DatabaseClasses
         {
 
             List<string> NewListOfStations = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
             {
                 NewListOfStations = CurrentDBContext.ListOfStations.OrderBy(p => p.Name).Select(s => s.Name).ToList();
             }
