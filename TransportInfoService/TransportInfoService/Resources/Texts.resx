@@ -254,4 +254,7 @@
   <data name="LabelRegistrationFailedDuringPasswordValidationNotEqual" xml:space="preserve">
     <value>Пароли не совпадают!</value>
   </data>
+  <data name="LabelDepartueAndDestinationStationsAreEqual" xml:space="preserve">
+    <value>Поиск невозможен, поскольку станция отправления совпадает со станцией назначения!</value>
+  </data>
 </root>

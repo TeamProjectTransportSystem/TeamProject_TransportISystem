@@ -55,6 +55,7 @@ namespace TransportInfoService
         private Visibility visibilityForSearchDataAnimatedEllipse;
         private Visibility visibilityForLabelDepartureStationNotFound;
         private Visibility visibilityForLabelDestinationStationNotFound;
+        private Visibility visibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual;
 
         /*private Command commandClickButtonSearchTrains = new Command(new Action(() => MessageBox.Show("Action method")));
 
@@ -342,6 +343,20 @@ namespace TransportInfoService
             set
             {
                 loadedTrainsWithDaysOfCruising = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Visibility VisibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual
+        {
+            get
+            {
+                return visibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual;
+            }
+
+            set
+            {
+                visibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual = value;
                 NotifyPropertyChanged();
             }
         }
@@ -760,37 +775,45 @@ namespace TransportInfoService
 
         public void ClickEventHandlerForSearchTrainsButton(object sender, EventArgs e)
         {
-            BufferForFoundTrainsWithDaysOfCruising.Clear();
-            BufferForFoundTrainsWithoutDaysOfCruising.Clear();
-            ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising = null;
-            ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising = null;
-            ControlsMustBeEnabled = false;
-            ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Collapsed;
-            VisibilityForLabelDepartureStationNotFound = Visibility.Collapsed;
-            VisibilityForLabelDestinationStationNotFound = Visibility.Collapsed;
-            VisibilityForSearchTrainsButton = Visibility.Collapsed;
-            VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
-            ViewModelForTrainFilters.VisibilityForTrainFilters = Visibility.Collapsed;
-            ForegroundProgramStateLabel = Brushes.Orange;
-            ProgramStateLabelContent = Texts.LabelProgramStateWait;
-            VisibilityForSearchDataAnimatedEllipse = Visibility.Visible;
-            SearchDataAnimatedEllipseMustBeAnimated = true;
-
-            if (CheckBoxAllDaysIsChecked)
+            VisibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual = Visibility.Collapsed;
+            if (DepartureStationComboBoxText == DestinationStationComboBoxText)
             {
-                ThreadPool.QueueUserWorkItem(o => SearchOfTrainsWithoutDate());
+                VisibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual = Visibility.Visible;
             }
             else
             {
-                ThreadPool.QueueUserWorkItem(o => SearchOfTrainsWithDate());
+                BufferForFoundTrainsWithDaysOfCruising.Clear();
+                BufferForFoundTrainsWithoutDaysOfCruising.Clear();
+                ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising = null;
+                ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising = null;
+                ControlsMustBeEnabled = false;
+                ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Collapsed;
+                VisibilityForLabelDepartureStationNotFound = Visibility.Collapsed;
+                VisibilityForLabelDestinationStationNotFound = Visibility.Collapsed;
+                VisibilityForSearchTrainsButton = Visibility.Collapsed;
+                VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
+                ViewModelForTrainFilters.VisibilityForTrainFilters = Visibility.Collapsed;
+                ForegroundProgramStateLabel = Brushes.Orange;
+                ProgramStateLabelContent = Texts.LabelProgramStateWait;
+                VisibilityForSearchDataAnimatedEllipse = Visibility.Visible;
+                SearchDataAnimatedEllipseMustBeAnimated = true;
+
+                if (CheckBoxAllDaysIsChecked)
+                {
+                    ThreadPool.QueueUserWorkItem(o => SearchOfTrainsWithoutDate());
+                }
+                else
+                {
+                    ThreadPool.QueueUserWorkItem(o => SearchOfTrainsWithDate());
+                }
             }
         }
 
         public void DropDownOpenedEventHandlerForComboBoxesWithStations(object sender, EventArgs e)
         {
-            NoNeedForComboBoxTextChangedEvent = true;
             if ((sender as ComboBox).Text == Texts.ComboBoxChooseStation)
             {
+                NoNeedForComboBoxTextChangedEvent = true;
                 (sender as ComboBox).Foreground = Brushes.Black;
                 (sender as ComboBox).Text = string.Empty;
             }
@@ -798,7 +821,6 @@ namespace TransportInfoService
 
         public void DropDownClosedEventHandlerForComboBoxesWithStations(object sender, EventArgs e)
         {
-            NoNeedForComboBoxTextChangedEvent = true;
             if ((sender as ComboBox).Text == string.Empty)
             {
                 (sender as ComboBox).Foreground = Brushes.Gray;
@@ -853,6 +875,7 @@ namespace TransportInfoService
             VisibilityForLabelDepartureStationNotFound = Visibility.Collapsed;
             VisibilityForLabelDestinationStationNotFound = Visibility.Collapsed;
             VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
+            VisibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual = Visibility.Collapsed;
 
             DepartureStationComboBoxText = Texts.ComboBoxChooseStation;
             DestinationStationComboBoxText = Texts.ComboBoxChooseStation;

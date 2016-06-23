@@ -358,11 +358,11 @@ namespace TransportInfoService.DatabaseClasses
             //for (int i = 0; i < 10; ++i)
             //    trainBorisov1.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i+1));
                 
-            //for (int i = 0; i < 10; ++i)
-            //    trainBorisov2.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i + 1));
+            for (int i = 0; i < 10; ++i)
+                trainBorisov2.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i + 1));
 
-            //for (int i = 0; i < 10; ++i)
-            //    trainBorisov3.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i + 1));
+            for (int i = 0; i < 10; ++i)
+                trainBorisov3.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i + 1));
 
             for (int i = 0; i < 10; ++i)
                 trainMolodechno1.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i + 1));
@@ -392,9 +392,9 @@ namespace TransportInfoService.DatabaseClasses
                 trainStolbcy3.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i + 1));
 
             context.ListOfRoutes.Add(routeMinskBorisov);
-            //context.ListOfRoutes.Add(routeMinskMolodechno);
-            //context.ListOfRoutes.Add(routeMinskPuhovichi);
-            //context.ListOfRoutes.Add(routeMinskStolbcy);
+            context.ListOfRoutes.Add(routeMinskMolodechno);
+            context.ListOfRoutes.Add(routeMinskPuhovichi);
+            context.ListOfRoutes.Add(routeMinskStolbcy);
             //context.ListOfStationTypes.Add(new StationType() { Name = "FirstType" });
             //context.ListOfStationTypes.Add(new StationType() { Name = "SecondType" });
             //context.ListOfStationTypes.Add(new StationType() { Name = "ThirdType" });

@@ -103,6 +103,9 @@
                 </Button>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Center">
+                <Label Visibility="{Binding VisibilityForLabelSearchFailBecauseDepartureAndDestinationStationsAreEqual, Mode=TwoWay}" Content="{ x:Static MyRes:Texts.LabelDepartueAndDestinationStationsAreEqual}"  Foreground="Red"></Label>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
                 <Label Name="ProgramStateLabel" Content="{Binding ProgramStateLabelContent}" Foreground="{Binding ForegroundProgramStateLabel, Mode=TwoWay}"></Label>
                 <Ellipse Visibility="{Binding VisibilityForSearchDataAnimatedEllipse, Mode=TwoWay}"  Name="SearchDataAnimatedEllipse" Width="20" Height="20"  StrokeThickness="5" RenderTransformOrigin="0.5,0.5">
                     <Ellipse.RenderTransform>
