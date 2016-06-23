@@ -8,7 +8,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
-        Title="{x:Static MyRes:Texts.MainWindowName}" Height="603" Width="1000" ResizeMode="CanMinimize" Icon="Resources/Icons/MainWindowIcon.ico">
+        Title="{x:Static MyRes:Texts.MainWindowName}" Height="700" Width="1200" ResizeMode="CanMinimize" Icon="Resources/Icons/MainWindowIcon.ico">
     <Window.Resources>
         <Storyboard x:Key="LoadingAnimationStoryBoard" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SearchDataAnimatedEllipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
@@ -150,7 +150,7 @@
                         </i:Interaction.Triggers>
                     </Ellipse>
                 </WrapPanel>
-                <DataGrid Name="FoundTrainsDataGrid" MaxHeight="450" ItemsSource="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising, Mode=OneWay}" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid Name="FoundTrainsDataGrid" MaxWidth="750" MaxHeight="400" ItemsSource="{Binding ViewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithDaysOfCruising, Mode=OneWay}" Visibility="{Binding VisibilityForFoundTrainsDataGrid, Mode=TwoWay}" AutoGenerateColumns="True" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="AutoGeneratingColumn">
                             <ei:CallMethodAction TargetObject="{Binding}"  MethodName="AutoGeneratingColumnEventHandlerForFoundTrainsDataGrid" />
@@ -209,7 +209,7 @@
                         </i:Interaction.Triggers>
                     </Button>
                 </StackPanel>
-                <StackPanel Visibility="{Binding ViewModelForBookingStackPanel.VisibilityForBookingStackPanel, Mode=TwoWay}">
+                <StackPanel IsEnabled="{Binding ControlsMustBeEnabled, Mode=TwoWay}" Visibility="{Binding ViewModelForBookingStackPanel.VisibilityForBookingStackPanel, Mode=TwoWay}">
                     <Label Content="{x:Static MyRes:Texts.LabelBookingHeader}" Foreground="Blue"></Label>
                     <StackPanel Visibility="{Binding ViewModelForBookingStackPanel.VisibilityForLoginAndRegistrationControls, Mode=TwoWay}">
                         <Label Content="{x:Static MyRes:Texts.LabelYouMustLoginBeforeStartBooking}" Foreground="Red"></Label>
@@ -217,23 +217,49 @@
                             <TabItem Header="{x:Static MyRes:Texts.TabItemLogInSystem}">
                                 <StackPanel>
                                     <Label Content="{x:Static MyRes:Texts.LabelEnterLogin}"></Label>
-                                    <TextBox></TextBox>
+                                    <TextBox Text="{Binding ViewModelForBookingStackPanel.LoginInLoginTextBox, Mode=TwoWay}"></TextBox>
                                     <Label Content="{x:Static MyRes:Texts.LabelEnterPassword}"></Label>
-                                    <PasswordBox></PasswordBox>
-                                    <Button Content="{x:Static MyRes:Texts.ButtonLogIn}" HorizontalAlignment="Center"></Button>
+                                    <PasswordBox Name="LoginPasswordBox">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="PasswordChanged">
+                                                <ei:CallMethodAction TargetObject="{Binding ViewModelForBookingStackPanel}"  MethodName="PasswordChangedEventHandlerForAllPasswordBoxes"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </PasswordBox>
+                                    <Button Content="{x:Static MyRes:Texts.ButtonLogIn}" HorizontalAlignment="Center">
+                                        
+                                    </Button>
                                 </StackPanel>
                             </TabItem>
                             <TabItem Header="{x:Static MyRes:Texts.TabItemRegistrationSystem}">
                                 <StackPanel>
                                     <Label Content="{x:Static MyRes:Texts.LabelTypeNewLogin}"></Label>
-                                    <TextBox></TextBox>
+                                    <TextBox Text="{Binding ViewModelForBookingStackPanel.LoginInRegistrationTextBox, Mode=TwoWay}"></TextBox>
                                     <Label Content="{x:Static MyRes:Texts.LabelTypeEmail}"></Label>
-                                    <TextBox></TextBox>
+                                    <TextBox Text="{Binding ViewModelForBookingStackPanel.EmailInRegistrationTextBox, Mode=TwoWay}"></TextBox>
                                     <Label Content="{x:Static MyRes:Texts.LabelTypePasswordFirstTime}"></Label>
-                                    <PasswordBox></PasswordBox>
+                                    <PasswordBox Name="FirstRegistrationPasswordBox">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="PasswordChanged">
+                                                <ei:CallMethodAction TargetObject="{Binding ViewModelForBookingStackPanel}"  MethodName="PasswordChangedEventHandlerForAllPasswordBoxes"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </PasswordBox>
                                     <Label Content="{x:Static MyRes:Texts.LabelTypePasswordSecondTime}"></Label>
-                                    <PasswordBox></PasswordBox>
-                                    <Button HorizontalAlignment="Center" Content="{x:Static MyRes:Texts.ButtonStartRegistration}"></Button>
+                                    <PasswordBox Name="SecondRegistrationPasswordBox">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="PasswordChanged">
+                                                <ei:CallMethodAction TargetObject="{Binding ViewModelForBookingStackPanel}"  MethodName="PasswordChangedEventHandlerForAllPasswordBoxes"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </PasswordBox>
+                                    <Button HorizontalAlignment="Center" Content="{x:Static MyRes:Texts.ButtonStartRegistration}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <ei:CallMethodAction TargetObject="{Binding}"  MethodName="ClickEventHandlerForRegisterButton"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
                                 </StackPanel>
                             </TabItem>
                         </TabControl>

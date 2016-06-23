@@ -804,6 +804,31 @@ namespace TransportInfoService
             }
         }
 
+        public void ClickEventHandlerForRegisterButton(object sender, EventArgs e)
+        {
+            controlsMustBeEnabled = false;
+            ViewModelForTrainFilters.FiltersMustBeEnabled = false;
+            ThreadPool.QueueUserWorkItem(o => BeginRegistration());
+        }
+
+        private void BeginRegistration()
+        {
+            bool RegistrationIsPermitted = ViewModelForBookingStackPanel.CheckRegistrationData();
+            if (RegistrationIsPermitted)
+            {
+                bool NewUserHasBeenSuccessfullyRegistered = TransportDBWorker.RegisterNewUser(ViewModelForBookingStackPanel.LoginInRegistrationTextBox, ViewModelForBookingStackPanel.EmailInRegistrationTextBox,
+                    ViewModelForBookingStackPanel.PasswordInFirstRegistrationPasswordBox);
+                if (!NewUserHasBeenSuccessfullyRegistered)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void NotifyPropertyChanged([CallerMemberName] string PropertyName = "")

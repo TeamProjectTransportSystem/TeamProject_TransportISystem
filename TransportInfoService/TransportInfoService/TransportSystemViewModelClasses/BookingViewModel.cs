@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using TransportInfoService.Resources;
 
 namespace TransportInfoService.TransportSystemViewModelClasses
 {
@@ -15,19 +17,23 @@ namespace TransportInfoService.TransportSystemViewModelClasses
         private Visibility visibilityForLoginAndRegistrationControls;
 
         private string loginOfUserAlreadyLoggedIn;
-        private string loginTextBox;
-        private string registrationLoginTextBox;
+        private string loginInLoginTextBox;
+        private string loginInRegistrationTextBox;
+        private string passwordInLoginPasswordBox;
+        private string emailInRegistrationTextBox;
+        private string passwordInFirstRegistrationPasswordBox;
+        private string passwordInSecondRegistrationPasswordBox;
 
-        public string RegistrationLoginTextBox
+        public string LoginInRegistrationTextBox
         {
             get 
             { 
-                return registrationLoginTextBox; 
+                return loginInRegistrationTextBox; 
             }
 
             set 
-            { 
-                registrationLoginTextBox = value;
+            {
+                loginInRegistrationTextBox = value;
                 NotifyPropertyChanged();
             }
         }
@@ -46,16 +52,16 @@ namespace TransportInfoService.TransportSystemViewModelClasses
                 NotifyPropertyChanged();
             }
         }
-        public string LoginTextBox
+        public string LoginInLoginTextBox
         {
             get 
             {
-                return loginTextBox; 
+                return loginInLoginTextBox; 
             }
 
             set 
             {
-                loginTextBox = value;
+                loginInLoginTextBox = value;
                 NotifyPropertyChanged();
             }
         }
@@ -88,6 +94,84 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             }
         }
 
+        public string PasswordInLoginPasswordBox
+        {
+            get
+            {
+                return passwordInLoginPasswordBox;
+            }
+
+            set
+            {
+                passwordInLoginPasswordBox = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string PasswordInFirstRegistrationPasswordBox
+        {
+            get
+            {
+                return passwordInFirstRegistrationPasswordBox;
+            }
+
+            set
+            {
+                passwordInFirstRegistrationPasswordBox = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string PasswordInSecondRegistrationPasswordBox
+        {
+            get
+            {
+                return passwordInSecondRegistrationPasswordBox;
+            }
+
+            set
+            {
+                passwordInSecondRegistrationPasswordBox = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string EmailInRegistrationTextBox
+        {
+            get
+            {
+                return emailInRegistrationTextBox;
+            }
+
+            set
+            {
+                emailInRegistrationTextBox = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public void PasswordChangedEventHandlerForAllPasswordBoxes(object sender, EventArgs e)
+        {
+            PasswordBox SenderPasswordBox = sender as PasswordBox;
+            if (SenderPasswordBox.Name == NamesOfVariables.PasswordBoxForLoginName)
+            {
+                PasswordInLoginPasswordBox = SenderPasswordBox.Password;
+            }
+            else if (SenderPasswordBox.Name == NamesOfVariables.PasswordBoxForRegistrationFirstName)
+            {
+                PasswordInFirstRegistrationPasswordBox = SenderPasswordBox.Password;
+            }
+            else if (SenderPasswordBox.Name == NamesOfVariables.PasswordBoxForRegistrationSecondName)
+            {
+                PasswordInSecondRegistrationPasswordBox = SenderPasswordBox.Password;
+            }
+        }
+
+        public bool CheckRegistrationData()
+        {
+            return true;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged([CallerMemberName] string PropertyName = "")
         {
@@ -102,8 +186,12 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             VisibilityForLoginAndRegistrationControls = Visibility.Visible;
 
             LoginOfUserAlreadyLoggedIn = string.Empty;
-            LoginTextBox = string.Empty;
-            RegistrationLoginTextBox = string.Empty;
+            LoginInLoginTextBox = string.Empty;
+            LoginInRegistrationTextBox = string.Empty;
+            PasswordInLoginPasswordBox = string.Empty;
+            PasswordInFirstRegistrationPasswordBox = string.Empty;
+            PasswordInSecondRegistrationPasswordBox = string.Empty;
+            EmailInRegistrationTextBox = string.Empty;
         }
 
     }

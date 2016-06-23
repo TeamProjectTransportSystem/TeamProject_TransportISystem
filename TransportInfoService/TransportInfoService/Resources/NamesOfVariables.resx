@@ -162,4 +162,13 @@
   <data name="ConnectionStringPrepodServer" xml:space="preserve">
     <value>TransportDBConnectionPrepodServer</value>
   </data>
+  <data name="PasswordBoxForLoginName" xml:space="preserve">
+    <value>LoginPasswordBox</value>
+  </data>
+  <data name="PasswordBoxForRegistrationFirstName" xml:space="preserve">
+    <value>FirstRegistrationPasswordBox</value>
+  </data>
+  <data name="PasswordBoxForRegistrationSecondName" xml:space="preserve">
+    <value>SecondRegistrationPasswordBox</value>
+  </data>
 </root>

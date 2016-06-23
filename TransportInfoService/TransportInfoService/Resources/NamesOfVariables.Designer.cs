@@ -194,5 +194,32 @@ namespace TransportInfoService.Resources {
                 return ResourceManager.GetString("ConnectionStringPrepodServer", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на LoginPasswordBox.
+        /// </summary>
+        public static string PasswordBoxForLoginName {
+            get {
+                return ResourceManager.GetString("PasswordBoxForLoginName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FirstRegistrationPasswordBox.
+        /// </summary>
+        public static string PasswordBoxForRegistrationFirstName {
+            get {
+                return ResourceManager.GetString("PasswordBoxForRegistrationFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на SecondRegistrationPasswordBox.
+        /// </summary>
+        public static string PasswordBoxForRegistrationSecondName {
+            get {
+                return ResourceManager.GetString("PasswordBoxForRegistrationSecondName", resourceCulture);
+            }
+        }
     }
 }
