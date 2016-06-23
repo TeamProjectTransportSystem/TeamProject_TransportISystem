@@ -14,7 +14,7 @@ namespace TransportInfoService.DatabaseClasses
         {
             string trainFullName, departureTime, arrivalTime, travelTime, daysOfCruising = null;
             List<TrainWithDaysOfCruising> listOfTrains = new List<TrainWithDaysOfCruising>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -137,7 +137,8 @@ namespace TransportInfoService.DatabaseClasses
 
             List<Train> listTrainWithDate = new List<Train>();
 
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
+
             {
                 Station currentFirstStation = null, currentSecondStation = null;
                 foreach (Station s in CurrentDBContext.ListOfStations)
@@ -384,7 +385,7 @@ namespace TransportInfoService.DatabaseClasses
         static List<string> GetWagonTypeName()
         {
             List<string> NewListOfWagonTypeNames = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
             {
                 NewListOfWagonTypeNames = CurrentDBContext.ListOfWagonTypes.Select(s => s.WagonName).ToList();
             }
@@ -396,7 +397,7 @@ namespace TransportInfoService.DatabaseClasses
         {
 
             List<string> NewListOfStations = new List<string>();
-            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringOldVersion))
+            using (TransportDBContext CurrentDBContext = new TransportDBContext(NamesOfVariables.ConnectionStringNewVersion))
             {
                 NewListOfStations = CurrentDBContext.ListOfStations.OrderBy(p => p.Name).Select(s => s.Name).ToList();
             }

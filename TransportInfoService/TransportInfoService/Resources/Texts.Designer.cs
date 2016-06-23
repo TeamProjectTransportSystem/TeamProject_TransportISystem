@@ -187,6 +187,15 @@ namespace TransportInfoService.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Поиск невозможен, поскольку станция отправления совпадает со станцией назначения!.
+        /// </summary>
+        public static string LabelDepartueAndDestinationStationsAreEqual {
+            get {
+                return ResourceManager.GetString("LabelDepartueAndDestinationStationsAreEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Откуда.
         /// </summary>
         public static string LabelDepartureStation {
