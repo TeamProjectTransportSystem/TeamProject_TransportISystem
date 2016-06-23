@@ -235,4 +235,23 @@
   <data name="TabItemRegistrationSystem" xml:space="preserve">
     <value>Регистрация</value>
   </data>
+  <data name="LabelRegistrationFailedLoginAlreadyExists" xml:space="preserve">
+    <value>Пользователь с таким логином 
+уже существует!</value>
+  </data>
+  <data name="LabelRegistrationFailedLoginEmplty" xml:space="preserve">
+    <value>Поле логина не может быть пустым!</value>
+  </data>
+  <data name="LabelRegistrationFailedDuringEmailValidationEmpty" xml:space="preserve">
+    <value>Поле для Email не может быть пустым!</value>
+  </data>
+  <data name="LabelRegistrationFailedDuringEmailValidationIncorrect" xml:space="preserve">
+    <value>Введите корректный, реально существующий  Email!</value>
+  </data>
+  <data name="LabelRegistrationFailedDuringPasswordValidationEmpty" xml:space="preserve">
+    <value>Поле для пароля не может быть пустым!</value>
+  </data>
+  <data name="LabelRegistrationFailedDuringPasswordValidationNotEqual" xml:space="preserve">
+    <value>Пароли не совпадают!</value>
+  </data>
 </root>
