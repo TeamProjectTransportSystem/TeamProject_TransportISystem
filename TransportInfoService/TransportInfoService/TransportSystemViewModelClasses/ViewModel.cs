@@ -760,7 +760,7 @@ namespace TransportInfoService
                 ProgramStateLabelContent = Texts.LabelProgramStateReady;
                 viewModelForTrainFilters.ListOfFoundTrainsForDataGridWhichContainsFoundTrainsWithoutDaysOfCruising = FoundTrains;
                 LoadedTrainsWithDaysOfCruising = false;
-                ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Visible;
+                //ViewModelForBookingStackPanel.VisibilityForBookingStackPanel = Visibility.Visible;
             }
             else
             {
