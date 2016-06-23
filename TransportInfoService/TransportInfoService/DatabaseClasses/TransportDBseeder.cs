@@ -357,7 +357,7 @@ namespace TransportInfoService.DatabaseClasses
 
             //for (int i = 0; i < 10; ++i)
             //    trainBorisov1.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i+1));
-                
+
             for (int i = 0; i < 10; ++i)
                 trainBorisov2.Wagons.Add(new Wagon(sedentaryWagonForTrainEconom, i + 1));
 
