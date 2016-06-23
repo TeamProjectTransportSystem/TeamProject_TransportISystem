@@ -33,6 +33,8 @@ namespace TransportInfoService.TransportSystemViewModelClasses
         private string contentOfFirstLabelRegistrationFailedDuringPasswordValidation;
         private string contentOfSecondLabelRegistrationFailedDuringPasswordValidation;
 
+        private bool ellipseForLoginAndRegistrationMustBeAnimated;
+
         public string LoginInRegistrationTextBox
         {
             get 
@@ -285,6 +287,20 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             }
         }
 
+        public bool EllipseForLoginAndRegistrationMustBeAnimated
+        {
+            get
+            {
+                return ellipseForLoginAndRegistrationMustBeAnimated;
+            }
+
+            set
+            {
+                ellipseForLoginAndRegistrationMustBeAnimated = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public void PasswordChangedEventHandlerForAllPasswordBoxes(object sender, EventArgs e)
         {
             PasswordBox SenderPasswordBox = sender as PasswordBox;
@@ -337,6 +353,8 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             VisibilityForFirstLabelRegistrationFailedDuringPasswordValidation = Visibility.Collapsed;
             VisibilityForSecondLabelRegistrationFailedDuringPasswordValidation = Visibility.Collapsed;
             VisibilityForStackPanelWithWaitAnimationForLoginAndRegistration = Visibility.Collapsed;
+
+            EllipseForLoginAndRegistrationMustBeAnimated = false;
         }
 
     }
