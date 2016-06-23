@@ -15,6 +15,11 @@ namespace TransportInfoService.TransportSystemViewModelClasses
     {
         private Visibility visibilityForBookingStackPanel;
         private Visibility visibilityForLoginAndRegistrationControls;
+        private Visibility visibilityForLabelRegistrationFailedBecauseOfLogin;
+        private Visibility visibilityForLabelRegistrationFailedDuringEmailValidation;
+        private Visibility visibilityForFirstLabelRegistrationFailedDuringPasswordValidation;
+        private Visibility visibilityForSecondLabelRegistrationFailedDuringPasswordValidation;
+        private Visibility visibilityForStackPanelWithWaitAnimationForLoginAndRegistration;
 
         private string loginOfUserAlreadyLoggedIn;
         private string loginInLoginTextBox;
@@ -23,6 +28,10 @@ namespace TransportInfoService.TransportSystemViewModelClasses
         private string emailInRegistrationTextBox;
         private string passwordInFirstRegistrationPasswordBox;
         private string passwordInSecondRegistrationPasswordBox;
+        private string contentOfLabelRegistrationFailedBecauseOfLogin;
+        private string contentOfLabelRegistrationFailedDuringEmailValidation;
+        private string contentOfFirstLabelRegistrationFailedDuringPasswordValidation;
+        private string contentOfSecondLabelRegistrationFailedDuringPasswordValidation;
 
         public string LoginInRegistrationTextBox
         {
@@ -150,6 +159,132 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             }
         }
 
+        public Visibility VisibilityForLabelRegistrationFailedBecauseOfLogin
+        {
+            get
+            {
+                return visibilityForLabelRegistrationFailedBecauseOfLogin;
+            }
+
+            set
+            {
+                visibilityForLabelRegistrationFailedBecauseOfLogin = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string ContentOfLabelRegistrationFailedBecauseOfLogin
+        {
+            get
+            {
+                return contentOfLabelRegistrationFailedBecauseOfLogin;
+            }
+
+            set
+            {
+                contentOfLabelRegistrationFailedBecauseOfLogin = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Visibility VisibilityForLabelRegistrationFailedDuringEmailValidation
+        {
+            get
+            {
+                return visibilityForLabelRegistrationFailedDuringEmailValidation;
+            }
+
+            set
+            {
+                visibilityForLabelRegistrationFailedDuringEmailValidation = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string ContentOfLabelRegistrationFailedDuringEmailValidation
+        {
+            get
+            {
+                return contentOfLabelRegistrationFailedDuringEmailValidation;
+            }
+
+            set
+            {
+                contentOfLabelRegistrationFailedDuringEmailValidation = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Visibility VisibilityForFirstLabelRegistrationFailedDuringPasswordValidation
+        {
+            get
+            {
+                return visibilityForFirstLabelRegistrationFailedDuringPasswordValidation;
+            }
+
+            set
+            {
+                visibilityForFirstLabelRegistrationFailedDuringPasswordValidation = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string ContentOfFirstLabelRegistrationFailedDuringPasswordValidation
+        {
+            get
+            {
+                return contentOfFirstLabelRegistrationFailedDuringPasswordValidation;
+            }
+
+            set
+            {
+                contentOfFirstLabelRegistrationFailedDuringPasswordValidation = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Visibility VisibilityForSecondLabelRegistrationFailedDuringPasswordValidation
+        {
+            get
+            {
+                return visibilityForSecondLabelRegistrationFailedDuringPasswordValidation;
+            }
+
+            set
+            {
+                visibilityForSecondLabelRegistrationFailedDuringPasswordValidation = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string ContentOfSecondLabelRegistrationFailedDuringPasswordValidation
+        {
+            get
+            {
+                return contentOfSecondLabelRegistrationFailedDuringPasswordValidation;
+            }
+
+            set
+            {
+                contentOfSecondLabelRegistrationFailedDuringPasswordValidation = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Visibility VisibilityForStackPanelWithWaitAnimationForLoginAndRegistration
+        {
+            get
+            {
+                return visibilityForStackPanelWithWaitAnimationForLoginAndRegistration;
+            }
+
+            set
+            {
+                visibilityForStackPanelWithWaitAnimationForLoginAndRegistration = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public void PasswordChangedEventHandlerForAllPasswordBoxes(object sender, EventArgs e)
         {
             PasswordBox SenderPasswordBox = sender as PasswordBox;
@@ -192,6 +327,16 @@ namespace TransportInfoService.TransportSystemViewModelClasses
             PasswordInFirstRegistrationPasswordBox = string.Empty;
             PasswordInSecondRegistrationPasswordBox = string.Empty;
             EmailInRegistrationTextBox = string.Empty;
+            ContentOfLabelRegistrationFailedBecauseOfLogin = string.Empty;
+            ContentOfLabelRegistrationFailedDuringEmailValidation = string.Empty;
+            ContentOfFirstLabelRegistrationFailedDuringPasswordValidation = string.Empty;
+            ContentOfSecondLabelRegistrationFailedDuringPasswordValidation = string.Empty;
+
+            VisibilityForLabelRegistrationFailedDuringEmailValidation = Visibility.Collapsed;
+            VisibilityForLabelRegistrationFailedBecauseOfLogin = Visibility.Collapsed;
+            VisibilityForFirstLabelRegistrationFailedDuringPasswordValidation = Visibility.Collapsed;
+            VisibilityForSecondLabelRegistrationFailedDuringPasswordValidation = Visibility.Collapsed;
+            VisibilityForStackPanelWithWaitAnimationForLoginAndRegistration = Visibility.Collapsed;
         }
 
     }

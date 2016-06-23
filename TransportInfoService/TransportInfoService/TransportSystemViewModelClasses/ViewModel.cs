@@ -420,6 +420,7 @@ namespace TransportInfoService
         public void ClickEventHandlerForApplyFiltersButton(object sender, EventArgs e)
         {
             ViewModelForTrainFilters.FiltersMustBeEnabled = false;
+            ControlsMustBeEnabled = false;
             VisibilityForFoundTrainsDataGrid = Visibility.Collapsed;
             ViewModelForTrainFilters.VisibilityForAnimatedEclipseForApplyingFilters = Visibility.Visible;
             ViewModelForTrainFilters.ApplyingFiltersEllipseMustBeAnimated = true;
@@ -661,6 +662,7 @@ namespace TransportInfoService
             ViewModelForTrainFilters.VisibilityForAnimatedEclipseForApplyingFilters = Visibility.Collapsed;
             VisibilityForFoundTrainsDataGrid = Visibility.Visible;
             ViewModelForTrainFilters.FiltersMustBeEnabled = true;
+            ControlsMustBeEnabled = true;
         }
 
         private bool CheckingTheExistenceOfStations()
@@ -806,7 +808,7 @@ namespace TransportInfoService
 
         public void ClickEventHandlerForRegisterButton(object sender, EventArgs e)
         {
-            controlsMustBeEnabled = false;
+            ControlsMustBeEnabled = false;
             ViewModelForTrainFilters.FiltersMustBeEnabled = false;
             ThreadPool.QueueUserWorkItem(o => BeginRegistration());
         }
